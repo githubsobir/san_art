@@ -1,0 +1,2 @@
+/Users/uzbmb/StudioProjects/san_art/android/app/.cxx/RelWithDebInfo/x6u2uf67/x86_64/CMakeFiles/edit_cache.dir
+/Users/uzbmb/StudioProjects/san_art/android/app/.cxx/RelWithDebInfo/x6u2uf67/x86_64/CMakeFiles/rebuild_cache.dir

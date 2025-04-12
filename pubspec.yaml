@@ -1,0 +1,121 @@
+name: san_art
+description: "A new Flutter project."
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number is used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+# In Windows, build-name is used as the major, minor, and patch parts
+# of the product and file versions while build-number is used as the build suffix.
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.4
+
+# Dependencies specify other packages that your package needs in order to work.
+# To automatically upgrade your package dependencies to the latest versions
+# consider running `flutter pub upgrade --major-versions`. Alternatively,
+# dependencies can be manually updated by changing the version numbers below to
+# the latest version available on pub.dev. To see which dependencies have newer
+# versions available, run `flutter pub outdated`.
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  persistent_bottom_nav_bar_2: ^5.0.3
+  hive: ^2.2.3
+  multiple_result: ^5.1.0
+  carousel_slider: ^5.0.0
+  flutter_riverpod: ^2.6.1
+  hive_flutter: ^1.1.0
+  animated_bottom_navigation_bar: ^1.4.0
+  easy_localization: ^3.0.7+1
+  dio: ^5.8.0+1
+  cached_network_image: ^3.4.1
+  connection_notifier: ^2.0.1
+  url_launcher: ^6.3.1
+  font_awesome_flutter: ^10.8.0
+  #  photo_view: ^0.15.0
+  loading_indicator: ^3.1.1
+  fade_shimmer: ^2.3.0
+  auto_route: ^10.0.1
+  get_it: ^8.0.3
+  injectable: ^2.5.0
+  safe_device: ^1.2.0 # not support web
+  flutter_secure_storage: ^9.2.4
+  mask_text_input_formatter: ^2.9.0
+  json_annotation: ^4.9.0
+  freezed_annotation: ^3.0.0
+  dropdown_button2: ^2.3.9
+  calendar_date_picker2: ^1.1.9
+  easy_pie_chart: ^1.0.1
+  flutter_svg: ^2.0.17
+  flutter_staggered_grid_view: ^0.7.0
+  google_maps_flutter: ^2.12.1
+  geocoding: ^3.0.0
+  geolocator: ^13.0.4
+  location: ^8.0.0
+  uuid: ^4.5.1
+  google_maps_cluster_manager_2: ^3.2.0
+  custom_info_window: ^1.0.1
+
+
+dev_dependencies:
+  flutter_lints: ^5.0.0
+  auto_route_generator: ^10.0.1
+  build_runner: ^2.4.15
+  freezed: ^3.0.3
+  injectable_generator: ^2.7.0
+  json_serializable: ^6.9.4
+  res_generator: ^0.1.5
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/language/
+    - assets/images/
+    - assets/icons/
+
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Poppins-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Poppins-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Poppins-Bold.ttf
+          weight: 700
+
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Inter-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Inter-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Inter-Bold.ttf
+          weight: 700
+
+    - family: SF-Pro-Display
+      fonts:
+        - asset: assets/fonts/SF-Pro-Display-Regular.otf
+          weight: 400
+        - asset: assets/fonts/SF-Pro-Display-Medium.otf
+          weight: 500
+        - asset: assets/fonts/SF-Pro-Display-SemiBold.otf
+          weight: 600
+        - asset: assets/fonts/SF-Pro-Display-Bold.otf
+          weight: 700
+
