@@ -10,9 +10,7 @@ _MapEntities _$MapEntitiesFromJson(Map<String, dynamic> json) => _MapEntities(
       id: json['id'] as String,
       name: json['name'] as String,
       description: json['description'] as String,
-      langLat: (json['langLat'] as List<dynamic>)
-          .map((e) => LangLat.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      langLat: LangLat1.fromJson(json['langLat'] as Map<String, dynamic>),
       images: (json['images'] as List<dynamic>)
           .map((e) => Images.fromJson(e as Map<String, dynamic>))
           .toList(),

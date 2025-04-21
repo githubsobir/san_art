@@ -18,7 +18,7 @@ mixin _$ModelMap {
   String get id;
   String get name;
   String get description;
-  List<LangLatModel> get langLat;
+  LangLatModel get langLat;
   List<ImagesModel> get images;
 
   /// Create a copy of ModelMap
@@ -40,18 +40,13 @@ mixin _$ModelMap {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            const DeepCollectionEquality().equals(other.langLat, langLat) &&
+            (identical(other.langLat, langLat) || other.langLat == langLat) &&
             const DeepCollectionEquality().equals(other.images, images));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      name,
-      description,
-      const DeepCollectionEquality().hash(langLat),
+  int get hashCode => Object.hash(runtimeType, id, name, description, langLat,
       const DeepCollectionEquality().hash(images));
 
   @override
@@ -69,8 +64,10 @@ abstract mixin class $ModelMapCopyWith<$Res> {
       {String id,
       String name,
       String description,
-      List<LangLatModel> langLat,
+      LangLatModel langLat,
       List<ImagesModel> images});
+
+  $LangLatModelCopyWith<$Res> get langLat;
 }
 
 /// @nodoc
@@ -107,12 +104,22 @@ class _$ModelMapCopyWithImpl<$Res> implements $ModelMapCopyWith<$Res> {
       langLat: null == langLat
           ? _self.langLat
           : langLat // ignore: cast_nullable_to_non_nullable
-              as List<LangLatModel>,
+              as LangLatModel,
       images: null == images
           ? _self.images
           : images // ignore: cast_nullable_to_non_nullable
               as List<ImagesModel>,
     ));
+  }
+
+  /// Create a copy of ModelMap
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $LangLatModelCopyWith<$Res> get langLat {
+    return $LangLatModelCopyWith<$Res>(_self.langLat, (value) {
+      return _then(_self.copyWith(langLat: value));
+    });
   }
 }
 
@@ -123,10 +130,9 @@ class _ModelMap extends ModelMap {
       {required this.id,
       required this.name,
       required this.description,
-      required final List<LangLatModel> langLat,
+      required this.langLat,
       required final List<ImagesModel> images})
-      : _langLat = langLat,
-        _images = images,
+      : _images = images,
         super._();
   factory _ModelMap.fromJson(Map<String, dynamic> json) =>
       _$ModelMapFromJson(json);
@@ -137,14 +143,8 @@ class _ModelMap extends ModelMap {
   final String name;
   @override
   final String description;
-  final List<LangLatModel> _langLat;
   @override
-  List<LangLatModel> get langLat {
-    if (_langLat is EqualUnmodifiableListView) return _langLat;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_langLat);
-  }
-
+  final LangLatModel langLat;
   final List<ImagesModel> _images;
   @override
   List<ImagesModel> get images {
@@ -177,18 +177,13 @@ class _ModelMap extends ModelMap {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            const DeepCollectionEquality().equals(other._langLat, _langLat) &&
+            (identical(other.langLat, langLat) || other.langLat == langLat) &&
             const DeepCollectionEquality().equals(other._images, _images));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      name,
-      description,
-      const DeepCollectionEquality().hash(_langLat),
+  int get hashCode => Object.hash(runtimeType, id, name, description, langLat,
       const DeepCollectionEquality().hash(_images));
 
   @override
@@ -208,8 +203,11 @@ abstract mixin class _$ModelMapCopyWith<$Res>
       {String id,
       String name,
       String description,
-      List<LangLatModel> langLat,
+      LangLatModel langLat,
       List<ImagesModel> images});
+
+  @override
+  $LangLatModelCopyWith<$Res> get langLat;
 }
 
 /// @nodoc
@@ -244,14 +242,24 @@ class __$ModelMapCopyWithImpl<$Res> implements _$ModelMapCopyWith<$Res> {
           : description // ignore: cast_nullable_to_non_nullable
               as String,
       langLat: null == langLat
-          ? _self._langLat
+          ? _self.langLat
           : langLat // ignore: cast_nullable_to_non_nullable
-              as List<LangLatModel>,
+              as LangLatModel,
       images: null == images
           ? _self._images
           : images // ignore: cast_nullable_to_non_nullable
               as List<ImagesModel>,
     ));
+  }
+
+  /// Create a copy of ModelMap
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $LangLatModelCopyWith<$Res> get langLat {
+    return $LangLatModelCopyWith<$Res>(_self.langLat, (value) {
+      return _then(_self.copyWith(langLat: value));
+    });
   }
 }
 

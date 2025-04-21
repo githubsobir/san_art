@@ -11,6 +11,6 @@ class MapUsecase {
 
   MapUsecase(this.repositoryMap);
 
-  Future<Result<List<MapEntities>, Failure>> getData(LangLat latLang) =>
+  Future<Result<List<MapEntities>, Failure>> getData(LangLat1 latLang) =>
       repositoryMap.getData(latLang);
 }

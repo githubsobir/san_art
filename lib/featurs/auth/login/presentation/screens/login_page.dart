@@ -12,7 +12,9 @@ import 'package:san_art/core/theme/theme_switcher.dart';
 import 'package:san_art/core/widgets/buttons/button_primary.dart';
 import 'package:san_art/featurs/auth/login/domain/entities/get_region_entities.dart';
 import 'package:san_art/featurs/auth/login/presentation/states/region_state.dart';
+import 'package:auto_route/auto_route.dart';
 
+@RoutePage()
 class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
 

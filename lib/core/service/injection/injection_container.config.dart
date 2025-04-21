@@ -29,6 +29,12 @@ import '../../../featurs/auth/login/domain/repository/region_repository.dart'
     as _i889;
 import '../../../featurs/auth/login/domain/usecases/get_region_usecase.dart'
     as _i159;
+import '../../../featurs/auth/registration/exporter/full_name/data/datasources/full_name_datasource.dart'
+    as _i728;
+import '../../../featurs/auth/registration/exporter/full_name/data/repository_impl/full_name_repository_impl.dart'
+    as _i239;
+import '../../../featurs/auth/registration/exporter/full_name/domain/repository/full_name_repository.dart'
+    as _i892;
 import '../../../featurs/choose_language/data/datasources/language_datasource.dart'
     as _i583;
 import '../../../featurs/choose_language/domain/usecases/language_usecase.dart'
@@ -95,6 +101,7 @@ _i174.GetIt init(
       () => _i410.LanguageUsecase(gh<_i583.LanguageDataSource>()));
   gh.factory<_i256.ChoseRoleDataSource>(
       () => _i256.ChoseRoleDataSourceImpl(gh<_i361.Dio>()));
+  gh.factory<_i728.FullNameDataSource>(() => _i728.FullNameDataSourceImpl());
   gh.factory<_i679.ListAppDataSource>(
       () => _i679.ListAppDataSourceImpl(dio: gh<_i361.Dio>()));
   gh.factory<_i162.UserRoleRepository>(
@@ -111,6 +118,8 @@ _i174.GetIt init(
       () => _i1023.SearchUsecase(gh<_i633.SearchRepository>()));
   gh.factory<_i286.StoriesRemoteDataSource>(
       () => _i286.StoriesRemoteDataSourceImpl(dio: gh<_i361.Dio>()));
+  gh.factory<_i892.FullNameRepository>(
+      () => _i239.FullNameRepositoryImpl(gh<_i728.FullNameDataSource>()));
   gh.factory<_i161.StoriesRepository>(() => _i458.StoriesRepositoryImpl(
       remoteDataSource: gh<_i286.StoriesRemoteDataSource>()));
   gh.factory<_i259.GetStoriesUseCase>(

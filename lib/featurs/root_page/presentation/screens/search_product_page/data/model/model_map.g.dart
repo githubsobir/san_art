@@ -10,9 +10,7 @@ _ModelMap _$ModelMapFromJson(Map<String, dynamic> json) => _ModelMap(
       id: json['id'] as String,
       name: json['name'] as String,
       description: json['description'] as String,
-      langLat: (json['langLat'] as List<dynamic>)
-          .map((e) => LangLatModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      langLat: LangLatModel.fromJson(json['langLat'] as Map<String, dynamic>),
       images: (json['images'] as List<dynamic>)
           .map((e) => ImagesModel.fromJson(e as Map<String, dynamic>))
           .toList(),

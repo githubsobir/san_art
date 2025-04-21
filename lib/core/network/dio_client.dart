@@ -8,7 +8,7 @@ class NetworkSanArt {
 
   NetworkSanArt()
       : dio = Dio(BaseOptions(
-    baseUrl: "http://sanx.farziddin.uz",
+    baseUrl: "http://46.101.142.154:8222/",
     connectTimeout: Duration(seconds: 8),
     receiveTimeout: Duration(seconds: 5),
   )) {

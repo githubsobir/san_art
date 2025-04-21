@@ -11,7 +11,7 @@ abstract class MapEntities with _$MapEntities {
     required String id,
     required String name,
     required String description,
-    required List<LangLat> langLat,
+    required LangLat1 langLat,
     required List<Images> images,
   }) = _MapEntities;
 

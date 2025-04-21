@@ -60,12 +60,14 @@ class LanguagePage extends ConsumerWidget {
                                       autofocus: false,
                                       groupValue: listLanguage[index].langName,
                                       onChanged: (val) {
-
                                         context.setLocale(Locale(
                                             listLanguage[index].langId1,
                                             listLanguage[index].langId2));
 
-                                        ref.read(languageProvider2.notifier).setLanguage(listLanguage[index].langId1);
+                                        ref
+                                            .read(languageProvider2.notifier)
+                                            .setLanguage(
+                                                listLanguage[index].langId1);
 
                                         listLanguage[index].boolLang = true;
                                         box.langUser = "1";
@@ -74,7 +76,8 @@ class LanguagePage extends ConsumerWidget {
                                         box.langUserLang =
                                             listLanguage[index].langId1;
 
-                                        print("Current locale: ${context.locale.toString()}");
+                                        print(
+                                            "Current locale: ${context.locale.toString()}");
                                       }),
                                 ),
                                 // onTap: () {
@@ -101,8 +104,7 @@ class LanguagePage extends ConsumerWidget {
                   const SizedBox(height: 10),
                   MaterialButton(
                     onPressed: () {
-                      context.router
-                          .push(RootRoute(val1: "Sobir", val2: "Sobir"));
+                      context.router.push(ChooseLogRegRoute());
                     },
                     height: 56,
                     minWidth: double.infinity,

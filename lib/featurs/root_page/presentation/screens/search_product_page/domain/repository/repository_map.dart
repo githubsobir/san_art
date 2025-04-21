@@ -4,5 +4,5 @@ import 'package:san_art/featurs/root_page/presentation/screens/search_product_pa
 import 'package:san_art/featurs/root_page/presentation/screens/search_product_page/domain/entities/map_entities.dart';
 
 abstract class MapRepository {
-  Future<Result<List<MapEntities>, Failure>> getData(LangLat latLang);
+  Future<Result<List<MapEntities>, Failure>> getData(LangLat1 latLang);
 }

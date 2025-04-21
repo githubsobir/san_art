@@ -13,7 +13,7 @@ class MapRepositoryImpl implements MapRepository {
   MapRepositoryImpl(this.mapDataSource);
 
   @override
-  Future<Result<List<MapEntities>, Failure>> getData(LangLat latLang) async {
+  Future<Result<List<MapEntities>, Failure>> getData(LangLat1 latLang) async {
     try {
       final langLatModel = LangLatModel(lat: latLang.lat, lang: latLang.lang);
       final result = await mapDataSource.data(langLatModel);

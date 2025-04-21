@@ -6,7 +6,7 @@ import 'package:san_art/featurs/root_page/presentation/screens/add_product_page/
 import 'package:san_art/featurs/root_page/presentation/screens/chat_page/chat_page.dart';
 import 'package:san_art/featurs/root_page/presentation/screens/favorite_page/favorite_page.dart';
 import 'package:san_art/featurs/root_page/presentation/screens/main_page/main_page.dart';
-import 'package:san_art/featurs/root_page/presentation/screens/search_page/search_page.dart';
+import 'package:san_art/featurs/root_page/presentation/screens/search_page/presentation/screen/search_page.dart';
 import 'package:san_art/featurs/root_page/presentation/screens/search_product_page/search-product_page.dart';
 
 @singleton

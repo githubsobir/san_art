@@ -11,6 +11,70 @@
 part of 'routes.dart';
 
 /// generated route for
+/// [ChooseLogRegPage]
+class ChooseLogRegRoute extends PageRouteInfo<void> {
+  const ChooseLogRegRoute({List<PageRouteInfo>? children})
+    : super(ChooseLogRegRoute.name, initialChildren: children);
+
+  static const String name = 'ChooseLogRegRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ChooseLogRegPage();
+    },
+  );
+}
+
+/// generated route for
+/// [DataBirthPage]
+class DataBirthRoute extends PageRouteInfo<void> {
+  const DataBirthRoute({List<PageRouteInfo>? children})
+    : super(DataBirthRoute.name, initialChildren: children);
+
+  static const String name = 'DataBirthRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const DataBirthPage();
+    },
+  );
+}
+
+/// generated route for
+/// [FullNamePage]
+class FullNameRoute extends PageRouteInfo<void> {
+  const FullNameRoute({List<PageRouteInfo>? children})
+    : super(FullNameRoute.name, initialChildren: children);
+
+  static const String name = 'FullNameRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const FullNamePage();
+    },
+  );
+}
+
+/// generated route for
+/// [ImageUserExporterPage]
+class ImageUserExporterRoute extends PageRouteInfo<void> {
+  const ImageUserExporterRoute({List<PageRouteInfo>? children})
+    : super(ImageUserExporterRoute.name, initialChildren: children);
+
+  static const String name = 'ImageUserExporterRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ImageUserExporterPage();
+    },
+  );
+}
+
+/// generated route for
 /// [LanguagePage]
 class LanguageRoute extends PageRouteInfo<void> {
   const LanguageRoute({List<PageRouteInfo>? children})
@@ -22,6 +86,22 @@ class LanguageRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const LanguagePage();
+    },
+  );
+}
+
+/// generated route for
+/// [LoginPage]
+class LoginRoute extends PageRouteInfo<void> {
+  const LoginRoute({List<PageRouteInfo>? children})
+    : super(LoginRoute.name, initialChildren: children);
+
+  static const String name = 'LoginRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const LoginPage();
     },
   );
 }
@@ -79,5 +159,42 @@ class RootRouteArgs {
   @override
   String toString() {
     return 'RootRouteArgs{key: $key, val1: $val1, val2: $val2}';
+  }
+}
+
+/// generated route for
+/// [UserCategoryPage]
+class UserCategoryRoute extends PageRouteInfo<UserCategoryRouteArgs> {
+  UserCategoryRoute({
+    Key? key,
+    required String windowIdReg,
+    List<PageRouteInfo>? children,
+  }) : super(
+         UserCategoryRoute.name,
+         args: UserCategoryRouteArgs(key: key, windowIdReg: windowIdReg),
+         initialChildren: children,
+       );
+
+  static const String name = 'UserCategoryRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<UserCategoryRouteArgs>();
+      return UserCategoryPage(key: args.key, windowIdReg: args.windowIdReg);
+    },
+  );
+}
+
+class UserCategoryRouteArgs {
+  const UserCategoryRouteArgs({this.key, required this.windowIdReg});
+
+  final Key? key;
+
+  final String windowIdReg;
+
+  @override
+  String toString() {
+    return 'UserCategoryRouteArgs{key: $key, windowIdReg: $windowIdReg}';
   }
 }

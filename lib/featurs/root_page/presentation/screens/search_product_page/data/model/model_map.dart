@@ -12,7 +12,7 @@ abstract class ModelMap with _$ModelMap {
     required String id,
     required String name,
     required String description,
-    required List<LangLatModel> langLat,
+    required LangLatModel langLat,
     required List<ImagesModel> images,
   }) = _ModelMap;
 
@@ -25,7 +25,7 @@ abstract class ModelMap with _$ModelMap {
       id: id,
       name: name,
       description: description,
-      langLat: langLat.map((e) => e.toEntities()).toList(),
+      langLat: langLat.toEntities(),
       images: images.map((e) => e.toEntities()).toList());
 }
 
@@ -41,7 +41,7 @@ abstract class LangLatModel with _$LangLatModel {
 
   LangLatModel._();
 
-  LangLat toEntities() => LangLat(lat: lat, lang: lang);
+  LangLat1 toEntities() => LangLat1(lat: lat, lang: lang);
 }
 
 @freezed

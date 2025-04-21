@@ -10,17 +10,20 @@ import 'package:san_art/core/widgets/buttons/button_primary.dart';
 import 'package:san_art/core/widgets/buttons/secondry.dart';
 import 'package:san_art/core/widgets/loading.dart';
 import 'package:san_art/featurs/auth/choose_role/presentation/provider/provider.dart';
+import 'package:auto_route/auto_route.dart';
 
-class UserCategory extends ConsumerStatefulWidget {
+
+@RoutePage()
+class UserCategoryPage extends ConsumerStatefulWidget {
   final String windowIdReg;
 
-  const UserCategory({super.key, required this.windowIdReg});
+  const UserCategoryPage({super.key, required this.windowIdReg});
 
   @override
-  ConsumerState<UserCategory> createState() => _UserCategoryState();
+  ConsumerState<UserCategoryPage> createState() => _UserCategoryState();
 }
 
-class _UserCategoryState extends ConsumerState<UserCategory> {
+class _UserCategoryState extends ConsumerState<UserCategoryPage> {
   var box = HiveBoxes();
 
   @override

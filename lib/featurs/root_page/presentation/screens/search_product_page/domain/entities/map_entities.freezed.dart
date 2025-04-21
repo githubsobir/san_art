@@ -18,7 +18,7 @@ mixin _$MapEntities {
   String get id;
   String get name;
   String get description;
-  List<LangLat> get langLat;
+  LangLat1 get langLat;
   List<Images> get images;
 
   /// Create a copy of MapEntities
@@ -40,18 +40,13 @@ mixin _$MapEntities {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            const DeepCollectionEquality().equals(other.langLat, langLat) &&
+            (identical(other.langLat, langLat) || other.langLat == langLat) &&
             const DeepCollectionEquality().equals(other.images, images));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      name,
-      description,
-      const DeepCollectionEquality().hash(langLat),
+  int get hashCode => Object.hash(runtimeType, id, name, description, langLat,
       const DeepCollectionEquality().hash(images));
 
   @override
@@ -70,8 +65,10 @@ abstract mixin class $MapEntitiesCopyWith<$Res> {
       {String id,
       String name,
       String description,
-      List<LangLat> langLat,
+      LangLat1 langLat,
       List<Images> images});
+
+  $LangLat1CopyWith<$Res> get langLat;
 }
 
 /// @nodoc
@@ -108,12 +105,22 @@ class _$MapEntitiesCopyWithImpl<$Res> implements $MapEntitiesCopyWith<$Res> {
       langLat: null == langLat
           ? _self.langLat
           : langLat // ignore: cast_nullable_to_non_nullable
-              as List<LangLat>,
+              as LangLat1,
       images: null == images
           ? _self.images
           : images // ignore: cast_nullable_to_non_nullable
               as List<Images>,
     ));
+  }
+
+  /// Create a copy of MapEntities
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $LangLat1CopyWith<$Res> get langLat {
+    return $LangLat1CopyWith<$Res>(_self.langLat, (value) {
+      return _then(_self.copyWith(langLat: value));
+    });
   }
 }
 
@@ -124,10 +131,9 @@ class _MapEntities implements MapEntities {
       {required this.id,
       required this.name,
       required this.description,
-      required final List<LangLat> langLat,
+      required this.langLat,
       required final List<Images> images})
-      : _langLat = langLat,
-        _images = images;
+      : _images = images;
   factory _MapEntities.fromJson(Map<String, dynamic> json) =>
       _$MapEntitiesFromJson(json);
 
@@ -137,14 +143,8 @@ class _MapEntities implements MapEntities {
   final String name;
   @override
   final String description;
-  final List<LangLat> _langLat;
   @override
-  List<LangLat> get langLat {
-    if (_langLat is EqualUnmodifiableListView) return _langLat;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_langLat);
-  }
-
+  final LangLat1 langLat;
   final List<Images> _images;
   @override
   List<Images> get images {
@@ -177,18 +177,13 @@ class _MapEntities implements MapEntities {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            const DeepCollectionEquality().equals(other._langLat, _langLat) &&
+            (identical(other.langLat, langLat) || other.langLat == langLat) &&
             const DeepCollectionEquality().equals(other._images, _images));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      name,
-      description,
-      const DeepCollectionEquality().hash(_langLat),
+  int get hashCode => Object.hash(runtimeType, id, name, description, langLat,
       const DeepCollectionEquality().hash(_images));
 
   @override
@@ -209,8 +204,11 @@ abstract mixin class _$MapEntitiesCopyWith<$Res>
       {String id,
       String name,
       String description,
-      List<LangLat> langLat,
+      LangLat1 langLat,
       List<Images> images});
+
+  @override
+  $LangLat1CopyWith<$Res> get langLat;
 }
 
 /// @nodoc
@@ -245,14 +243,24 @@ class __$MapEntitiesCopyWithImpl<$Res> implements _$MapEntitiesCopyWith<$Res> {
           : description // ignore: cast_nullable_to_non_nullable
               as String,
       langLat: null == langLat
-          ? _self._langLat
+          ? _self.langLat
           : langLat // ignore: cast_nullable_to_non_nullable
-              as List<LangLat>,
+              as LangLat1,
       images: null == images
           ? _self._images
           : images // ignore: cast_nullable_to_non_nullable
               as List<Images>,
     ));
+  }
+
+  /// Create a copy of MapEntities
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $LangLat1CopyWith<$Res> get langLat {
+    return $LangLat1CopyWith<$Res>(_self.langLat, (value) {
+      return _then(_self.copyWith(langLat: value));
+    });
   }
 }
 

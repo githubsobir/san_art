@@ -14,25 +14,25 @@ part of 'lat_lang_entities.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$LangLat {
+mixin _$LangLat1 {
   String get lat;
   String get lang;
 
-  /// Create a copy of LangLat
+  /// Create a copy of LangLat1
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  $LangLatCopyWith<LangLat> get copyWith =>
-      _$LangLatCopyWithImpl<LangLat>(this as LangLat, _$identity);
+  $LangLat1CopyWith<LangLat1> get copyWith =>
+      _$LangLat1CopyWithImpl<LangLat1>(this as LangLat1, _$identity);
 
-  /// Serializes this LangLat to a JSON map.
+  /// Serializes this LangLat1 to a JSON map.
   Map<String, dynamic> toJson();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is LangLat &&
+            other is LangLat1 &&
             (identical(other.lat, lat) || other.lat == lat) &&
             (identical(other.lang, lang) || other.lang == lang));
   }
@@ -43,26 +43,26 @@ mixin _$LangLat {
 
   @override
   String toString() {
-    return 'LangLat(lat: $lat, lang: $lang)';
+    return 'LangLat1(lat: $lat, lang: $lang)';
   }
 }
 
 /// @nodoc
-abstract mixin class $LangLatCopyWith<$Res> {
-  factory $LangLatCopyWith(LangLat value, $Res Function(LangLat) _then) =
-      _$LangLatCopyWithImpl;
+abstract mixin class $LangLat1CopyWith<$Res> {
+  factory $LangLat1CopyWith(LangLat1 value, $Res Function(LangLat1) _then) =
+      _$LangLat1CopyWithImpl;
   @useResult
   $Res call({String lat, String lang});
 }
 
 /// @nodoc
-class _$LangLatCopyWithImpl<$Res> implements $LangLatCopyWith<$Res> {
-  _$LangLatCopyWithImpl(this._self, this._then);
+class _$LangLat1CopyWithImpl<$Res> implements $LangLat1CopyWith<$Res> {
+  _$LangLat1CopyWithImpl(this._self, this._then);
 
-  final LangLat _self;
-  final $Res Function(LangLat) _then;
+  final LangLat1 _self;
+  final $Res Function(LangLat1) _then;
 
-  /// Create a copy of LangLat
+  /// Create a copy of LangLat1
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -85,27 +85,27 @@ class _$LangLatCopyWithImpl<$Res> implements $LangLatCopyWith<$Res> {
 
 /// @nodoc
 @JsonSerializable()
-class _LangLat implements LangLat {
-  const _LangLat({required this.lat, required this.lang});
-  factory _LangLat.fromJson(Map<String, dynamic> json) =>
-      _$LangLatFromJson(json);
+class _LangLat1 implements LangLat1 {
+  const _LangLat1({required this.lat, required this.lang});
+  factory _LangLat1.fromJson(Map<String, dynamic> json) =>
+      _$LangLat1FromJson(json);
 
   @override
   final String lat;
   @override
   final String lang;
 
-  /// Create a copy of LangLat
+  /// Create a copy of LangLat1
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  _$LangLatCopyWith<_LangLat> get copyWith =>
-      __$LangLatCopyWithImpl<_LangLat>(this, _$identity);
+  _$LangLat1CopyWith<_LangLat1> get copyWith =>
+      __$LangLat1CopyWithImpl<_LangLat1>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$LangLatToJson(
+    return _$LangLat1ToJson(
       this,
     );
   }
@@ -114,7 +114,7 @@ class _LangLat implements LangLat {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _LangLat &&
+            other is _LangLat1 &&
             (identical(other.lat, lat) || other.lat == lat) &&
             (identical(other.lang, lang) || other.lang == lang));
   }
@@ -125,27 +125,28 @@ class _LangLat implements LangLat {
 
   @override
   String toString() {
-    return 'LangLat(lat: $lat, lang: $lang)';
+    return 'LangLat1(lat: $lat, lang: $lang)';
   }
 }
 
 /// @nodoc
-abstract mixin class _$LangLatCopyWith<$Res> implements $LangLatCopyWith<$Res> {
-  factory _$LangLatCopyWith(_LangLat value, $Res Function(_LangLat) _then) =
-      __$LangLatCopyWithImpl;
+abstract mixin class _$LangLat1CopyWith<$Res>
+    implements $LangLat1CopyWith<$Res> {
+  factory _$LangLat1CopyWith(_LangLat1 value, $Res Function(_LangLat1) _then) =
+      __$LangLat1CopyWithImpl;
   @override
   @useResult
   $Res call({String lat, String lang});
 }
 
 /// @nodoc
-class __$LangLatCopyWithImpl<$Res> implements _$LangLatCopyWith<$Res> {
-  __$LangLatCopyWithImpl(this._self, this._then);
+class __$LangLat1CopyWithImpl<$Res> implements _$LangLat1CopyWith<$Res> {
+  __$LangLat1CopyWithImpl(this._self, this._then);
 
-  final _LangLat _self;
-  final $Res Function(_LangLat) _then;
+  final _LangLat1 _self;
+  final $Res Function(_LangLat1) _then;
 
-  /// Create a copy of LangLat
+  /// Create a copy of LangLat1
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -153,7 +154,7 @@ class __$LangLatCopyWithImpl<$Res> implements _$LangLatCopyWith<$Res> {
     Object? lat = null,
     Object? lang = null,
   }) {
-    return _then(_LangLat(
+    return _then(_LangLat1(
       lat: null == lat
           ? _self.lat
           : lat // ignore: cast_nullable_to_non_nullable

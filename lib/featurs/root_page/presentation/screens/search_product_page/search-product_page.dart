@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 import 'dart:ui' as ui;
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -16,6 +15,7 @@ import 'package:google_maps_cluster_manager_2/google_maps_cluster_manager_2.dart
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:san_art/core/back_image/back_image1.dart';
 import 'package:san_art/core/screen_size/get_size.dart';
+import 'package:san_art/featurs/root_page/presentation/screens/search_product_page/domain/entities/lat_lang/lat_lang_entities.dart';
 import 'package:san_art/featurs/root_page/presentation/screens/search_product_page/presentation/provider/map_provider.dart';
 import 'package:san_art/featurs/root_page/presentation/screens/search_product_page/presentation/widgets/cluster/cluster_item.dart';
 import 'package:san_art/featurs/root_page/presentation/screens/search_product_page/presentation/widgets/search/address_search.dart';
@@ -48,7 +48,7 @@ class _SearchProductPageState extends ConsumerState<SearchProductPage> {
   @override
   void initState() {
     super.initState();
-    _manager = _initClusterManager();
+    // _manager = _initClusterManager();
     _manager.updateMap();
     getUserLocation();
   }
@@ -68,24 +68,40 @@ class _SearchProductPageState extends ConsumerState<SearchProductPage> {
 
   final CustomInfoWindowController _customInfoWindowController =
       CustomInfoWindowController();
-
-  List<Place> items = [
-    Place(
-        name: 'Place 1', latLng: LatLng(41.31090783522658, 69.27944091332454)),
-    Place(
-        name: 'Place 2', latLng: LatLng(41.32090783522658, 69.28944091332454)),
-    Place(
-        name: 'Place 3', latLng: LatLng(41.33090783522658, 69.29944091332454)),
-    Place(
-        name: 'Place 4', latLng: LatLng(41.30090783522658, 69.20944091332454)),
-  ];
-
-  m.ClusterManager _initClusterManager() {
-    return m.ClusterManager<Place>(items, _updateMarkers,
-        markerBuilder: _markerBuilder,
-        extraPercent: 0.15,
-        stopClusteringZoom: 13);
-  }
+  //
+  // List<Place> items = [
+  //   Place(
+  //       id: '',
+  //       imageUrl: [],
+  //       price: 1,
+  //       name: 'Place 1',
+  //       latLng: LatLng(41.31090783522658, 69.27944091332454)),
+  //   Place(
+  //       id: '',
+  //       imageUrl: [],
+  //       price: 1,
+  //       name: 'Place 2',
+  //       latLng: LatLng(41.32090783522658, 69.28944091332454)),
+  //   Place(
+  //       id: '',
+  //       imageUrl: [],
+  //       price: 1,
+  //       name: 'Place 3',
+  //       latLng: LatLng(41.33090783522658, 69.29944091332454)),
+  //   Place(
+  //       id: '',
+  //       imageUrl: [],
+  //       price: 1,
+  //       name: 'Place 4',
+  //       latLng: LatLng(41.30090783522658, 69.20944091332454)),
+  // ];
+  //
+  // m.ClusterManager _initClusterManager() {
+  //   return m.ClusterManager<Place>(items, _updateMarkers,
+  //       markerBuilder: _markerBuilder,
+  //       extraPercent: 0.15,
+  //       stopClusteringZoom: 13);
+  // }
 
   void _updateMarkers(Set<Marker> markers) {
     setState(() {
@@ -94,7 +110,16 @@ class _SearchProductPageState extends ConsumerState<SearchProductPage> {
   }
 
   @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final markers = ref.watch(markersProvider);
+    final clusterManager =
+        ref.watch(clusterManagerProvider(LangLat1(lat: "2", lang: "2")));
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -242,7 +267,6 @@ class _SearchProductPageState extends ConsumerState<SearchProductPage> {
     controller.animateCamera(CameraUpdate.newCameraPosition(newPosition));
   }
 
-
   ///
   _buildCustomWindow(String title) {
     return showDialog(
@@ -276,7 +300,7 @@ class _SearchProductPageState extends ConsumerState<SearchProductPage> {
                       const Icon(Icons.location_on_rounded, size: 17),
                       SizedBox(
                           width: 140,
-                          child: Text("cationTo}",
+                          child: Text("cationTo",
                               // "${orderData.locationFrom}-${orderData.locationTo}",
                               style: const TextStyle(
                                   fontWeight: FontWeight.w500, fontSize: 12)))
@@ -346,7 +370,9 @@ class _SearchProductPageState extends ConsumerState<SearchProductPage> {
                     ),
                     const SizedBox(width: 8),
                     Text(
-                      isAllOrdersShowed ? "hide_orders".tr() : "show_orders".tr(),
+                      isAllOrdersShowed
+                          ? "hide_orders".tr()
+                          : "show_orders".tr(),
                       style: const TextStyle(
                         fontWeight: FontWeight.w500,
                         fontFamily: "Inter",
@@ -359,138 +385,146 @@ class _SearchProductPageState extends ConsumerState<SearchProductPage> {
             ),
           ),
           const SizedBox(height: 12),
-          Visibility(
-            visible: isAllOrdersShowed,
-            child: SizedBox(
-              height: 150,
-              child: ref.watch(mapProvider).when(
-                data: (products) {
-                  return ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: products.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      final product = products[index];
-                      return Container(
-                        decoration: const BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage("assets/images/road4.png"),
-                            fit: BoxFit.fill,
-                          ),
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                        ),
-                        padding: const EdgeInsets.all(8),
-                        margin: const EdgeInsets.symmetric(horizontal: 6),
-                        child: Row(
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: CachedNetworkImage(
-                                imageUrl: product.imageUrl,
-                                fit: BoxFit.cover,
-                                placeholder: (context, url) => const Center(
-                                  child: CircularProgressIndicator(),
-                                ),
-                                errorWidget: (context, url, error) =>
-                                const Icon(Icons.error),
-                                width: 130,
-                                height: 156,
-                              ),
-                            ),
-                            const SizedBox(width: 12),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  product.name,
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                    fontFamily: "Poppins",
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                const SizedBox(height: 8),
-                                Row(
-                                  children: [
-                                    SvgPicture.asset(
-                                      "assets/icons/ic_square_dollar.svg",
-                                      colorFilter: ColorFilter.mode(
-                                        AppColors.primaryButtonColor(context),
-                                        BlendMode.srcIn,
-                                      ),
-                                    ),
-                                    const SizedBox(width: 4),
-                                    Text(
-                                      '\u0024 ${product.price}',
-                                      style: const TextStyle(
-                                        fontFamily: "SF-Pro-Display",
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    SvgPicture.asset(
-                                      "assets/icons/ic_routing.svg",
-                                      colorFilter: ColorFilter.mode(
-                                        AppColors.primaryButtonColor(context),
-                                        BlendMode.srcIn,
-                                      ),
-                                    ),
-                                    const SizedBox(width: 4),
-                                    Text(
-                                      product.route,
-                                      style: const TextStyle(
-                                        fontFamily: "SF-Pro-Display",
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Icon(
-                                      Icons.calendar_month,
-                                      color: AppColors.primaryButtonColor(context),
-                                      size: 16,
-                                    ),
-                                    const SizedBox(width: 4),
-                                    Text(
-                                      product.dateRange,
-                                      style: const TextStyle(
-                                        fontFamily: "SF-Pro-Display",
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 12,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 12),
-                                Text(
-                                  "Подробнее",
-                                  style: const TextStyle(fontWeight: FontWeight.bold),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  );
-                },
-                loading: () => const Center(child: CircularProgressIndicator()),
-                error: (error, stack) => Center(child: Text('Error: $error')),
-              ),
-            ),
-          ),
+          // Visibility(
+          //   visible: isAllOrdersShowed,
+          //   child: SizedBox(
+          //     height: 150,
+          //     child: ref.watch(mapProvider).when(
+          //           data: (products) {
+          //             return ListView.builder(
+          //               scrollDirection: Axis.horizontal,
+          //               itemCount: products.length,
+          //               itemBuilder: (BuildContext context, int index) {
+          //                 final product = products[index];
+          //                 return Container(
+          //                   decoration: const BoxDecoration(
+          //                     image: DecorationImage(
+          //                       image: AssetImage("assets/images/road4.png"),
+          //                       fit: BoxFit.fill,
+          //                     ),
+          //                     borderRadius:
+          //                         BorderRadius.all(Radius.circular(10)),
+          //                   ),
+          //                   padding: const EdgeInsets.all(8),
+          //                   margin: const EdgeInsets.symmetric(horizontal: 6),
+          //                   child: Row(
+          //                     children: [
+          //                       ClipRRect(
+          //                         borderRadius: BorderRadius.circular(8.0),
+          //                         child: CachedNetworkImage(
+          //                           imageUrl: product.name,
+          //                           fit: BoxFit.cover,
+          //                           placeholder: (context, url) => const Center(
+          //                             child: CircularProgressIndicator(),
+          //                           ),
+          //                           errorWidget: (context, url, error) =>
+          //                               const Icon(Icons.error),
+          //                           width: 130,
+          //                           height: 156,
+          //                         ),
+          //                       ),
+          //                       const SizedBox(width: 12),
+          //                       Column(
+          //                         crossAxisAlignment: CrossAxisAlignment.start,
+          //                         children: [
+          //                           Text(
+          //                             product.name,
+          //                             style: const TextStyle(
+          //                               fontSize: 16,
+          //                               fontFamily: "Poppins",
+          //                               fontWeight: FontWeight.w600,
+          //                             ),
+          //                           ),
+          //                           const SizedBox(height: 8),
+          //                           Row(
+          //                             children: [
+          //                               SvgPicture.asset(
+          //                                 "assets/icons/ic_square_dollar.svg",
+          //                                 colorFilter: ColorFilter.mode(
+          //                                   AppColors.primaryButtonColor(
+          //                                       context),
+          //                                   BlendMode.srcIn,
+          //                                 ),
+          //                               ),
+          //                               const SizedBox(width: 4),
+          //                               Text(
+          //                                 '\u0024 ${product.name}',
+          //                                 style: const TextStyle(
+          //                                   fontFamily: "SF-Pro-Display",
+          //                                   fontWeight: FontWeight.w600,
+          //                                   fontSize: 14,
+          //                                 ),
+          //                               ),
+          //                             ],
+          //                           ),
+          //                           Row(
+          //                             children: [
+          //                               SvgPicture.asset(
+          //                                 "assets/icons/ic_routing.svg",
+          //                                 colorFilter: ColorFilter.mode(
+          //                                   AppColors.primaryButtonColor(
+          //                                       context),
+          //                                   BlendMode.srcIn,
+          //                                 ),
+          //                               ),
+          //                               const SizedBox(width: 4),
+          //                               Text(
+          //                                 product.name,
+          //                                 style: const TextStyle(
+          //                                   fontFamily: "SF-Pro-Display",
+          //                                   fontWeight: FontWeight.w400,
+          //                                   fontSize: 14,
+          //                                 ),
+          //                               ),
+          //                             ],
+          //                           ),
+          //                           Row(
+          //                             children: [
+          //                               Icon(
+          //                                 Icons.calendar_month,
+          //                                 color: AppColors.primaryButtonColor(
+          //                                     context),
+          //                                 size: 16,
+          //                               ),
+          //                               const SizedBox(width: 4),
+          //                               Text(
+          //                                 product.id.toString(),
+          //                                 style: const TextStyle(
+          //                                   fontFamily: "SF-Pro-Display",
+          //                                   fontWeight: FontWeight.w400,
+          //                                   fontSize: 12,
+          //                                 ),
+          //                               ),
+          //                             ],
+          //                           ),
+          //                           const SizedBox(height: 12),
+          //                           Text(
+          //                             "Подробнее",
+          //                             style: const TextStyle(
+          //                                 fontWeight: FontWeight.bold),
+          //                             textAlign: TextAlign.center,
+          //                           ),
+          //                         ],
+          //                       ),
+          //                     ],
+          //                   ),
+          //                 );
+          //               },
+          //             );
+          //           },
+          //           loading: () =>
+          //               const Center(child: CircularProgressIndicator()),
+          //           error: (error, stack) =>
+          //               Center(child: Text('Error: $error')),
+          //         ),
+          //   ),
+          // ),
           const SizedBox(height: 20),
         ],
       ),
     );
   }
+
   ///
 
   @override

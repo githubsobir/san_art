@@ -122,7 +122,7 @@
   "compName": "companiya\n nomi",
   "time": "Vaqt",
   "noComment": "Не указан",
-  "search": "Qidiruv ru",
+  "search": "Qidiruv",
   "notChecked": "Belgilanmagan",
   "checkSee": "Ko'rib chiqilmoqda",
   "validityPeriod": "Amal qilish muddati",
@@ -143,6 +143,7 @@
   "sentApplication": "Taklif yuborildi",
   "goBack": "Ortga qaytish",
   "inTrace": "Na reyse",
-  "enterPhoneNum": "Telefon raqam kiriting"
+  "enterPhoneNum": "Telefon raqam kiriting",
+  "fill_all_row": "Barcha maydonlarni to'ldiring"
 
 }
