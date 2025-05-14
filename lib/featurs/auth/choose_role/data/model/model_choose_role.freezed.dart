@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ModelChooseRole {
   int get id;
-  String get nameCategory;
+  String get valueCategory;
   String get textCategory;
   String get imageAssetLink;
   bool get boolActive;
@@ -39,8 +39,8 @@ mixin _$ModelChooseRole {
         (other.runtimeType == runtimeType &&
             other is ModelChooseRole &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.nameCategory, nameCategory) ||
-                other.nameCategory == nameCategory) &&
+            (identical(other.valueCategory, valueCategory) ||
+                other.valueCategory == valueCategory) &&
             (identical(other.textCategory, textCategory) ||
                 other.textCategory == textCategory) &&
             (identical(other.imageAssetLink, imageAssetLink) ||
@@ -52,12 +52,12 @@ mixin _$ModelChooseRole {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, nameCategory, textCategory,
+  int get hashCode => Object.hash(runtimeType, id, valueCategory, textCategory,
       imageAssetLink, boolActive, note);
 
   @override
   String toString() {
-    return 'ModelChooseRole(id: $id, nameCategory: $nameCategory, textCategory: $textCategory, imageAssetLink: $imageAssetLink, boolActive: $boolActive, note: $note)';
+    return 'ModelChooseRole(id: $id, valueCategory: $valueCategory, textCategory: $textCategory, imageAssetLink: $imageAssetLink, boolActive: $boolActive, note: $note)';
   }
 }
 
@@ -69,7 +69,7 @@ abstract mixin class $ModelChooseRoleCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      String nameCategory,
+      String valueCategory,
       String textCategory,
       String imageAssetLink,
       bool boolActive,
@@ -90,7 +90,7 @@ class _$ModelChooseRoleCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? nameCategory = null,
+    Object? valueCategory = null,
     Object? textCategory = null,
     Object? imageAssetLink = null,
     Object? boolActive = null,
@@ -101,9 +101,9 @@ class _$ModelChooseRoleCopyWithImpl<$Res>
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      nameCategory: null == nameCategory
-          ? _self.nameCategory
-          : nameCategory // ignore: cast_nullable_to_non_nullable
+      valueCategory: null == valueCategory
+          ? _self.valueCategory
+          : valueCategory // ignore: cast_nullable_to_non_nullable
               as String,
       textCategory: null == textCategory
           ? _self.textCategory
@@ -130,7 +130,7 @@ class _$ModelChooseRoleCopyWithImpl<$Res>
 class _ModelChooseRole extends ModelChooseRole {
   const _ModelChooseRole(
       {required this.id,
-      required this.nameCategory,
+      required this.valueCategory,
       required this.textCategory,
       required this.imageAssetLink,
       required this.boolActive,
@@ -142,7 +142,7 @@ class _ModelChooseRole extends ModelChooseRole {
   @override
   final int id;
   @override
-  final String nameCategory;
+  final String valueCategory;
   @override
   final String textCategory;
   @override
@@ -173,8 +173,8 @@ class _ModelChooseRole extends ModelChooseRole {
         (other.runtimeType == runtimeType &&
             other is _ModelChooseRole &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.nameCategory, nameCategory) ||
-                other.nameCategory == nameCategory) &&
+            (identical(other.valueCategory, valueCategory) ||
+                other.valueCategory == valueCategory) &&
             (identical(other.textCategory, textCategory) ||
                 other.textCategory == textCategory) &&
             (identical(other.imageAssetLink, imageAssetLink) ||
@@ -186,12 +186,12 @@ class _ModelChooseRole extends ModelChooseRole {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, nameCategory, textCategory,
+  int get hashCode => Object.hash(runtimeType, id, valueCategory, textCategory,
       imageAssetLink, boolActive, note);
 
   @override
   String toString() {
-    return 'ModelChooseRole(id: $id, nameCategory: $nameCategory, textCategory: $textCategory, imageAssetLink: $imageAssetLink, boolActive: $boolActive, note: $note)';
+    return 'ModelChooseRole(id: $id, valueCategory: $valueCategory, textCategory: $textCategory, imageAssetLink: $imageAssetLink, boolActive: $boolActive, note: $note)';
   }
 }
 
@@ -205,7 +205,7 @@ abstract mixin class _$ModelChooseRoleCopyWith<$Res>
   @useResult
   $Res call(
       {int id,
-      String nameCategory,
+      String valueCategory,
       String textCategory,
       String imageAssetLink,
       bool boolActive,
@@ -226,7 +226,7 @@ class __$ModelChooseRoleCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   $Res call({
     Object? id = null,
-    Object? nameCategory = null,
+    Object? valueCategory = null,
     Object? textCategory = null,
     Object? imageAssetLink = null,
     Object? boolActive = null,
@@ -237,9 +237,9 @@ class __$ModelChooseRoleCopyWithImpl<$Res>
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      nameCategory: null == nameCategory
-          ? _self.nameCategory
-          : nameCategory // ignore: cast_nullable_to_non_nullable
+      valueCategory: null == valueCategory
+          ? _self.valueCategory
+          : valueCategory // ignore: cast_nullable_to_non_nullable
               as String,
       textCategory: null == textCategory
           ? _self.textCategory

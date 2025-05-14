@@ -61,8 +61,8 @@ class PlaceApiProvider {
       final lat = location['lat'];
       final lng = location['lng'];
 
-      print(lat);
-      print(lng);
+      log(lat);
+      log(lng);
       return LatLng(lat, lng);
     } else {
       throw Exception('Failed to load location');

@@ -20,8 +20,7 @@ final brightnessProvider = Provider<Brightness>((ref) {
     case ThemeMode.dark:
       return Brightness.dark;
     case ThemeMode.system:
-    default:
-      return platformBrightness;
+    return platformBrightness;
   }
 });
 

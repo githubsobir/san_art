@@ -9,14 +9,14 @@ part of 'region_model.dart';
 _RegionModel _$RegionModelFromJson(Map<String, dynamic> json) => _RegionModel(
       id: json['id'],
       name: json['name'] as String,
-      parent: json['parent'],
-      status: json['status'] as bool,
+      code: json['code'] as String,
+      mask: json['mask'] as String,
     );
 
 Map<String, dynamic> _$RegionModelToJson(_RegionModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'parent': instance.parent,
-      'status': instance.status,
+      'code': instance.code,
+      'mask': instance.mask,
     };

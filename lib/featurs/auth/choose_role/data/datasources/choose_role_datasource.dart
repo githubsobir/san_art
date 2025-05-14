@@ -18,25 +18,25 @@ class ChoseRoleDataSourceImpl implements ChoseRoleDataSource {
     List<ModelChooseRole> listModelUserCat = [
       ModelChooseRole(
           id: 0,
-          nameCategory: "driver".tr(),
-          textCategory: "driverText".tr(),
+          valueCategory: "driver",
+          textCategory: "driver".tr(),
           imageAssetLink: 'assets/icons/ic_truck.svg',
           boolActive: false,
-          note: "note"),
+          note: "driverText".tr()),
       ModelChooseRole(
           id: 1,
-          nameCategory: "shipper".tr(),
-          textCategory: "shipperText".tr(),
+          valueCategory: "exporter",
+          textCategory: "shipper".tr(),
           imageAssetLink: 'assets/icons/ic_box.svg',
           boolActive: false,
-          note: "note"),
+          note: "shipperText".tr()),
       ModelChooseRole(
           id: 2,
-          nameCategory: "logistics".tr(),
-          textCategory: "logisticsText".tr(),
+          valueCategory: "logistic",
+          textCategory: "logistic".tr(),
           imageAssetLink: 'assets/icons/ic_globus.svg',
           boolActive: false,
-          note: "note")
+          note: "logisticsText".tr())
     ];
     return listModelUserCat;
   }

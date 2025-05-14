@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:san_art/core/back_image/back_image1.dart';
+import 'package:san_art/featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/a1_passport_page/presentation/screen/passport_page.dart';
+import 'package:san_art/featurs/auth/registration/exporter/date_birth/presentation/provider/data_birth_provider.dart';
 
 Future selectDateFunc(
     {required BuildContext context,
@@ -22,16 +24,16 @@ Future selectDateFunc(
             children: [
               GestureDetector(
                 onTap: () {
-                  // if (!boolSelected) {
-                  //   boolSelected = true;
-                  //   selectedDate =
-                  //       DateTime(currentYear, currentMonth, currentDay);
-                  // }
-                  // Navigator.of(context).pop();
-                  // ref.read(selectDateProvider.notifier).state =
-                  //     DateFormat('yyyy-MM-dd')
-                  //         .format(selectedDate)
-                  //         .toString();
+                  if (!boolSelected) {
+                    boolSelected = true;
+                    selectedDate =
+                        DateTime(currentYear, currentMonth, currentDay);
+                  }
+                  Navigator.of(context).pop();
+                  ref.read(selectDateProvider.notifier).state =
+                      DateFormat('yyyy-MM-dd')
+                          .format(selectedDate)
+                          .toString();
                 },
                 child: Container(
                   padding: const EdgeInsets.only(right: 20, top: 20),
@@ -68,12 +70,12 @@ Future selectDateFunc(
                     child: CupertinoDatePicker(
                       initialDateTime: DateTime(currentYear, currentMonth, currentDay),
                       onDateTimeChanged: (DateTime newDate) {
-                        // selectedDate = newDate;
-                        // boolSelected = true;
-                        // ref.read(selectDateProvider.notifier).state =
-                        //     DateFormat('yyyy-MM-dd')
-                        //         .format(newDate)
-                        //         .toString();
+                        selectedDate = newDate;
+                        boolSelected = true;
+                        ref.read(selectDateProvider.notifier).state =
+                            DateFormat('yyyy-MM-dd')
+                                .format(newDate)
+                                .toString();
                       },
                       mode: CupertinoDatePickerMode.date,
                       minimumDate: DateTime(minimumDate, currentMonth),

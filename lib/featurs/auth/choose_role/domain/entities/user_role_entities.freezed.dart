@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UserRoleEntities {
   int get id;
-  String get nameCategory;
+  String get valueCategory;
   String get textCategory;
   String get imageAssetLink;
   bool get boolActive;
@@ -36,8 +36,8 @@ mixin _$UserRoleEntities {
         (other.runtimeType == runtimeType &&
             other is UserRoleEntities &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.nameCategory, nameCategory) ||
-                other.nameCategory == nameCategory) &&
+            (identical(other.valueCategory, valueCategory) ||
+                other.valueCategory == valueCategory) &&
             (identical(other.textCategory, textCategory) ||
                 other.textCategory == textCategory) &&
             (identical(other.imageAssetLink, imageAssetLink) ||
@@ -48,12 +48,12 @@ mixin _$UserRoleEntities {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, nameCategory, textCategory,
+  int get hashCode => Object.hash(runtimeType, id, valueCategory, textCategory,
       imageAssetLink, boolActive, note);
 
   @override
   String toString() {
-    return 'UserRoleEntities(id: $id, nameCategory: $nameCategory, textCategory: $textCategory, imageAssetLink: $imageAssetLink, boolActive: $boolActive, note: $note)';
+    return 'UserRoleEntities(id: $id, valueCategory: $valueCategory, textCategory: $textCategory, imageAssetLink: $imageAssetLink, boolActive: $boolActive, note: $note)';
   }
 }
 
@@ -65,7 +65,7 @@ abstract mixin class $UserRoleEntitiesCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      String nameCategory,
+      String valueCategory,
       String textCategory,
       String imageAssetLink,
       bool boolActive,
@@ -86,7 +86,7 @@ class _$UserRoleEntitiesCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? nameCategory = null,
+    Object? valueCategory = null,
     Object? textCategory = null,
     Object? imageAssetLink = null,
     Object? boolActive = null,
@@ -97,9 +97,9 @@ class _$UserRoleEntitiesCopyWithImpl<$Res>
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      nameCategory: null == nameCategory
-          ? _self.nameCategory
-          : nameCategory // ignore: cast_nullable_to_non_nullable
+      valueCategory: null == valueCategory
+          ? _self.valueCategory
+          : valueCategory // ignore: cast_nullable_to_non_nullable
               as String,
       textCategory: null == textCategory
           ? _self.textCategory
@@ -126,7 +126,7 @@ class _$UserRoleEntitiesCopyWithImpl<$Res>
 class _UserRoleEntities implements UserRoleEntities {
   _UserRoleEntities(
       {required this.id,
-      required this.nameCategory,
+      required this.valueCategory,
       required this.textCategory,
       required this.imageAssetLink,
       required this.boolActive,
@@ -135,7 +135,7 @@ class _UserRoleEntities implements UserRoleEntities {
   @override
   final int id;
   @override
-  final String nameCategory;
+  final String valueCategory;
   @override
   final String textCategory;
   @override
@@ -159,8 +159,8 @@ class _UserRoleEntities implements UserRoleEntities {
         (other.runtimeType == runtimeType &&
             other is _UserRoleEntities &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.nameCategory, nameCategory) ||
-                other.nameCategory == nameCategory) &&
+            (identical(other.valueCategory, valueCategory) ||
+                other.valueCategory == valueCategory) &&
             (identical(other.textCategory, textCategory) ||
                 other.textCategory == textCategory) &&
             (identical(other.imageAssetLink, imageAssetLink) ||
@@ -171,12 +171,12 @@ class _UserRoleEntities implements UserRoleEntities {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, nameCategory, textCategory,
+  int get hashCode => Object.hash(runtimeType, id, valueCategory, textCategory,
       imageAssetLink, boolActive, note);
 
   @override
   String toString() {
-    return 'UserRoleEntities(id: $id, nameCategory: $nameCategory, textCategory: $textCategory, imageAssetLink: $imageAssetLink, boolActive: $boolActive, note: $note)';
+    return 'UserRoleEntities(id: $id, valueCategory: $valueCategory, textCategory: $textCategory, imageAssetLink: $imageAssetLink, boolActive: $boolActive, note: $note)';
   }
 }
 
@@ -190,7 +190,7 @@ abstract mixin class _$UserRoleEntitiesCopyWith<$Res>
   @useResult
   $Res call(
       {int id,
-      String nameCategory,
+      String valueCategory,
       String textCategory,
       String imageAssetLink,
       bool boolActive,
@@ -211,7 +211,7 @@ class __$UserRoleEntitiesCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   $Res call({
     Object? id = null,
-    Object? nameCategory = null,
+    Object? valueCategory = null,
     Object? textCategory = null,
     Object? imageAssetLink = null,
     Object? boolActive = null,
@@ -222,9 +222,9 @@ class __$UserRoleEntitiesCopyWithImpl<$Res>
           ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      nameCategory: null == nameCategory
-          ? _self.nameCategory
-          : nameCategory // ignore: cast_nullable_to_non_nullable
+      valueCategory: null == valueCategory
+          ? _self.valueCategory
+          : valueCategory // ignore: cast_nullable_to_non_nullable
               as String,
       textCategory: null == textCategory
           ? _self.textCategory

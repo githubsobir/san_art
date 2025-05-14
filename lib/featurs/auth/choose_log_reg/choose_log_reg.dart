@@ -130,7 +130,7 @@ class ChooseLogRegPage extends StatelessWidget {
                   SecondaryButton(
                     text: "registration".tr(),
                     onPressed: () {
-                      context.router.push(UserCategoryRoute(windowIdReg: "1"));
+                      context.router.push(UserCategoryRoute());
                     },
                   ),
                   const SizedBox(

@@ -1,51 +1,70 @@
 import 'package:san_art/core/network/urls.dart';
 
+
 class AllUrl {
-  static String carBrandUrl() {
-    return "${UrlApp.storiesUrl}/api/car/brand";
+
+  static Map<String, dynamic> header() {
+    return {"Authorization":"Token 158335ed-437d-45fd-a6f8-53eb6d833dbc"};
   }
 
-  static String carCarUrl() {
-    return "${UrlApp.storiesUrl}/api/car/car";
-  }
-
-  static String carColorUrl() {
-    return "${UrlApp.storiesUrl}/api/car/color";
-  }
-
-  static String carMarkUrl() {
-    return "${UrlApp.storiesUrl}/api/car/mark";
-  }
-
-  static String carTypeUrl() {
-    return "${UrlApp.storiesUrl}/api/car/type";
-  }
-
-  static String carWeightTypeUrl() {
-    return "${UrlApp.storiesUrl}/api/car/weight-type";
-  }
-
-  static String authUrl() {
-    return "${UrlApp.storiesUrl}/api/core/auth";
-  }
-
-  static String authSmsUrl() {
+  static String urlRegistration() {
     return "${UrlApp.storiesUrl}/api/core/auth-sms";
   }
 
-  static String getCountryUrl() {
+
+  static String urlLogin() {
+    return "${UrlApp.storiesUrl}/api/core/auth-sms";
+  }
+
+  static String urlCarBrand() {
+    return "${UrlApp.storiesUrl}/api/car/brand";
+  }
+
+  static String urlCar() {
+    return "${UrlApp.storiesUrl}/api/car/car";
+  }
+
+  static String urlColor() {
+    return "${UrlApp.storiesUrl}/api/car/color";
+  }
+
+  static String urlCarMark() {
+    return "${UrlApp.storiesUrl}/api/car/mark";
+  }
+
+  static String urlCarType() {
+    return "${UrlApp.storiesUrl}/api/car/type";
+  }
+
+  static String urlCarWeightType() {
+    return "${UrlApp.storiesUrl}/api/car/weight-type";
+  }
+
+  static String urlAuth() {
+    return "${UrlApp.storiesUrl}/api/core/auth";
+  }
+
+  static String urlAuthSms() {
+    return "${UrlApp.storiesUrl}/api/core/auth-sms";
+  }
+
+  static String urlGetCountry() {
     return "${UrlApp.storiesUrl}/api/core/country";
   }
 
-  static String getPaymentTypeUrl() {
+  static String urlGetPaymentType() {
     return "${UrlApp.storiesUrl}/api/core/payment-type";
   }
 
-  static String getRegionUrl() {
+  static String urlGetRegion() {
     return "${UrlApp.storiesUrl}/api/core/region";
   }
 
-  static String getSubscriptionUrl() {
+  static String urlGetSubscription() {
     return "${UrlApp.storiesUrl}/api/core/region";
+  }
+
+  static String urlSetDateBirth() {
+    return UrlApp.storiesUrl;
   }
 }

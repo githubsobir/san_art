@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:san_art/featurs/root_page/presentation/screens/search_page/domain/entities/search_entities.dart';
 
 part 'model_search.freezed.dart';

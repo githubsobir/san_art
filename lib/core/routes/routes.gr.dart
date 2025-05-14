@@ -11,6 +11,96 @@
 part of 'routes.dart';
 
 /// generated route for
+/// [CarLicencePage]
+class CarLicenceRoute extends PageRouteInfo<void> {
+  const CarLicenceRoute({List<PageRouteInfo>? children})
+    : super(CarLicenceRoute.name, initialChildren: children);
+
+  static const String name = 'CarLicenceRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const CarLicencePage();
+    },
+  );
+}
+
+/// generated route for
+/// [CarLicencePhotoPage]
+class CarLicencePhotoRoute extends PageRouteInfo<CarLicencePhotoRouteArgs> {
+  CarLicencePhotoRoute({
+    Key? key,
+    required String countryCode,
+    required String carGosNum,
+    required String trailerGosNum,
+    List<PageRouteInfo>? children,
+  }) : super(
+         CarLicencePhotoRoute.name,
+         args: CarLicencePhotoRouteArgs(
+           key: key,
+           countryCode: countryCode,
+           carGosNum: carGosNum,
+           trailerGosNum: trailerGosNum,
+         ),
+         initialChildren: children,
+       );
+
+  static const String name = 'CarLicencePhotoRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<CarLicencePhotoRouteArgs>();
+      return CarLicencePhotoPage(
+        key: args.key,
+        countryCode: args.countryCode,
+        carGosNum: args.carGosNum,
+        trailerGosNum: args.trailerGosNum,
+      );
+    },
+  );
+}
+
+class CarLicencePhotoRouteArgs {
+  const CarLicencePhotoRouteArgs({
+    this.key,
+    required this.countryCode,
+    required this.carGosNum,
+    required this.trailerGosNum,
+  });
+
+  final Key? key;
+
+  final String countryCode;
+
+  final String carGosNum;
+
+  final String trailerGosNum;
+
+  @override
+  String toString() {
+    return 'CarLicencePhotoRouteArgs{key: $key, countryCode: $countryCode, carGosNum: $carGosNum, trailerGosNum: $trailerGosNum}';
+  }
+}
+
+/// generated route for
+/// [CarMainRegistrationPage]
+class CarMainRegistrationRoute extends PageRouteInfo<void> {
+  const CarMainRegistrationRoute({List<PageRouteInfo>? children})
+    : super(CarMainRegistrationRoute.name, initialChildren: children);
+
+  static const String name = 'CarMainRegistrationRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const CarMainRegistrationPage();
+    },
+  );
+}
+
+/// generated route for
 /// [ChooseLogRegPage]
 class ChooseLogRegRoute extends PageRouteInfo<void> {
   const ChooseLogRegRoute({List<PageRouteInfo>? children})
@@ -22,6 +112,38 @@ class ChooseLogRegRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const ChooseLogRegPage();
+    },
+  );
+}
+
+/// generated route for
+/// [ChoosePaymentPage]
+class ChoosePaymentRoute extends PageRouteInfo<void> {
+  const ChoosePaymentRoute({List<PageRouteInfo>? children})
+    : super(ChoosePaymentRoute.name, initialChildren: children);
+
+  static const String name = 'ChoosePaymentRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ChoosePaymentPage();
+    },
+  );
+}
+
+/// generated route for
+/// [DataBirthDriverPage]
+class DataBirthDriverRoute extends PageRouteInfo<void> {
+  const DataBirthDriverRoute({List<PageRouteInfo>? children})
+    : super(DataBirthDriverRoute.name, initialChildren: children);
+
+  static const String name = 'DataBirthDriverRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const DataBirthDriverPage();
     },
   );
 }
@@ -43,6 +165,22 @@ class DataBirthRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [FullNameDriverPage]
+class FullNameDriverRoute extends PageRouteInfo<void> {
+  const FullNameDriverRoute({List<PageRouteInfo>? children})
+    : super(FullNameDriverRoute.name, initialChildren: children);
+
+  static const String name = 'FullNameDriverRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const FullNameDriverPage();
+    },
+  );
+}
+
+/// generated route for
 /// [FullNamePage]
 class FullNameRoute extends PageRouteInfo<void> {
   const FullNameRoute({List<PageRouteInfo>? children})
@@ -54,6 +192,22 @@ class FullNameRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const FullNamePage();
+    },
+  );
+}
+
+/// generated route for
+/// [ImageDriverPage]
+class ImageDriverRoute extends PageRouteInfo<void> {
+  const ImageDriverRoute({List<PageRouteInfo>? children})
+    : super(ImageDriverRoute.name, initialChildren: children);
+
+  static const String name = 'ImageDriverRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ImageDriverPage();
     },
   );
 }
@@ -123,6 +277,160 @@ class MainRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [PassportPage]
+class PassportRoute extends PageRouteInfo<void> {
+  const PassportRoute({List<PageRouteInfo>? children})
+    : super(PassportRoute.name, initialChildren: children);
+
+  static const String name = 'PassportRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const PassportPage();
+    },
+  );
+}
+
+/// generated route for
+/// [PhotoPassport1Page]
+class PhotoPassport1Route extends PageRouteInfo<void> {
+  const PhotoPassport1Route({List<PageRouteInfo>? children})
+    : super(PhotoPassport1Route.name, initialChildren: children);
+
+  static const String name = 'PhotoPassport1Route';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const PhotoPassport1Page();
+    },
+  );
+}
+
+/// generated route for
+/// [PhotoPassport2Page]
+class PhotoPassport2Route extends PageRouteInfo<void> {
+  const PhotoPassport2Route({List<PageRouteInfo>? children})
+    : super(PhotoPassport2Route.name, initialChildren: children);
+
+  static const String name = 'PhotoPassport2Route';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const PhotoPassport2Page();
+    },
+  );
+}
+
+/// generated route for
+/// [PhotoPassport3Page]
+class PhotoPassport3Route extends PageRouteInfo<void> {
+  const PhotoPassport3Route({List<PageRouteInfo>? children})
+    : super(PhotoPassport3Route.name, initialChildren: children);
+
+  static const String name = 'PhotoPassport3Route';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const PhotoPassport3Page();
+    },
+  );
+}
+
+/// generated route for
+/// [PhotoTexCar1Page]
+class PhotoTexCar1Route extends PageRouteInfo<PhotoTexCar1RouteArgs> {
+  PhotoTexCar1Route({
+    Key? key,
+    required int indexImage,
+    List<PageRouteInfo>? children,
+  }) : super(
+         PhotoTexCar1Route.name,
+         args: PhotoTexCar1RouteArgs(key: key, indexImage: indexImage),
+         initialChildren: children,
+       );
+
+  static const String name = 'PhotoTexCar1Route';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<PhotoTexCar1RouteArgs>();
+      return PhotoTexCar1Page(key: args.key, indexImage: args.indexImage);
+    },
+  );
+}
+
+class PhotoTexCar1RouteArgs {
+  const PhotoTexCar1RouteArgs({this.key, required this.indexImage});
+
+  final Key? key;
+
+  final int indexImage;
+
+  @override
+  String toString() {
+    return 'PhotoTexCar1RouteArgs{key: $key, indexImage: $indexImage}';
+  }
+}
+
+/// generated route for
+/// [PhotoTexCar2Page]
+class PhotoTexCar2Route extends PageRouteInfo<PhotoTexCar2RouteArgs> {
+  PhotoTexCar2Route({
+    Key? key,
+    required int indexImage,
+    List<PageRouteInfo>? children,
+  }) : super(
+         PhotoTexCar2Route.name,
+         args: PhotoTexCar2RouteArgs(key: key, indexImage: indexImage),
+         initialChildren: children,
+       );
+
+  static const String name = 'PhotoTexCar2Route';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<PhotoTexCar2RouteArgs>();
+      return PhotoTexCar2Page(key: args.key, indexImage: args.indexImage);
+    },
+  );
+}
+
+class PhotoTexCar2RouteArgs {
+  const PhotoTexCar2RouteArgs({this.key, required this.indexImage});
+
+  final Key? key;
+
+  final int indexImage;
+
+  @override
+  String toString() {
+    return 'PhotoTexCar2RouteArgs{key: $key, indexImage: $indexImage}';
+  }
+}
+
+/// generated route for
+/// [RegistrationPhonePage]
+class RegistrationPhoneRoute extends PageRouteInfo<void> {
+  const RegistrationPhoneRoute({List<PageRouteInfo>? children})
+    : super(RegistrationPhoneRoute.name, initialChildren: children);
+
+  static const String name = 'RegistrationPhoneRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const RegistrationPhonePage();
+    },
+  );
+}
+
+/// generated route for
 /// [RootPage]
 class RootRoute extends PageRouteInfo<RootRouteArgs> {
   RootRoute({
@@ -163,38 +471,69 @@ class RootRouteArgs {
 }
 
 /// generated route for
-/// [UserCategoryPage]
-class UserCategoryRoute extends PageRouteInfo<UserCategoryRouteArgs> {
-  UserCategoryRoute({
+/// [SmsPage]
+class SmsRoute extends PageRouteInfo<SmsRouteArgs> {
+  SmsRoute({
     Key? key,
-    required String windowIdReg,
+    required String windowId,
+    required String phoneNumber,
     List<PageRouteInfo>? children,
   }) : super(
-         UserCategoryRoute.name,
-         args: UserCategoryRouteArgs(key: key, windowIdReg: windowIdReg),
+         SmsRoute.name,
+         args: SmsRouteArgs(
+           key: key,
+           windowId: windowId,
+           phoneNumber: phoneNumber,
+         ),
          initialChildren: children,
        );
+
+  static const String name = 'SmsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<SmsRouteArgs>();
+      return SmsPage(
+        key: args.key,
+        windowId: args.windowId,
+        phoneNumber: args.phoneNumber,
+      );
+    },
+  );
+}
+
+class SmsRouteArgs {
+  const SmsRouteArgs({
+    this.key,
+    required this.windowId,
+    required this.phoneNumber,
+  });
+
+  final Key? key;
+
+  final String windowId;
+
+  final String phoneNumber;
+
+  @override
+  String toString() {
+    return 'SmsRouteArgs{key: $key, windowId: $windowId, phoneNumber: $phoneNumber}';
+  }
+}
+
+/// generated route for
+/// [UserCategoryPage]
+class UserCategoryRoute extends PageRouteInfo<void> {
+  const UserCategoryRoute({List<PageRouteInfo>? children})
+    : super(UserCategoryRoute.name, initialChildren: children);
 
   static const String name = 'UserCategoryRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<UserCategoryRouteArgs>();
-      return UserCategoryPage(key: args.key, windowIdReg: args.windowIdReg);
+      return const UserCategoryPage();
     },
   );
-}
-
-class UserCategoryRouteArgs {
-  const UserCategoryRouteArgs({this.key, required this.windowIdReg});
-
-  final Key? key;
-
-  final String windowIdReg;
-
-  @override
-  String toString() {
-    return 'UserCategoryRouteArgs{key: $key, windowIdReg: $windowIdReg}';
-  }
 }

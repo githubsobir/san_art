@@ -1,9 +1,5 @@
-import 'dart:convert';
-import 'dart:developer';
-
+import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:san_art/core/network/dio_client.dart';
-
 import '../models/region_model.dart';
 
 abstract class RegionRemoteDataSource {
@@ -12,22 +8,34 @@ abstract class RegionRemoteDataSource {
 
 @Injectable(as: RegionRemoteDataSource)
 class RegionRemoteDataSourceImpl implements RegionRemoteDataSource {
-  final NetworkSanArt dio1;
+  final Dio dio1;
 
   RegionRemoteDataSourceImpl(this.dio1);
 
   @override
   Future<List<RegionModel>> getRegions() async {
     try {
-      final response = await dio1.dio.get('/api/core/region');
 
-      if (response.statusCode == 200) {
-          log("2025");
+      List<RegionModel> listRegions = [
+        RegionModel(
+            id: "1",
+            name: "Oʻzbekiston",
+            code: "+998",
+            mask: ' (##) ###-##-##'),
+        RegionModel(
+            id: "2", name: "Qozogʻiston", code: "+7", mask: ' (###) ###-##-##'),
+        RegionModel(
+            id: "3", name: "Tojikiston", code: "+992", mask: ' (##) ###-## ##'),
+        RegionModel(
+            id: "4", name: "Türkiye", code: "+90", mask: ' (###) ###-##-##'),
+        RegionModel(
+            id: "5", name: "Qirgʻiziston", code: "+996", mask: ' ### ###-###'),
+        RegionModel(
+            id: "6", name: "Türkmenistan", code: "+993", mask: ' (#) ###-##-##'),
+        RegionModel(id: "1", name: "Rossiya", code: "+7", mask: ' (###) ###-##-##')
+      ];
 
-        return (response.data  as List).map((json) => RegionModel.fromJson(json)).toList();
-      } else {
-        throw Exception('Failed to load regions: ${response.statusCode}');
-      }
+      return listRegions;
     } catch (e) {
       throw Exception('Failed to load regions: $e');
     }

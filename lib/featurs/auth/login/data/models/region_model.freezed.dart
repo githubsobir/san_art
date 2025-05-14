@@ -17,8 +17,8 @@ T _$identity<T>(T value) => value;
 mixin _$RegionModel {
   dynamic get id;
   String get name;
-  dynamic get parent;
-  bool get status;
+  String get code;
+  String get mask;
 
   /// Create a copy of RegionModel
   /// with the given fields replaced by the non-null parameter values.
@@ -37,22 +37,18 @@ mixin _$RegionModel {
             other is RegionModel &&
             const DeepCollectionEquality().equals(other.id, id) &&
             (identical(other.name, name) || other.name == name) &&
-            const DeepCollectionEquality().equals(other.parent, parent) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.mask, mask) || other.mask == mask));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      name,
-      const DeepCollectionEquality().hash(parent),
-      status);
+      runtimeType, const DeepCollectionEquality().hash(id), name, code, mask);
 
   @override
   String toString() {
-    return 'RegionModel(id: $id, name: $name, parent: $parent, status: $status)';
+    return 'RegionModel(id: $id, name: $name, code: $code, mask: $mask)';
   }
 }
 
@@ -62,7 +58,7 @@ abstract mixin class $RegionModelCopyWith<$Res> {
           RegionModel value, $Res Function(RegionModel) _then) =
       _$RegionModelCopyWithImpl;
   @useResult
-  $Res call({dynamic id, String name, dynamic parent, bool status});
+  $Res call({dynamic id, String name, String code, String mask});
 }
 
 /// @nodoc
@@ -79,8 +75,8 @@ class _$RegionModelCopyWithImpl<$Res> implements $RegionModelCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? name = null,
-    Object? parent = freezed,
-    Object? status = null,
+    Object? code = null,
+    Object? mask = null,
   }) {
     return _then(_self.copyWith(
       id: freezed == id
@@ -91,14 +87,14 @@ class _$RegionModelCopyWithImpl<$Res> implements $RegionModelCopyWith<$Res> {
           ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      parent: freezed == parent
-          ? _self.parent
-          : parent // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      status: null == status
-          ? _self.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as bool,
+      code: null == code
+          ? _self.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String,
+      mask: null == mask
+          ? _self.mask
+          : mask // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -107,7 +103,10 @@ class _$RegionModelCopyWithImpl<$Res> implements $RegionModelCopyWith<$Res> {
 @JsonSerializable()
 class _RegionModel extends RegionModel {
   const _RegionModel(
-      {required this.id, required this.name, this.parent, required this.status})
+      {required this.id,
+      required this.name,
+      required this.code,
+      required this.mask})
       : super._();
   factory _RegionModel.fromJson(Map<String, dynamic> json) =>
       _$RegionModelFromJson(json);
@@ -117,9 +116,9 @@ class _RegionModel extends RegionModel {
   @override
   final String name;
   @override
-  final dynamic parent;
+  final String code;
   @override
-  final bool status;
+  final String mask;
 
   /// Create a copy of RegionModel
   /// with the given fields replaced by the non-null parameter values.
@@ -143,22 +142,18 @@ class _RegionModel extends RegionModel {
             other is _RegionModel &&
             const DeepCollectionEquality().equals(other.id, id) &&
             (identical(other.name, name) || other.name == name) &&
-            const DeepCollectionEquality().equals(other.parent, parent) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.mask, mask) || other.mask == mask));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      name,
-      const DeepCollectionEquality().hash(parent),
-      status);
+      runtimeType, const DeepCollectionEquality().hash(id), name, code, mask);
 
   @override
   String toString() {
-    return 'RegionModel(id: $id, name: $name, parent: $parent, status: $status)';
+    return 'RegionModel(id: $id, name: $name, code: $code, mask: $mask)';
   }
 }
 
@@ -170,7 +165,7 @@ abstract mixin class _$RegionModelCopyWith<$Res>
       __$RegionModelCopyWithImpl;
   @override
   @useResult
-  $Res call({dynamic id, String name, dynamic parent, bool status});
+  $Res call({dynamic id, String name, String code, String mask});
 }
 
 /// @nodoc
@@ -187,8 +182,8 @@ class __$RegionModelCopyWithImpl<$Res> implements _$RegionModelCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? name = null,
-    Object? parent = freezed,
-    Object? status = null,
+    Object? code = null,
+    Object? mask = null,
   }) {
     return _then(_RegionModel(
       id: freezed == id
@@ -199,14 +194,14 @@ class __$RegionModelCopyWithImpl<$Res> implements _$RegionModelCopyWith<$Res> {
           ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      parent: freezed == parent
-          ? _self.parent
-          : parent // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      status: null == status
-          ? _self.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as bool,
+      code: null == code
+          ? _self.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String,
+      mask: null == mask
+          ? _self.mask
+          : mask // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }

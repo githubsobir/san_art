@@ -9,7 +9,7 @@ part of 'model_choose_role.dart';
 _ModelChooseRole _$ModelChooseRoleFromJson(Map<String, dynamic> json) =>
     _ModelChooseRole(
       id: (json['id'] as num).toInt(),
-      nameCategory: json['nameCategory'] as String,
+      valueCategory: json['valueCategory'] as String,
       textCategory: json['textCategory'] as String,
       imageAssetLink: json['imageAssetLink'] as String,
       boolActive: json['boolActive'] as bool,
@@ -19,7 +19,7 @@ _ModelChooseRole _$ModelChooseRoleFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$ModelChooseRoleToJson(_ModelChooseRole instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'nameCategory': instance.nameCategory,
+      'valueCategory': instance.valueCategory,
       'textCategory': instance.textCategory,
       'imageAssetLink': instance.imageAssetLink,
       'boolActive': instance.boolActive,

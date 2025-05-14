@@ -10,7 +10,6 @@ import 'package:san_art/core/routes/routes.dart';
 import 'package:san_art/core/service/injection/injection_container.dart';
 import 'package:san_art/core/theme/app_theme.dart';
 import 'package:san_art/core/theme/provider/theme_provider.dart';
-import 'package:san_art/featurs/auth/choose_role/presentation/screen/choose_role.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override

@@ -1,23 +1,23 @@
+import 'dart:developer';
+
+import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:san_art/core/back_image/back_image1.dart';
 import 'package:san_art/core/data/hive_san_art.dart';
+import 'package:san_art/core/routes/routes.dart';
 import 'package:san_art/core/screen_size/get_size.dart';
 import 'package:san_art/core/theme/theme_switcher.dart';
 import 'package:san_art/core/widgets/buttons/button_primary.dart';
 import 'package:san_art/core/widgets/buttons/secondry.dart';
 import 'package:san_art/core/widgets/loading.dart';
 import 'package:san_art/featurs/auth/choose_role/presentation/provider/provider.dart';
-import 'package:auto_route/auto_route.dart';
-
 
 @RoutePage()
 class UserCategoryPage extends ConsumerStatefulWidget {
-  final String windowIdReg;
-
-  const UserCategoryPage({super.key, required this.windowIdReg});
+  const UserCategoryPage({super.key});
 
   @override
   ConsumerState<UserCategoryPage> createState() => _UserCategoryState();
@@ -63,7 +63,8 @@ class _UserCategoryState extends ConsumerState<UserCategoryPage> {
                                   decoration: BoxDecoration(
                                       border: Border.all(
                                         width: (ref.watch(
-                                                    userCategoryControllerIndex) == index + 1)
+                                                    userCategoryControllerIndex) ==
+                                                index + 1)
                                             ? 2
                                             : 0.5,
                                       ),
@@ -85,13 +86,13 @@ class _UserCategoryState extends ConsumerState<UserCategoryPage> {
                                         ),
                                       ],
                                     ),
-                                    title: Text(success[index].nameCategory,
+                                    title: Text(success[index].textCategory,
                                         textAlign: TextAlign.justify,
                                         style: TextStyle(
                                             fontWeight: FontWeight.w600,
                                             fontSize: 15,
                                             fontFamily: "Inter")),
-                                    subtitle: Text(success[index].textCategory,
+                                    subtitle: Text(success[index].note,
                                         textAlign: TextAlign.justify,
                                         style: TextStyle(
                                             fontWeight: FontWeight.w400,
@@ -104,41 +105,16 @@ class _UserCategoryState extends ConsumerState<UserCategoryPage> {
                                           autofocus: false,
                                           activeColor: Colors.orange.shade800,
                                           groupValue:
-                                              success[index].nameCategory,
-                                          onChanged: (val) {
-                                            ref
-                                                .read(
-                                                    userCategoryControllerCheckBoxValue
-                                                        .notifier)
-                                                .state = success[
-                                                    index]
-                                                .nameCategory;
-
-                                            ref
-                                                .read(
-                                                    userCategoryControllerIndex
-                                                        .notifier)
-                                                .state = index + 1;
-
-                                            /// 1 haydovchi
-                                            /// 2 yuk jo'natuvchi
-                                            box.userType = index == 0
-                                                ? "Driver"
-                                                : "Client";
-                                          }),
+                                              success[index].textCategory,
+                                          onChanged: (val) {}),
                                     ),
                                     onTap: () {
-                                      ref
-                                          .read(
-                                              userCategoryControllerCheckBoxValue
-                                                  .notifier)
-                                          .state = success[index].nameCategory;
-                                      box.userType = (index + 1).toString();
-
-                                      ref
-                                          .read(userCategoryControllerIndex
-                                              .notifier)
-                                          .state = index + 1;
+                                      onEventRadio(
+                                          textCategory:
+                                              success[index].textCategory,
+                                          valCategory:
+                                              success[index].valueCategory,
+                                          index: index);
                                     },
                                   ),
                                 ),
@@ -187,16 +163,27 @@ class _UserCategoryState extends ConsumerState<UserCategoryPage> {
     );
   }
 
+  void onEventRadio(
+      {required String valCategory,
+      required String textCategory,
+      required int index}) {
+    ref.read(userCategoryControllerCheckBoxValue.notifier).state = textCategory;
+
+    ref.read(userCategoryControllerIndex.notifier).state = index + 1;
+
+    box.userType = valCategory;
+
+    log(box.userType);
+    log(ref.watch(userCategoryControllerCheckBoxValue));
+    log(ref.watch(userCategoryControllerIndex).toString());
+  }
+
   actionButtonContinue({required WidgetRef ref}) {
     if (ref.watch(userCategoryControllerCheckBoxValue).length > 4) {
-      if (ref.watch(userCategoryControllerIndex) < 3) {
-        // Navigator.push(
-        //     context,
-        //     CupertinoPageRoute(
-        //       builder: (context) =>  UserFIO(),
-        //     ));
-      } else {
-        print("web");
+      switch(box.userType){
+        case "driver": context.router.push(RegistrationPhoneRoute( ));
+        case "exporter": context.router.push(RegistrationPhoneRoute());
+        case "logistic": context.router.push(RegistrationPhoneRoute());
       }
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(

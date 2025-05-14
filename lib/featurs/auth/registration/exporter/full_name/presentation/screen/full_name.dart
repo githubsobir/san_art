@@ -1,7 +1,5 @@
 import 'dart:developer';
 import 'dart:io';
-
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +13,6 @@ import 'package:san_art/core/widgets/buttons/button_primary.dart';
 import 'package:san_art/core/widgets/snacbars/widget_snackbars.dart';
 import 'package:san_art/featurs/auth/registration/exporter/full_name/domain/entities/full_name_entities.dart';
 import 'package:san_art/featurs/auth/registration/exporter/full_name/presentation/provider/full_name_provider.dart';
-import 'package:san_art/main.dart';
 
 @RoutePage()
 class FullNamePage extends ConsumerStatefulWidget {

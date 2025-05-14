@@ -1,5 +1,5 @@
 import 'package:injectable/injectable.dart';
-import 'package:multiple_result/src/result.dart';
+import 'package:multiple_result/multiple_result.dart';
 import 'package:san_art/core/errors/fails.dart';
 import 'package:san_art/featurs/root_page/presentation/screens/main_page/data/datasources/list_app/list_app.dart';
 import 'package:san_art/featurs/root_page/presentation/screens/main_page/domain/entities/list_app/list_app_entities.dart';

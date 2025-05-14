@@ -1,8 +1,10 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:multiple_result/multiple_result.dart';
 import 'package:san_art/core/errors/fails.dart';
-import 'package:san_art/featurs/auth/login/domain/entities/get_region_entities.dart';
+import 'package:san_art/featurs/auth/login/domain/entities/region/get_region_entities.dart';
 import 'package:san_art/featurs/auth/login/domain/repository/region_repository.dart';
 
 import '../datasources/region_remote_data_source.dart';
@@ -17,7 +19,10 @@ class RegionRepositoryImpl implements RegionRepository {
   Future<Result<List<RegionEntity>, Failure>> getRegions() async {
     try {
       final regionModels = await remoteDataSource.getRegions();
+      log("regionModels");
+      log(regionModels.toString());
       final regions = regionModels.map((model) => model.toEntity()).toList();
+      log(regions.toString());
       return Success(regions);
     } on DioException catch (e) {
       if (e.type == DioExceptionType.connectionTimeout ||

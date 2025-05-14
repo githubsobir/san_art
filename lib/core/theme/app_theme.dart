@@ -22,7 +22,8 @@ class AppTheme {
         onError: isLight ? Colors.white : Colors.black,
         surface: AppColors.surface(brightness),
         onSurface: AppColors.textPrimary(brightness),
-        surfaceVariant: AppColors.background(brightness),
+
+        // surfaceVariant: AppColors.background(brightness),
         onSurfaceVariant: AppColors.textPrimary(brightness),
       ),
       scaffoldBackgroundColor: AppColors.background(brightness),

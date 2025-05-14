@@ -8,7 +8,7 @@ part 'model_choose_role.g.dart';
 abstract class ModelChooseRole with _$ModelChooseRole {
   const factory ModelChooseRole(
       {required int id,
-      required String nameCategory,
+      required String valueCategory,
       required String textCategory,
       required String imageAssetLink,
       required bool boolActive,
@@ -23,7 +23,7 @@ abstract class ModelChooseRole with _$ModelChooseRole {
         id: id,
         boolActive: boolActive,
         imageAssetLink: imageAssetLink,
-        nameCategory: nameCategory,
+    valueCategory: valueCategory,
         note: note,
         textCategory: textCategory,
       );

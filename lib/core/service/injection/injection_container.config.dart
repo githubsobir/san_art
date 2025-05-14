@@ -21,20 +21,65 @@ import '../../../featurs/auth/choose_role/domain/repository/role_repository.dart
     as _i162;
 import '../../../featurs/auth/choose_role/domain/usecase/role_usecase.dart'
     as _i565;
+import '../../../featurs/auth/login/data/datasources/login_remote_data_source.dart'
+    as _i521;
 import '../../../featurs/auth/login/data/datasources/region_remote_data_source.dart'
     as _i401;
+import '../../../featurs/auth/login/data/repositories/login_repository_impl.dart'
+    as _i467;
 import '../../../featurs/auth/login/data/repositories/regsion_repository_impl.dart'
     as _i743;
+import '../../../featurs/auth/login/domain/repository/login_repository.dart'
+    as _i473;
 import '../../../featurs/auth/login/domain/repository/region_repository.dart'
     as _i889;
 import '../../../featurs/auth/login/domain/usecases/get_region_usecase.dart'
     as _i159;
+import '../../../featurs/auth/login/domain/usecases/login_usecase.dart' as _i46;
+import '../../../featurs/auth/registration/driver/user_information/date_birth/data/datasources/date_datasource.dart'
+    as _i465;
+import '../../../featurs/auth/registration/driver/user_information/date_birth/data/repository_impl/date_repository_impl.dart'
+    as _i423;
+import '../../../featurs/auth/registration/driver/user_information/date_birth/domain/repository/date_repository.dart'
+    as _i838;
+import '../../../featurs/auth/registration/driver/user_information/date_birth/domain/usecase/date_usecase.dart'
+    as _i294;
+import '../../../featurs/auth/registration/driver/user_information/full_name/data/datasources/full_name_datasource.dart'
+    as _i37;
+import '../../../featurs/auth/registration/driver/user_information/full_name/data/repository_impl/full_name_repository_impl.dart'
+    as _i345;
+import '../../../featurs/auth/registration/driver/user_information/full_name/domain/repository/full_name_repository.dart'
+    as _i829;
 import '../../../featurs/auth/registration/exporter/full_name/data/datasources/full_name_datasource.dart'
     as _i728;
 import '../../../featurs/auth/registration/exporter/full_name/data/repository_impl/full_name_repository_impl.dart'
     as _i239;
 import '../../../featurs/auth/registration/exporter/full_name/domain/repository/full_name_repository.dart'
     as _i892;
+import '../../../featurs/auth/registration/phone_registration/data/datasources/region_remote_data_source.dart'
+    as _i33;
+import '../../../featurs/auth/registration/phone_registration/data/datasources/registation_data_source.dart'
+    as _i495;
+import '../../../featurs/auth/registration/phone_registration/data/repositories/regsion_repository_impl.dart'
+    as _i201;
+import '../../../featurs/auth/registration/phone_registration/data/repositories/rergistration_repository_impl.dart'
+    as _i716;
+import '../../../featurs/auth/registration/phone_registration/domain/repository/region_repository.dart'
+    as _i504;
+import '../../../featurs/auth/registration/phone_registration/domain/repository/registration_repository.dart'
+    as _i509;
+import '../../../featurs/auth/registration/phone_registration/domain/usecases/get_region_usecase.dart'
+    as _i1004;
+import '../../../featurs/auth/registration/phone_registration/domain/usecases/registration_usecase.dart'
+    as _i657;
+import '../../../featurs/auth/sms_page/data/datasources/sms_datasource.dart'
+    as _i525;
+import '../../../featurs/auth/sms_page/data/repository_impl/sms_repository_impl.dart'
+    as _i101;
+import '../../../featurs/auth/sms_page/domain/repository/sms_repository.dart'
+    as _i648;
+import '../../../featurs/auth/sms_page/domain/usecase/sms_usecase.dart'
+    as _i620;
 import '../../../featurs/choose_language/data/datasources/language_datasource.dart'
     as _i583;
 import '../../../featurs/choose_language/domain/usecases/language_usecase.dart'
@@ -74,7 +119,7 @@ import '../../../featurs/root_page/presentation/screens/search_product_page/doma
     as _i154;
 import '../../../featurs/root_page/presentation/screens/search_product_page/domain/usecase/usecase_map.dart'
     as _i544;
-import '../../network/dio_client.dart' as _i703;
+import '../../secure_storage/secure_storage_service.dart' as _i664;
 import 'injection_container.dart' as _i809;
 
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -90,52 +135,89 @@ _i174.GetIt init(
   );
   final registerModule = _$RegisterModule();
   gh.factory<_i583.LanguageDataSource>(() => _i583.LanguageDataSource());
-  gh.singleton<_i703.NetworkSanArt>(() => _i703.NetworkSanArt());
   gh.singleton<_i361.Dio>(() => registerModule.dio);
   gh.singleton<_i371.ProviderFactory>(() => _i371.ProviderFactory());
   gh.singleton<_i91.RootUseCase>(() => _i91.RootUseCase());
+  gh.lazySingleton<_i664.SecureStorageService>(
+      () => _i664.SecureStorageService());
   gh.factory<_i126.MapDataSource>(() => _i126.MapDataSourceImpl());
   gh.factory<_i154.SearchDataSource>(
       () => _i154.SearchDataSourceImpl(gh<_i361.Dio>()));
   gh.factory<_i410.LanguageUsecase>(
       () => _i410.LanguageUsecase(gh<_i583.LanguageDataSource>()));
+  gh.factory<_i37.FullNameDriverDataSource>(
+      () => _i37.FullNameDataSourceImpl());
+  gh.factory<_i401.RegionRemoteDataSource>(
+      () => _i401.RegionRemoteDataSourceImpl(gh<_i361.Dio>()));
+  gh.factory<_i465.DateDataSource>(
+      () => _i465.DateDataSourceImpl(gh<_i361.Dio>()));
   gh.factory<_i256.ChoseRoleDataSource>(
       () => _i256.ChoseRoleDataSourceImpl(gh<_i361.Dio>()));
+  gh.factory<_i33.RegistrationPhoneRegionRemoteDataSource>(
+      () => _i33.RegistrationRegionRemoteDataSourceImpl(gh<_i361.Dio>()));
   gh.factory<_i728.FullNameDataSource>(() => _i728.FullNameDataSourceImpl());
+  gh.factory<_i495.RegistrationDataSource>(
+      () => _i495.RegistrationDataSourceImpl(gh<_i361.Dio>()));
   gh.factory<_i679.ListAppDataSource>(
       () => _i679.ListAppDataSourceImpl(dio: gh<_i361.Dio>()));
+  gh.factory<_i889.RegionRepository>(
+      () => _i743.RegionRepositoryImpl(gh<_i401.RegionRemoteDataSource>()));
   gh.factory<_i162.UserRoleRepository>(
       () => _i315.RoleRepositoryIml(gh<_i256.ChoseRoleDataSource>()));
   gh.factory<_i633.SearchRepository>(
       () => _i1062.SearchRepositoryImpl(gh<_i154.SearchDataSource>()));
-  gh.factory<_i401.RegionRemoteDataSource>(
-      () => _i401.RegionRemoteDataSourceImpl(gh<_i703.NetworkSanArt>()));
   gh.factory<_i154.MapRepository>(
       () => _i407.MapRepositoryImpl(gh<_i126.MapDataSource>()));
   gh.factory<_i371.LanguageNotifier>(
       () => _i371.LanguageNotifier(gh<_i410.LanguageUsecase>()));
   gh.factory<_i1023.SearchUsecase>(
       () => _i1023.SearchUsecase(gh<_i633.SearchRepository>()));
+  gh.factory<_i521.LoginRemoteDataSource>(
+      () => _i521.LoginRemoteDataSourceImpl(dio: gh<_i361.Dio>()));
   gh.factory<_i286.StoriesRemoteDataSource>(
       () => _i286.StoriesRemoteDataSourceImpl(dio: gh<_i361.Dio>()));
   gh.factory<_i892.FullNameRepository>(
       () => _i239.FullNameRepositoryImpl(gh<_i728.FullNameDataSource>()));
+  gh.factory<_i159.GetRegionsUseCase>(
+      () => _i159.GetRegionsUseCase(gh<_i889.RegionRepository>()));
+  gh.factory<_i525.SmsRemoteDataSource>(
+      () => _i525.SmsRemoteDataSourceImpl(dio: gh<_i361.Dio>()));
+  gh.factory<_i509.RegistrationRepository>(() =>
+      _i716.RegistrationRepositoryImpl(gh<_i495.RegistrationDataSource>()));
+  gh.factory<_i657.RegistrationUsecase>(
+      () => _i657.RegistrationUsecase(gh<_i509.RegistrationRepository>()));
+  gh.factory<_i829.FullNameDriverRepository>(
+      () => _i345.FullNameRepositoryImpl(gh<_i37.FullNameDriverDataSource>()));
   gh.factory<_i161.StoriesRepository>(() => _i458.StoriesRepositoryImpl(
       remoteDataSource: gh<_i286.StoriesRemoteDataSource>()));
   gh.factory<_i259.GetStoriesUseCase>(
       () => _i259.GetStoriesUseCase(gh<_i161.StoriesRepository>()));
+  gh.factory<_i838.DateRepository>(
+      () => _i423.DateRepositoryImpl(gh<_i465.DateDataSource>()));
   gh.factory<_i565.UserRoleUsecase>(
       () => _i565.UserRoleUsecase(gh<_i162.UserRoleRepository>()));
+  gh.factory<_i504.RegistrationPhoneRegionRepository>(() =>
+      _i201.RegistrationRegionRepositoryImpl(
+          gh<_i33.RegistrationPhoneRegionRemoteDataSource>()));
   gh.factory<_i508.ListAppRepository>(
       () => _i301.ListAppRepositoryImpl(gh<_i679.ListAppDataSource>()));
   gh.factory<_i544.MapUsecase>(
       () => _i544.MapUsecase(gh<_i154.MapRepository>()));
-  gh.factory<_i889.RegionRepository>(
-      () => _i743.RegionRepositoryImpl(gh<_i401.RegionRemoteDataSource>()));
-  gh.factory<_i159.GetRegionsUseCase>(
-      () => _i159.GetRegionsUseCase(gh<_i889.RegionRepository>()));
+  gh.factory<_i648.SmsRepository>(
+      () => _i101.SmsRepositoryImpl(gh<_i525.SmsRemoteDataSource>()));
+  gh.factory<_i1004.RegistrationPhoneGetRegionsUseCase>(() =>
+      _i1004.RegistrationPhoneGetRegionsUseCase(
+          gh<_i504.RegistrationPhoneRegionRepository>()));
+  gh.factory<_i473.LoginRepository>(() => _i467.LoginRepositoryIml(
+      loginRemoteDataSource: gh<_i521.LoginRemoteDataSource>()));
+  gh.factory<_i46.LoginUsecase>(
+      () => _i46.LoginUsecase(loginRepository: gh<_i473.LoginRepository>()));
+  gh.factory<_i294.DateUsecase>(
+      () => _i294.DateUsecase(gh<_i838.DateRepository>()));
   gh.factory<_i956.ListAppUsecase>(
       () => _i956.ListAppUsecase(gh<_i508.ListAppRepository>()));
+  gh.factory<_i620.SmsUsecase>(
+      () => _i620.SmsUsecase(gh<_i648.SmsRepository>()));
   return getIt;
 }
 

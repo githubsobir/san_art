@@ -1,35 +1,32 @@
-import 'dart:io';
+// Transport turlarini ifodalovchi enum
+enum TransportType {
+  car,
+  bus,
+  bicycle,
+  airplane,
+  train,
+}
 
 void main() {
-  masala3();
-}
+  // Enum qiymatini yaratish
+  TransportType myTransport = TransportType.car;
 
-masala3() {
-  List<String> data = stdin.readLineSync()!.split(' ');
-  int N = int.parse(data[0]);
-  int a = int.parse(data[1]);
-  int m = 0;
-
-  while (a / 10 > 0) {
-    a = a ~/ 10;
-    m++;
+  // Switch orqali tekshirish
+  switch (myTransport) {
+    case TransportType.car:
+      print('Siz mashinada ketayapsiz.');
+      break;
+    case TransportType.bus:
+      print('Siz avtobusda ketayapsiz.');
+      break;
+    case TransportType.bicycle:
+      print('Siz velosipedda ketayapsiz.');
+      break;
+    case TransportType.airplane:
+      print('Siz samolyotda uchyapsiz.');
+      break;
+    case TransportType.train:
+      print('Siz poezdda ketayapsiz.');
+      break;
   }
-  print(m == N ? "yes" : "no");
-}
-
-masala2() {
-  List<String> list = stdin.readLineSync()!.split(' ');
-  print(int.parse(list[0]) + 2);
-}
-
-masala1() {
-  List<String> list = stdin.readLineSync()!.split(' ');
-
-  int max = 0;
-  if (int.parse(list[0]) > int.parse(list[1])) {
-    max = int.parse(list[0]);
-  } else {
-    max = int.parse(list[1]);
-  }
-  print(max > int.parse(list[2]) ? max : int.parse(list[2]));
 }

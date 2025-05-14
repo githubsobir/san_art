@@ -1,4 +1,6 @@
 // map_provider.dart
+import 'dart:developer';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_cluster_manager_2/google_maps_cluster_manager_2.dart'
     as c;
@@ -58,7 +60,7 @@ class ClusterManagerController extends StateNotifier<c.ClusterManager<Place>?> {
   void updateMarkers(Set<Marker> markers) {
     // Bu joyda xarita markerlarini yangilash uchun ishlatiladi
     // Riverpod bilan markerlar holatini ham alohida boshqarish mumkin
-    print('Updated ${markers.length} markers');
+    log('Updated ${markers.length} markers');
   }
 
   Future<Marker> markerBuilder(c.Cluster<Place> cluster) async {
