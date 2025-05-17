@@ -44,9 +44,8 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: SmsRoute.page, path: "/sms_page"),
         AutoRoute(page: ImageUserExporterRoute.page, path: "/image_export"),
         AutoRoute(page: ImageDriverRoute.page, path: "/image_driver"),
-        AutoRoute(
-            page: CarMainRegistrationRoute.page,
-            path: "/car_main_registration_page"),
+        AutoRoute(page: CarMainRegistrationRoute.page, path: "/car_main_registration_page"),
+
 
         ///
         AutoRoute(page: PassportRoute.page, path: "/passport"),

@@ -121,7 +121,7 @@ class _DataBirthState extends ConsumerState<DataBirthPage> {
               text: "continue".tr(),
               onPressed: () {
                 if (ref.watch(selectDateProvider).toString().length > 5) {
-                  context.router.push(ImageDriverRoute());
+                  context.router.push(ImageUserExporterRoute());
                   ref
                       .read(userBirthController.notifier)
                       .setUserBirth(

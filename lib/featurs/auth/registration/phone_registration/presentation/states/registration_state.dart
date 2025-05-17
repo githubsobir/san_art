@@ -15,7 +15,7 @@ class RegistrationNotifier
   @override
   FutureOr<RegistrationResponseEntities?> build() {
     _registrationUsecase = getIt<RegistrationUsecase>();
-    return null;
+    return RegistrationResponseEntities(detail: "");
   }
 
   // Login jarayoni uchun metod

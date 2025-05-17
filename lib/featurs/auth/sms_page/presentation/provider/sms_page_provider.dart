@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:san_art/core/data/hive_san_art.dart';
 import 'package:san_art/core/errors/fails.dart';
@@ -13,19 +14,19 @@ final smsTimeEnd = StateProvider<bool>((ref) => true);
 final smsTimer = StateProvider<int>((ref) => 299);
 
 final smsNotifierProvider =
-AsyncNotifierProvider<SmsPageNotifier, SmsPageEntities?>(
-      () => SmsPageNotifier(),
+    AsyncNotifierProvider<SmsPageNotifier, SmsPageEntities?>(
+  () => SmsPageNotifier(),
 );
-
 
 class SmsPageNotifier extends AsyncNotifier<SmsPageEntities?> {
   late final SmsUsecase _smsUsecase;
   var box = HiveBoxes();
+
   @override
   FutureOr<SmsPageEntities?> build() {
     _smsUsecase = getIt<SmsUsecase>();
     // Boshlang'ich holat null
-    return null;
+    return SmsPageEntities(token: "", deviceId: "", username: "");
   }
 
   // Login jarayoni uchun metod
@@ -41,14 +42,13 @@ class SmsPageNotifier extends AsyncNotifier<SmsPageEntities?> {
       // Result obyektini qayta ishlaymiz
       state = await result.when(
         (success) {
-          box.userToken = success.token??"-1";
+          box.userToken = success.token ?? "-1";
           log("sms muvaffaqiyatli: ${success.toString()}");
           // Login ma'lumotini state ga berish
           (success.token);
           return AsyncData(success);
         },
         (error) {
-
           log("sms xatosi: ${error.message}");
           // Xato holatini qaytarish
           return AsyncError(error, StackTrace.current);
@@ -63,4 +63,3 @@ class SmsPageNotifier extends AsyncNotifier<SmsPageEntities?> {
   // Getter metodlar UI uchun (optsional)
   bool get isLoggedIn => state.valueOrNull != null;
 }
-

@@ -42,13 +42,28 @@ class _SmsPageState extends ConsumerState<SmsPage> {
     super.dispose();
   }
 
+  int click = 0;
+
   @override
   Widget build(BuildContext context) {
     ref.listen(smsNotifierProvider, (previous, next) {
-      log("!!!!!!!");
-      log(next.toString());
-      log("######");
-      if (next.value != null) {}
+      if (!previous!.isLoading &&
+          next.value!.token.toString().length > 10 &&
+          click == 1) {
+        log("!!!!!!!");
+        log(next.toString());
+        log("######");
+
+        if (widget.windowId.toString() == "LOGIN") {
+          context.router.push(RootRoute(val1: "val1", val2: "val2"));
+        } else if (widget.windowId.toString() == "REGISTRATION") {
+          context.router.push(FullNameRoute());
+        }
+
+        click = 2;
+
+        if (next.value != null) {}
+      }
     });
     return Scaffold(
       body: backImage1(
@@ -202,6 +217,8 @@ class _SmsPageState extends ConsumerState<SmsPage> {
                       if (textEditingController.text.toString().trim().length ==
                           5) {
                         box.userPhone = widget.phoneNumber;
+
+                        ///
                         ref.read(smsNotifierProvider.notifier).sendMessage(
                             userName: widget.phoneNumber,
                             loginSmsRequestEntities: LoginSmsRequestEntities(
@@ -210,26 +227,7 @@ class _SmsPageState extends ConsumerState<SmsPage> {
                                 code: textEditingController.text
                                     .toString()
                                     .trim()));
-
-                        try {
-                          if (ref
-                                  .watch(smsNotifierProvider)
-                                  .value!
-                                  .token
-                                  .toString()
-                                  .length >
-                              10) {
-                            if (widget.windowId.toString() == "LOGIN") {
-                              context.router
-                                  .push(RootRoute(val1: "val1", val2: "val2"));
-                            } else if (widget.windowId.toString() ==
-                                "REGISTRATION") {
-                              context.router.push(FullNameRoute());
-                            }
-                          }
-                        } catch (e) {
-                          log(e.toString());
-                        }
+                        click = 1;
                       }
                     },
                   ),

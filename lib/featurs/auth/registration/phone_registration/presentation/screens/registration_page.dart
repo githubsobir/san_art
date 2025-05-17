@@ -31,6 +31,7 @@ class _RegistrationPhonePageState extends ConsumerState<RegistrationPhonePage> {
   TextEditingController textEditingController = TextEditingController();
   TextEditingController textSearchDropDown = TextEditingController();
 
+  int click = 1;
   final _formKey = GlobalKey<FormState>();
   var box = HiveBoxes();
   var maskFormatter = MaskTextInputFormatter(
@@ -51,7 +52,30 @@ class _RegistrationPhonePageState extends ConsumerState<RegistrationPhonePage> {
     final asyncEither = ref.watch(userRegistrationNotifierProvider);
 
     ref.listen(registrationNotifierProvider, (previous, next) {
-      try {} catch (e) {
+      try {
+        log("Sobir");
+        if (!previous!.isLoading &&
+            ref
+                .watch(registrationNotifierProvider)
+                .value!
+                .detail
+                .toString()
+                .contains("Sms is sent.") &&
+            click == 1) {
+          ///
+          context.router.push(SmsRoute(
+              windowId: "REGISTRATION",
+              phoneNumber: ref.watch(selectPhoneCode) +
+                  textEditingController.text
+                      .replaceAll("-", "")
+                      .replaceAll("(", "")
+                      .replaceAll(")", "")
+                      .replaceAll(" ", "")
+                      .toString()));
+
+          click = 2;
+        }
+      } catch (e) {
         log(e.toString());
       }
     });
@@ -216,6 +240,9 @@ class _RegistrationPhonePageState extends ConsumerState<RegistrationPhonePage> {
                 PrimaryButton(
                   isLoading: ref.watch(registrationNotifierProvider).isLoading,
                   onPressed: () {
+                    log("click = 1");
+                    click = 1;
+
                     if (textEditingController.text.toString().length <= 8) {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: Text("checkInfo".tr()),
@@ -235,31 +262,6 @@ class _RegistrationPhonePageState extends ConsumerState<RegistrationPhonePage> {
                                       .replaceAll(" ", "")
                                       .toString(),
                               deviceName: "deviceName");
-
-
-                      try{
-                        log("SOBIR");
-
-                        ref
-                            .watch(registrationNotifierProvider)
-                            .value!
-                            .detail
-                            .toString()
-                            .contains("Sms is sent.")
-                            ? context.router.push(SmsRoute(
-                            windowId: "REGISTRATION",
-                            phoneNumber: ref.watch(selectPhoneCode) +
-                                textEditingController.text
-                                    .replaceAll("-", "")
-                                    .replaceAll("(", "")
-                                    .replaceAll(")", "")
-                                    .replaceAll(" ", "")
-                                    .toString()))
-                            : log("SOBIR 22");
-                      }catch(e){
-                        log(e.toString());
-                      }
-
 
                       ///
                     }

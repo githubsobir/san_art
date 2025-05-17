@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -40,10 +41,9 @@ class _FullNameState extends ConsumerState<FullNamePage> {
   @override
   Widget build(BuildContext context) {
     ref.listen(fullNameProviders, (previous, next) {
-      try{
+      try {
         log(next.value!.message.toString());
-
-      }catch(e){
+      } catch (e) {
         log("###");
         log(previous!.error.toString());
         log(next.asData!.error.toString());
@@ -61,9 +61,9 @@ class _FullNameState extends ConsumerState<FullNamePage> {
   Widget buildBody() {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20),
-      child: SingleChildScrollView(
-        child: SizedBox(
-          height: AppSize.getH(context),
+      child: SizedBox(
+        height: AppSize.getH(context),
+        child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
