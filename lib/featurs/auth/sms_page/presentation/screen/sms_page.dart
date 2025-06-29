@@ -9,8 +9,6 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:san_art/core/back_image/back_image1.dart';
 import 'package:san_art/core/data/hive_san_art.dart';
 import 'package:san_art/core/routes/routes.dart';
-import 'package:san_art/core/screen_size/get_size.dart';
-import 'package:san_art/core/theme/colors/colors_app.dart';
 import 'package:san_art/core/theme/theme_switcher.dart';
 import 'package:san_art/core/widgets/buttons/button_primary.dart';
 import 'package:san_art/featurs/auth/sms_page/domain/entities/request/sms_page_req_entites.dart';
@@ -30,224 +28,331 @@ class SmsPage extends ConsumerStatefulWidget {
 }
 
 class _SmsPageState extends ConsumerState<SmsPage> {
-  String currentText = "";
-  var box = HiveBoxes();
-  late CountdownController countdownController =
-      CountdownController(autoStart: true);
-  TextEditingController textEditingController = TextEditingController();
+  // Constants
+  static const int _pinCodeLength = 5;
+  static const double _horizontalPadding = 20.0;
+  static const double _containerMargin = 15.0;
+
+  // Controllers and variables
+  late final TextEditingController _textEditingController;
+  late final CountdownController _countdownController;
+  final HiveBoxes _hiveBox = HiveBoxes();
+
+  String _currentTimerText = "";
+  bool _hasRequestBeenSent = false;
+  bool _showError = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _textEditingController = TextEditingController();
+    _countdownController = CountdownController(autoStart: true);
+  }
 
   @override
   void dispose() {
-    textEditingController.dispose();
+    _textEditingController.dispose();
     super.dispose();
   }
 
-  int click = 0;
-
   @override
   Widget build(BuildContext context) {
-    ref.listen(smsNotifierProvider, (previous, next) {
-      if (!previous!.isLoading &&
-          next.value!.token.toString().length > 10 &&
-          click == 1) {
-        log("!!!!!!!");
-        log(next.toString());
-        log("######");
+    _listenToSmsProvider();
 
-        if (widget.windowId.toString() == "LOGIN") {
-          context.router.push(RootRoute(val1: "val1", val2: "val2"));
-        } else if (widget.windowId.toString() == "REGISTRATION") {
-          context.router.push(FullNameRoute());
-        }
-
-        click = 2;
-
-        if (next.value != null) {}
-      }
-    });
     return Scaffold(
       body: backImage1(
-          child: Container(
-            margin: EdgeInsets.all(15),
+        ref: ref,
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(_containerMargin),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const SizedBox(height: 56),
-                IconButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    icon: Icon(
-                      Platform.isIOS ? Icons.arrow_back_ios : Icons.arrow_back,
-                    )),
+                _buildAppBar(),
                 const SizedBox(height: 40),
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Text("passCode".tr(),
-                      style: TextStyle(
-                          fontFamily: "Inter",
-                          fontWeight: FontWeight.w700,
-                          fontSize: 30)),
-                ),
+                _buildTitle(),
                 const SizedBox(height: 12),
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Text(
-                    'verificationCode'.tr(args: [box.userPhone]),
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontFamily: "Inter",
-                        fontSize: 18),
-                  ),
-                ),
+                _buildSubtitle(),
                 const SizedBox(height: 36),
-                Align(
-                  alignment: Alignment.center,
-                  child: SizedBox(
-                    height: 70,
-                    width: AppSize.getW(context) * 0.9,
-                    child: PinCodeTextField(
-                      controller: textEditingController,
-                      appContext: context,
-                      animationType: AnimationType.fade,
-                      keyboardType: TextInputType.number,
-                      cursorColor: AppColors.transparent,
-                      backgroundColor: AppColors.transparent,
-                      enableActiveFill: true,
-                      length: 5,
-                      onCompleted: (val) {
-                        // ref.read(textSmsCode.notifier).state = val;
-                      },
-                      textStyle: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontFamily: "Inter",
-                          fontSize: 28),
-                      pinTheme: PinTheme(
-                          shape: PinCodeFieldShape.box,
-                          borderRadius: BorderRadius.circular(10),
-                          fieldHeight: 70,
-                          fieldWidth: 65,
-                          borderWidth: 0.4,
-                          activeBorderWidth: 1,
-                          selectedBorderWidth: 1,
-                          inactiveBorderWidth: 0.4,
-                          activeColor: Colors.red,
-                          inactiveColor: Colors.blue.shade500,
-                          activeFillColor: AppColors.transparent,
-                          selectedColor: Colors.red,
-                          selectedFillColor: AppColors.transparent,
-                          inactiveFillColor: AppColors.transparent),
-                      animationDuration: const Duration(milliseconds: 300),
-                      onChanged: (value) {},
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Visibility(
-                      visible: true,
-                      //ref.watch(smsMainController).txtSmsNote == "999",
-                      child: Column(
-                        children: [
-                          const SizedBox(height: 20),
-                          Text(
-                            "smsError".tr(),
-                            style: TextStyle(
-                                fontFamily: "Inter",
-                                color: Colors.red,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400),
-                          )
-                        ],
-                      )),
-                ),
+                _buildPinCodeField(),
+                if (_showError) _buildErrorMessage(),
                 const SizedBox(height: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        try {
-                          if (strData == "00:00") {
-                            context.router.pop();
-                          }
-                          ref.read(smsTimeEnd.notifier).state = true;
-                          countdownController.restart();
-                        } catch (e) {
-                          log(e.toString());
-                        }
-                      },
-                      child: SizedBox(
-                          child: Text(
-                        "sendAgain".tr(),
-                        style: TextStyle(
-                            fontFamily: "Inter",
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400),
-                      )),
-                    ),
-                    const SizedBox(width: 12),
-                    Countdown(
-                      seconds: ref.watch(smsTimer),
-                      controller: countdownController,
-                      build: (BuildContext context, double time) => Text(
-                        getTimerString(time.toInt()),
-                        style: TextStyle(
-                            fontFamily: "Inter",
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400),
-                      ),
-                      interval: const Duration(seconds: 1),
-                      onFinished: () {
-                        ref.read(smsTimeEnd.notifier).state = false;
-                      },
-                    ),
-                  ],
-                ),
+                _buildResendSection(),
                 const Spacer(),
-                Visibility(
-                  visible: strData != "00:00" ? true : false,
-                  //ref.watch(smsTimeEnd),
-                  child: PrimaryButton(
-                    text: "check".tr(),
-                    isLoading: ref.watch(smsNotifierProvider).isLoading,
-                    onPressed: () {
-                      if (textEditingController.text.toString().trim().length ==
-                          5) {
-                        box.userPhone = widget.phoneNumber;
-
-                        ///
-                        ref.read(smsNotifierProvider.notifier).sendMessage(
-                            userName: widget.phoneNumber,
-                            loginSmsRequestEntities: LoginSmsRequestEntities(
-                                username: widget.phoneNumber,
-                                deviceName: "deviceName",
-                                code: textEditingController.text
-                                    .toString()
-                                    .trim()));
-                        click = 1;
-                      }
-                    },
-                  ),
-                ),
-                ThemeSwitcher(),
-                const SizedBox(height: 20)
+                _buildSubmitButton(),
+                const ThemeSwitcher(),
+                const SizedBox(height: 20),
               ],
             ),
           ),
-          ref: ref),
+        ),
+      ),
     );
   }
 
-  String strData = "";
+  Widget _buildAppBar() {
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: IconButton(
+        onPressed: () => context.router.pop(),
+        icon: Icon(
+          Platform.isIOS ? Icons.arrow_back_ios : Icons.arrow_back,
+        ),
+        padding: EdgeInsets.zero,
+        alignment: Alignment.centerLeft,
+      ),
+    );
+  }
 
-  String getTimerString(int seconds) {
-    int min = seconds ~/ 60;
-    int sec = seconds % 60;
-    strData =
-        '${min.toString().padLeft(2, '0')}:${sec.toString().padLeft(2, '0')}';
-    return strData;
+  Widget _buildTitle() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: _horizontalPadding),
+      child: Text(
+        "passCode".tr(),
+        style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+              fontFamily: "Inter",
+              fontWeight: FontWeight.w700,
+              fontSize: 30,
+            ),
+      ),
+    );
+  }
+
+  Widget _buildSubtitle() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: _horizontalPadding),
+      child: Text(
+        'verificationCode'.tr(args: [_hiveBox.userPhone]),
+        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+              fontFamily: "Inter",
+              fontWeight: FontWeight.w400,
+              fontSize: 18,
+            ),
+      ),
+    );
+  }
+
+  Widget _buildPinCodeField() {
+    return SizedBox(
+      height: 70,
+      child: PinCodeTextField(
+        controller: _textEditingController,
+        appContext: context,
+        animationType: AnimationType.fade,
+        keyboardType: TextInputType.number,
+        cursorColor: Colors.transparent,
+        backgroundColor: Colors.transparent,
+        enableActiveFill: true,
+        length: _pinCodeLength,
+        textStyle: const TextStyle(
+          fontWeight: FontWeight.w500,
+          fontFamily: "Inter",
+          fontSize: 28,
+        ),
+        pinTheme: _buildPinTheme(),
+        animationDuration: const Duration(milliseconds: 300),
+        onChanged: (value) {
+          setState(() {
+            _showError = false;
+          });
+        },
+        onCompleted: (value) {
+          _submitCode();
+        },
+      ),
+    );
+  }
+
+  PinTheme _buildPinTheme() {
+    return PinTheme(
+      shape: PinCodeFieldShape.box,
+      borderRadius: BorderRadius.circular(10),
+      fieldHeight: 70,
+      fieldWidth: 65,
+      borderWidth: 0.4,
+      activeBorderWidth: 1,
+      selectedBorderWidth: 1,
+      inactiveBorderWidth: 0.4,
+      activeColor: Theme.of(context).colorScheme.primary,
+      inactiveColor: Colors.grey.shade400,
+      activeFillColor: Colors.transparent,
+      selectedColor: Theme.of(context).colorScheme.primary,
+      selectedFillColor: Colors.transparent,
+      inactiveFillColor: Colors.transparent,
+    );
+  }
+
+  Widget _buildErrorMessage() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: _horizontalPadding,
+        vertical: 10,
+      ),
+      child: Text(
+        "smsError".tr(),
+        style: TextStyle(
+          fontFamily: "Inter",
+          color: Theme.of(context).colorScheme.error,
+          fontSize: 16,
+          fontWeight: FontWeight.w400,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildResendSection() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        GestureDetector(
+          onTap: _isTimerFinished ? _resendCode : null,
+          child: Text(
+            "sendAgain".tr(),
+            style: TextStyle(
+              fontFamily: "Inter",
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
+              color: _isTimerFinished
+                  ? Theme.of(context).colorScheme.primary
+                  : Colors.grey,
+            ),
+          ),
+        ),
+        const SizedBox(width: 12),
+        _buildCountdownTimer(),
+      ],
+    );
+  }
+
+  Widget _buildCountdownTimer() {
+    return Countdown(
+      seconds: ref.watch(smsTimer),
+      controller: _countdownController,
+      build: (context, time) {
+        _currentTimerText = _formatTime(time.toInt());
+        return Text(
+          _currentTimerText,
+          style: const TextStyle(
+            fontFamily: "Inter",
+            fontSize: 16,
+            fontWeight: FontWeight.w400,
+          ),
+        );
+      },
+      interval: const Duration(seconds: 1),
+      onFinished: () {
+        ref.read(smsTimeEnd.notifier).state = false;
+      },
+    );
+  }
+
+  Widget _buildSubmitButton() {
+    return Visibility(
+      visible: !_isTimerFinished,
+      child: PrimaryButton(
+        text: "check".tr(),
+        isLoading: ref.watch(smsNotifierProvider).isLoading,
+        onPressed: _canSubmit ? _submitCode : () {},
+      ),
+    );
+  }
+
+  // Helper methods
+  bool get _isTimerFinished => _currentTimerText == "00:00";
+
+  bool get _canSubmit =>
+      _textEditingController.text.trim().length == _pinCodeLength &&
+      !ref.watch(smsNotifierProvider).isLoading;
+
+  String _formatTime(int seconds) {
+    final minutes = seconds ~/ 60;
+    final remainingSeconds = seconds % 60;
+    return '${minutes.toString().padLeft(2, '0')}:'
+        '${remainingSeconds.toString().padLeft(2, '0')}';
+  }
+
+  void _listenToSmsProvider() {
+    ref.listen<AsyncValue>(smsNotifierProvider, (previous, next) {
+      if (_hasRequestBeenSent &&
+          previous?.isLoading == true &&
+          next.isLoading == false) {
+        next.when(
+          data: (data) {
+            if (data!.token.toString().length > 10) {
+              _navigateBasedOnWindowId();
+            } else {
+              _showErrorState();
+            }
+          },
+          error: (error, stackTrace) {
+            _showErrorState();
+            log('SMS verification error: $error');
+          },
+          loading: () {},
+        );
+
+        _hasRequestBeenSent = false;
+      }
+    });
+  }
+
+  var box = HiveBoxes();
+
+  void _navigateBasedOnWindowId() {
+    switch (widget.windowId) {
+      case "LOGIN":
+        context.router.push(RootRoute(val1: "val1", val2: "val2"));
+        break;
+      case "REGISTRATION":
+        {
+      // case "user":
+      // case "logistics":
+      // case "sender":
+      // case "driver":
+          box.userType == "driver"?
+          context.router.push(FullNameDriverRoute()):
+          context.router.push(FullNameRoute());
+        }
+        break;
+      default:
+        log('Unknown window ID: ${widget.windowId}');
+    }
+  }
+
+  void _showErrorState() {
+    if (mounted) {
+      setState(() {
+        _showError = true;
+      });
+    }
+  }
+
+  void _submitCode() {
+    if (!_canSubmit) return;
+
+    _hiveBox.userPhone = widget.phoneNumber;
+
+    ref.read(smsNotifierProvider.notifier).sendMessage(
+          userName: widget.phoneNumber,
+          loginSmsRequestEntities: LoginSmsRequestEntities(
+            username: widget.phoneNumber,
+            deviceName: "deviceName", // Consider making this dynamic
+            code: _textEditingController.text.trim(),
+          ),
+        );
+
+    _hasRequestBeenSent = true;
+  }
+
+  void _resendCode() {
+    try {
+      ref.read(smsTimeEnd.notifier).state = true;
+      _countdownController.restart();
+      setState(() {
+        _showError = false;
+      });
+    } catch (e) {
+      log('Error resending code: $e');
+    }
   }
 }

@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
@@ -7,10 +8,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:san_art/core/back_image/back_image1.dart';
 import 'package:san_art/core/data/hive_san_art.dart';
+import 'package:san_art/core/role/role_users.dart';
+import 'package:san_art/core/routes/routes.dart';
 import 'package:san_art/core/screen_size/get_size.dart';
 import 'package:san_art/core/theme/colors/colors_app.dart';
 import 'package:san_art/core/widgets/buttons/button_primary.dart';
 import 'package:san_art/core/widgets/buttons/secondry.dart';
+import 'package:san_art/featurs/auth/registration/exporter/image/presentation/provider/image_exporter_state.dart';
 import 'package:san_art/generated/assets.dart';
 
 @RoutePage()
@@ -26,7 +30,16 @@ class _ImageUserExporterState extends ConsumerState<ImageUserExporterPage> {
   final _box = HiveBoxes();
 
   @override
+  void initState() {
+    log("Exporter Image");
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context1) {
+    // Get the image picker state from the provider
+    final imagePickerState = ref.watch(imagePickerControllerProvider);
+
     return Scaffold(
         backgroundColor: Colors.grey.shade900,
         body: backImage1(
@@ -54,22 +67,19 @@ class _ImageUserExporterState extends ConsumerState<ImageUserExporterPage> {
                             )),
                         IconButton(
                             onPressed: () {
-                              // ref
-                              //     .watch(
-                              //     controllerAddPhotoDriver.notifier)
-                              //     .imageList
-                              //     .isEmpty
-                              //     ? {
-                              //   MyWidgets.snackBarMyWidgets(
-                              //       context: context,
-                              //       text: "Rasm tanlang")
-                              // }
-                              //     : {
-                              //   ref
-                              //       .read(controllerAddPhotoDriver
-                              //       .notifier)
-                              //       .setImageServer(context: context1)
-                              // };
+                              // Upload image to server when check icon is pressed
+                              if (imagePickerState.imageList.isEmpty) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                      content:
+                                          Text('Iltimos, avval rasm tanlang')),
+                                );
+                              } else {
+                                ref
+                                    .read(
+                                        imagePickerControllerProvider.notifier)
+                                    .uploadImageToServer(context: context1);
+                              }
                             },
                             icon: Icon(
                               Icons.check_box_outlined,
@@ -87,66 +97,83 @@ class _ImageUserExporterState extends ConsumerState<ImageUserExporterPage> {
                               margin: const EdgeInsets.all(30),
                               padding: const EdgeInsets.all(10),
                               alignment: Alignment.center,
-                              child: SvgPicture.asset(
-                                Assets.iconsIcProfile,
-                                width: 120,
-                                height: 120,
-                              )),
+                              child: imagePickerState.imageList.isNotEmpty
+                                  ? ClipRRect(
+                                      borderRadius: BorderRadius.circular(60),
+                                      child: Image.file(
+                                        imagePickerState.imageList[0],
+                                        width: 120,
+                                        height: 120,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    )
+                                  : SvgPicture.asset(
+                                      Assets.iconsIcProfile,
+                                      width: 120,
+                                      height: 120,
+                                    )),
                           Padding(
                             padding: const EdgeInsets.only(right: 20),
                             child: Align(
                                 alignment: Alignment.bottomRight,
                                 child: IconButton(
                                   onPressed: () {
-                                    // ref
-                                    //     .read(controllerAddPhotoDriver
-                                    //     .notifier)
-                                    //     .getImageFromGallery();
+                                    // Show image picker dialog when change icon is pressed
+                                    ref
+                                        .read(imagePickerControllerProvider
+                                            .notifier)
+                                        .showImagePickerDialog(context);
                                   },
-                                  icon: Icon(
+                                  icon: const Icon(
                                     Icons.change_circle_outlined,
                                   ),
                                 )),
-                          )
+                          ),
+                          if (imagePickerState.isLoading)
+                            const Center(
+                              child: CircularProgressIndicator(),
+                            ),
                         ],
                       ),
                     ),
                     const SizedBox(height: 20),
-                    Text("Rasmingizni kiriting",
+                    const Text("Rasmingizni kiriting",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontFamily: "Poppins",
                           fontWeight: FontWeight.w700,
                           fontSize: 30,
                         )),
+                    if (imagePickerState.errorMessage != null)
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          imagePickerState.errorMessage!,
+                          style: const TextStyle(color: Colors.red),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
                     const Spacer(),
                     PrimaryButton(
                       text: "Rasm tanlash",
                       onPressed: () {
-                        //   setState(() {
-                        //     ref
-                        //         .read(controllerAddPhotoDriver.notifier)
-                        //         .getImageFromGallery();
-                        //   });
+                        // Show image picker dialog when button is pressed
+
+                        ref
+                            .read(imagePickerControllerProvider.notifier)
+                            .showImagePickerDialog(context);
                       },
                     ),
                     const SizedBox(height: 12),
                     SecondaryButton(
                       text: "skip".tr(),
                       onPressed: () {
-                        if (_box.userType.toString() == "2") {
-                          // Navigator.push(
-                          //     context,
-                          //     CupertinoDialogRoute(
-                          //         builder: (context) => const RootPage(),
-                          //         context: context));
-                        } else {
-                          // Navigator.push(
-                          //     context,
-                          //     CupertinoDialogRoute(
-                          //         builder: (context) =>
-                          //         const DrawerRegistration(),
-                          //         context: context));
+                        log(_box.userRole);
+                        log(_box.userType);
+                        if (RoleUser.driver == _box.userType) {
+                          context.router.push(CarMainRegistrationRoute());
+                        } else if (RoleUser.exporter == _box.userType) {
+                          context.router.push(RootRoute(val1: "val1", val2: "val2"));
                         }
                       },
                     )
@@ -155,21 +182,5 @@ class _ImageUserExporterState extends ConsumerState<ImageUserExporterPage> {
               ),
             ),
             ref: ref));
-  }
-
-  String getImage() {
-    try {
-      // return ref
-      //     .watch(controllerAddPhotoDriver.notifier)
-      //     .imageList[0]
-      //     .path
-      //     .length >
-      //     10
-      //     ? "1"
-      //     : "0";
-      return "0";
-    } catch (e) {
-      return "0";
-    }
   }
 }

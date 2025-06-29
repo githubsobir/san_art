@@ -31,6 +31,11 @@ class _FullNameState extends ConsumerState<FullNamePage> {
   TextEditingController txtSName = TextEditingController();
 
   @override
+  void initState() {
+    log("Exporter Full Name");
+    super.initState();
+  }
+  @override
   void dispose() {
     txtName.dispose();
     txtFName.dispose();

@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:injectable/injectable.dart';
 import 'package:multiple_result/multiple_result.dart';
 import 'package:san_art/core/errors/fails.dart';
@@ -15,7 +18,11 @@ class RoleRepositoryIml implements UserRoleRepository {
   Future<Result<List<UserRoleEntities>, Failure>> getData() async {
     try {
       var getRoleModels = await choseRoleDataSource.getData();
+      log("Sobir");
+      log(jsonEncode(getRoleModels));
       final regions = getRoleModels.map((model) => model.toEntity()).toList();
+
+
       return Success(regions);
     } catch (e) {
       return Error(Failure.unexpected('Unexpected error: $e'));

@@ -11,6 +11,38 @@
 part of 'routes.dart';
 
 /// generated route for
+/// [CarBrandUiPage]
+class CarBrandUiRoute extends PageRouteInfo<void> {
+  const CarBrandUiRoute({List<PageRouteInfo>? children})
+    : super(CarBrandUiRoute.name, initialChildren: children);
+
+  static const String name = 'CarBrandUiRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const CarBrandUiPage();
+    },
+  );
+}
+
+/// generated route for
+/// [CarColorUiPage]
+class CarColorUiRoute extends PageRouteInfo<void> {
+  const CarColorUiRoute({List<PageRouteInfo>? children})
+    : super(CarColorUiRoute.name, initialChildren: children);
+
+  static const String name = 'CarColorUiRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const CarColorUiPage();
+    },
+  );
+}
+
+/// generated route for
 /// [CarLicencePage]
 class CarLicenceRoute extends PageRouteInfo<void> {
   const CarLicenceRoute({List<PageRouteInfo>? children})
@@ -82,6 +114,23 @@ class CarLicencePhotoRouteArgs {
   String toString() {
     return 'CarLicencePhotoRouteArgs{key: $key, countryCode: $countryCode, carGosNum: $carGosNum, trailerGosNum: $trailerGosNum}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! CarLicencePhotoRouteArgs) return false;
+    return key == other.key &&
+        countryCode == other.countryCode &&
+        carGosNum == other.carGosNum &&
+        trailerGosNum == other.trailerGosNum;
+  }
+
+  @override
+  int get hashCode =>
+      key.hashCode ^
+      countryCode.hashCode ^
+      carGosNum.hashCode ^
+      trailerGosNum.hashCode;
 }
 
 /// generated route for
@@ -96,6 +145,70 @@ class CarMainRegistrationRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const CarMainRegistrationPage();
+    },
+  );
+}
+
+/// generated route for
+/// [CarMarkUiPage]
+class CarMarkUiRoute extends PageRouteInfo<void> {
+  const CarMarkUiRoute({List<PageRouteInfo>? children})
+    : super(CarMarkUiRoute.name, initialChildren: children);
+
+  static const String name = 'CarMarkUiRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const CarMarkUiPage();
+    },
+  );
+}
+
+/// generated route for
+/// [CarTypeUiPage]
+class CarTypeUiRoute extends PageRouteInfo<void> {
+  const CarTypeUiRoute({List<PageRouteInfo>? children})
+    : super(CarTypeUiRoute.name, initialChildren: children);
+
+  static const String name = 'CarTypeUiRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const CarTypeUiPage();
+    },
+  );
+}
+
+/// generated route for
+/// [CarWeightPage]
+class CarWeightRoute extends PageRouteInfo<void> {
+  const CarWeightRoute({List<PageRouteInfo>? children})
+    : super(CarWeightRoute.name, initialChildren: children);
+
+  static const String name = 'CarWeightRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const CarWeightPage();
+    },
+  );
+}
+
+/// generated route for
+/// [CarYearInputPage]
+class CarYearInputRoute extends PageRouteInfo<void> {
+  const CarYearInputRoute({List<PageRouteInfo>? children})
+    : super(CarYearInputRoute.name, initialChildren: children);
+
+  static const String name = 'CarYearInputRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return CarYearInputPage();
     },
   );
 }
@@ -375,6 +488,16 @@ class PhotoTexCar1RouteArgs {
   String toString() {
     return 'PhotoTexCar1RouteArgs{key: $key, indexImage: $indexImage}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! PhotoTexCar1RouteArgs) return false;
+    return key == other.key && indexImage == other.indexImage;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ indexImage.hashCode;
 }
 
 /// generated route for
@@ -412,6 +535,16 @@ class PhotoTexCar2RouteArgs {
   String toString() {
     return 'PhotoTexCar2RouteArgs{key: $key, indexImage: $indexImage}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! PhotoTexCar2RouteArgs) return false;
+    return key == other.key && indexImage == other.indexImage;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ indexImage.hashCode;
 }
 
 /// generated route for
@@ -468,6 +601,16 @@ class RootRouteArgs {
   String toString() {
     return 'RootRouteArgs{key: $key, val1: $val1, val2: $val2}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! RootRouteArgs) return false;
+    return key == other.key && val1 == other.val1 && val2 == other.val2;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ val1.hashCode ^ val2.hashCode;
 }
 
 /// generated route for
@@ -520,6 +663,18 @@ class SmsRouteArgs {
   String toString() {
     return 'SmsRouteArgs{key: $key, windowId: $windowId, phoneNumber: $phoneNumber}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! SmsRouteArgs) return false;
+    return key == other.key &&
+        windowId == other.windowId &&
+        phoneNumber == other.phoneNumber;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ windowId.hashCode ^ phoneNumber.hashCode;
 }
 
 /// generated route for

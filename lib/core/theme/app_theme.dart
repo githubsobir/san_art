@@ -28,8 +28,11 @@ class AppTheme {
       ),
       scaffoldBackgroundColor: AppColors.background(brightness),
       appBarTheme: AppBarTheme(
-        backgroundColor: isLight ? AppColors.primary(brightness) : AppColors.surface(brightness),
-        foregroundColor: isLight ? Colors.white : AppColors.textPrimary(brightness),
+        backgroundColor: isLight
+            ? AppColors.primary(brightness)
+            : AppColors.surface(brightness),
+        foregroundColor:
+            isLight ? Colors.white : AppColors.textPrimary(brightness),
         elevation: 0,
         systemOverlayStyle: SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
@@ -37,13 +40,13 @@ class AppTheme {
           statusBarBrightness: Brightness.light,
         ),
       ),
-      cardTheme: CardTheme(
-        color: AppColors.card(brightness),
-        elevation: 2,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
-      ),
+      // cardTheme: CardTheme(
+      //   color: AppColors.card(brightness),
+      //   elevation: 2,
+      //   shape: RoundedRectangleBorder(
+      //     borderRadius: BorderRadius.circular(12),
+      //   ),
+      // ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.primary(brightness),
@@ -55,19 +58,14 @@ class AppTheme {
         ),
       ),
       textButtonTheme: TextButtonThemeData(
-        style: TextButton.styleFrom(
-          foregroundColor: AppColors.primary(brightness),
-        ),
-      ),
+          style: TextButton.styleFrom(
+              foregroundColor: AppColors.primary(brightness))),
       outlinedButtonTheme: OutlinedButtonThemeData(
-        style: OutlinedButton.styleFrom(
-          foregroundColor: AppColors.primary(brightness),
-          side: BorderSide(color: AppColors.primary(brightness)),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
-        ),
-      ),
+          style: OutlinedButton.styleFrom(
+              foregroundColor: AppColors.primary(brightness),
+              side: BorderSide(color: AppColors.primary(brightness)),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8)))),
       textTheme: TextTheme(
         displayLarge: TextStyle(color: AppColors.textPrimary(brightness)),
         displayMedium: TextStyle(color: AppColors.textPrimary(brightness)),
@@ -85,26 +83,20 @@ class AppTheme {
         labelMedium: TextStyle(color: AppColors.textPrimary(brightness)),
         labelSmall: TextStyle(color: AppColors.textSecondary(brightness)),
       ),
-      iconTheme: IconThemeData(
-        color: AppColors.icon(brightness),
-      ),
-      dividerTheme: DividerThemeData(
-        color: AppColors.divider(brightness),
-        thickness: 1,
-      ),
+      iconTheme: IconThemeData(color: AppColors.icon(brightness)),
+      dividerTheme:
+          DividerThemeData(color: AppColors.divider(brightness), thickness: 1),
       inputDecorationTheme: InputDecorationTheme(
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide(color: AppColors.border(brightness)),
-        ),
+            borderRadius: BorderRadius.circular(8),
+            borderSide: BorderSide(color: AppColors.border(brightness))),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide(color: AppColors.border(brightness)),
-        ),
+            borderRadius: BorderRadius.circular(8),
+            borderSide: BorderSide(color: AppColors.border(brightness))),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide(color: AppColors.primary(brightness), width: 2),
-        ),
+            borderRadius: BorderRadius.circular(8),
+            borderSide:
+                BorderSide(color: AppColors.primary(brightness), width: 2)),
         fillColor: AppColors.surface(brightness),
         filled: true,
       ),

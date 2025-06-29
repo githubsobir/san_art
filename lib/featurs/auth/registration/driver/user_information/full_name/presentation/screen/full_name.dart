@@ -30,6 +30,11 @@ class _FullNameDriverState extends ConsumerState<FullNameDriverPage> {
   final TextEditingController _txtSName = TextEditingController();
 
   @override
+  void initState() {
+    log("Driver Full Name");
+    super.initState();
+  }
+  @override
   void dispose() {
     _txtName.dispose();
     _txtFName.dispose();
@@ -176,7 +181,8 @@ class _FullNameDriverState extends ConsumerState<FullNameDriverPage> {
                               lName:_txtFName.text.toString(),
                               sName:_txtSName.text.toString()));
 
-                      context.router.push(DataBirthRoute());
+
+                      context.router.push(DataBirthDriverRoute());
                     } else {
                       WidgetSnackBar.errorSnackBar(
                           context: context, text: "fill_all_row".tr());

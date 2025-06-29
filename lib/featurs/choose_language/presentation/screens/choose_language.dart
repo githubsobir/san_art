@@ -47,8 +47,9 @@ class LanguagePage extends ConsumerWidget {
                                     listLanguage[index].imageAssetLink,
                                     height: 35,
                                     width: 35,
+
                                     fit: BoxFit.cover,
-                                    alignment: Alignment.topRight,
+                                    alignment: Alignment.center,
                                   ),
                                 ),
                                 title: Text(listLanguage[index].langName,

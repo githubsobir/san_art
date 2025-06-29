@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
@@ -23,6 +24,12 @@ class DataBirthPage extends ConsumerStatefulWidget {
 
 class _DataBirthState extends ConsumerState<DataBirthPage> {
   DateTime dateTime = DateTime.now();
+
+  @override
+  void initState() {
+    log("Exporter Date Birth");
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +108,7 @@ class _DataBirthState extends ConsumerState<DataBirthPage> {
                     border: Border.all(
                         color: (ref.watch(selectDateProvider).length > 5)
                             ? Colors.red
-                            : Colors.white60)),
+                            : Colors.grey)),
                 child: Row(
                   children: [
                     ref.watch(selectDateProvider).toString().length > 5

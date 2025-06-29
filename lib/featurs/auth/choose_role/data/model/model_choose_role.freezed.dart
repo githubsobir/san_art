@@ -15,12 +15,11 @@ T _$identity<T>(T value) => value;
 
 /// @nodoc
 mixin _$ModelChooseRole {
-  int get id;
-  String get valueCategory;
-  String get textCategory;
-  String get imageAssetLink;
-  bool get boolActive;
-  String get note;
+  String get icon;
+  String get name;
+  bool get status;
+  String get created_at;
+  String get updated_at;
 
   /// Create a copy of ModelChooseRole
   /// with the given fields replaced by the non-null parameter values.
@@ -38,26 +37,23 @@ mixin _$ModelChooseRole {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is ModelChooseRole &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.valueCategory, valueCategory) ||
-                other.valueCategory == valueCategory) &&
-            (identical(other.textCategory, textCategory) ||
-                other.textCategory == textCategory) &&
-            (identical(other.imageAssetLink, imageAssetLink) ||
-                other.imageAssetLink == imageAssetLink) &&
-            (identical(other.boolActive, boolActive) ||
-                other.boolActive == boolActive) &&
-            (identical(other.note, note) || other.note == note));
+            (identical(other.icon, icon) || other.icon == icon) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.created_at, created_at) ||
+                other.created_at == created_at) &&
+            (identical(other.updated_at, updated_at) ||
+                other.updated_at == updated_at));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, valueCategory, textCategory,
-      imageAssetLink, boolActive, note);
+  int get hashCode =>
+      Object.hash(runtimeType, icon, name, status, created_at, updated_at);
 
   @override
   String toString() {
-    return 'ModelChooseRole(id: $id, valueCategory: $valueCategory, textCategory: $textCategory, imageAssetLink: $imageAssetLink, boolActive: $boolActive, note: $note)';
+    return 'ModelChooseRole(icon: $icon, name: $name, status: $status, created_at: $created_at, updated_at: $updated_at)';
   }
 }
 
@@ -68,12 +64,11 @@ abstract mixin class $ModelChooseRoleCopyWith<$Res> {
       _$ModelChooseRoleCopyWithImpl;
   @useResult
   $Res call(
-      {int id,
-      String valueCategory,
-      String textCategory,
-      String imageAssetLink,
-      bool boolActive,
-      String note});
+      {String icon,
+      String name,
+      bool status,
+      String created_at,
+      String updated_at});
 }
 
 /// @nodoc
@@ -89,37 +84,32 @@ class _$ModelChooseRoleCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? valueCategory = null,
-    Object? textCategory = null,
-    Object? imageAssetLink = null,
-    Object? boolActive = null,
-    Object? note = null,
+    Object? icon = null,
+    Object? name = null,
+    Object? status = null,
+    Object? created_at = null,
+    Object? updated_at = null,
   }) {
     return _then(_self.copyWith(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      valueCategory: null == valueCategory
-          ? _self.valueCategory
-          : valueCategory // ignore: cast_nullable_to_non_nullable
+      icon: null == icon
+          ? _self.icon
+          : icon // ignore: cast_nullable_to_non_nullable
               as String,
-      textCategory: null == textCategory
-          ? _self.textCategory
-          : textCategory // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
-      imageAssetLink: null == imageAssetLink
-          ? _self.imageAssetLink
-          : imageAssetLink // ignore: cast_nullable_to_non_nullable
-              as String,
-      boolActive: null == boolActive
-          ? _self.boolActive
-          : boolActive // ignore: cast_nullable_to_non_nullable
+      status: null == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
               as bool,
-      note: null == note
-          ? _self.note
-          : note // ignore: cast_nullable_to_non_nullable
+      created_at: null == created_at
+          ? _self.created_at
+          : created_at // ignore: cast_nullable_to_non_nullable
+              as String,
+      updated_at: null == updated_at
+          ? _self.updated_at
+          : updated_at // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -129,28 +119,25 @@ class _$ModelChooseRoleCopyWithImpl<$Res>
 @JsonSerializable()
 class _ModelChooseRole extends ModelChooseRole {
   const _ModelChooseRole(
-      {required this.id,
-      required this.valueCategory,
-      required this.textCategory,
-      required this.imageAssetLink,
-      required this.boolActive,
-      required this.note})
+      {required this.icon,
+      required this.name,
+      required this.status,
+      required this.created_at,
+      required this.updated_at})
       : super._();
   factory _ModelChooseRole.fromJson(Map<String, dynamic> json) =>
       _$ModelChooseRoleFromJson(json);
 
   @override
-  final int id;
+  final String icon;
   @override
-  final String valueCategory;
+  final String name;
   @override
-  final String textCategory;
+  final bool status;
   @override
-  final String imageAssetLink;
+  final String created_at;
   @override
-  final bool boolActive;
-  @override
-  final String note;
+  final String updated_at;
 
   /// Create a copy of ModelChooseRole
   /// with the given fields replaced by the non-null parameter values.
@@ -172,26 +159,23 @@ class _ModelChooseRole extends ModelChooseRole {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _ModelChooseRole &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.valueCategory, valueCategory) ||
-                other.valueCategory == valueCategory) &&
-            (identical(other.textCategory, textCategory) ||
-                other.textCategory == textCategory) &&
-            (identical(other.imageAssetLink, imageAssetLink) ||
-                other.imageAssetLink == imageAssetLink) &&
-            (identical(other.boolActive, boolActive) ||
-                other.boolActive == boolActive) &&
-            (identical(other.note, note) || other.note == note));
+            (identical(other.icon, icon) || other.icon == icon) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.created_at, created_at) ||
+                other.created_at == created_at) &&
+            (identical(other.updated_at, updated_at) ||
+                other.updated_at == updated_at));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, valueCategory, textCategory,
-      imageAssetLink, boolActive, note);
+  int get hashCode =>
+      Object.hash(runtimeType, icon, name, status, created_at, updated_at);
 
   @override
   String toString() {
-    return 'ModelChooseRole(id: $id, valueCategory: $valueCategory, textCategory: $textCategory, imageAssetLink: $imageAssetLink, boolActive: $boolActive, note: $note)';
+    return 'ModelChooseRole(icon: $icon, name: $name, status: $status, created_at: $created_at, updated_at: $updated_at)';
   }
 }
 
@@ -204,12 +188,11 @@ abstract mixin class _$ModelChooseRoleCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
-      String valueCategory,
-      String textCategory,
-      String imageAssetLink,
-      bool boolActive,
-      String note});
+      {String icon,
+      String name,
+      bool status,
+      String created_at,
+      String updated_at});
 }
 
 /// @nodoc
@@ -225,37 +208,32 @@ class __$ModelChooseRoleCopyWithImpl<$Res>
   @override
   @pragma('vm:prefer-inline')
   $Res call({
-    Object? id = null,
-    Object? valueCategory = null,
-    Object? textCategory = null,
-    Object? imageAssetLink = null,
-    Object? boolActive = null,
-    Object? note = null,
+    Object? icon = null,
+    Object? name = null,
+    Object? status = null,
+    Object? created_at = null,
+    Object? updated_at = null,
   }) {
     return _then(_ModelChooseRole(
-      id: null == id
-          ? _self.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      valueCategory: null == valueCategory
-          ? _self.valueCategory
-          : valueCategory // ignore: cast_nullable_to_non_nullable
+      icon: null == icon
+          ? _self.icon
+          : icon // ignore: cast_nullable_to_non_nullable
               as String,
-      textCategory: null == textCategory
-          ? _self.textCategory
-          : textCategory // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
-      imageAssetLink: null == imageAssetLink
-          ? _self.imageAssetLink
-          : imageAssetLink // ignore: cast_nullable_to_non_nullable
-              as String,
-      boolActive: null == boolActive
-          ? _self.boolActive
-          : boolActive // ignore: cast_nullable_to_non_nullable
+      status: null == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
               as bool,
-      note: null == note
-          ? _self.note
-          : note // ignore: cast_nullable_to_non_nullable
+      created_at: null == created_at
+          ? _self.created_at
+          : created_at // ignore: cast_nullable_to_non_nullable
+              as String,
+      updated_at: null == updated_at
+          ? _self.updated_at
+          : updated_at // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }

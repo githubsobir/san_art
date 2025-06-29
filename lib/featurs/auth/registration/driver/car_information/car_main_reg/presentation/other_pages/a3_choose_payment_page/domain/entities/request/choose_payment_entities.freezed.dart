@@ -14,171 +14,170 @@ part of 'choose_payment_entities.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$ChoosePaymentEntities {
-  bool get boolGetData;
-  String get message;
-  String get errorMessage;
+mixin _$PaymentMethod {
+  dynamic get code;
+  dynamic get name;
+  dynamic get status;
 
-  /// Create a copy of ChoosePaymentEntities
+  /// Create a copy of PaymentMethod
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  $ChoosePaymentEntitiesCopyWith<ChoosePaymentEntities> get copyWith =>
-      _$ChoosePaymentEntitiesCopyWithImpl<ChoosePaymentEntities>(
-          this as ChoosePaymentEntities, _$identity);
+  $PaymentMethodCopyWith<PaymentMethod> get copyWith =>
+      _$PaymentMethodCopyWithImpl<PaymentMethod>(
+          this as PaymentMethod, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is ChoosePaymentEntities &&
-            (identical(other.boolGetData, boolGetData) ||
-                other.boolGetData == boolGetData) &&
-            (identical(other.message, message) || other.message == message) &&
-            (identical(other.errorMessage, errorMessage) ||
-                other.errorMessage == errorMessage));
+            other is PaymentMethod &&
+            const DeepCollectionEquality().equals(other.code, code) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.status, status));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, boolGetData, message, errorMessage);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(code),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(status));
 
   @override
   String toString() {
-    return 'ChoosePaymentEntities(boolGetData: $boolGetData, message: $message, errorMessage: $errorMessage)';
+    return 'PaymentMethod(code: $code, name: $name, status: $status)';
   }
 }
 
 /// @nodoc
-abstract mixin class $ChoosePaymentEntitiesCopyWith<$Res> {
-  factory $ChoosePaymentEntitiesCopyWith(ChoosePaymentEntities value,
-          $Res Function(ChoosePaymentEntities) _then) =
-      _$ChoosePaymentEntitiesCopyWithImpl;
+abstract mixin class $PaymentMethodCopyWith<$Res> {
+  factory $PaymentMethodCopyWith(
+          PaymentMethod value, $Res Function(PaymentMethod) _then) =
+      _$PaymentMethodCopyWithImpl;
   @useResult
-  $Res call({bool boolGetData, String message, String errorMessage});
+  $Res call({dynamic code, dynamic name, dynamic status});
 }
 
 /// @nodoc
-class _$ChoosePaymentEntitiesCopyWithImpl<$Res>
-    implements $ChoosePaymentEntitiesCopyWith<$Res> {
-  _$ChoosePaymentEntitiesCopyWithImpl(this._self, this._then);
+class _$PaymentMethodCopyWithImpl<$Res>
+    implements $PaymentMethodCopyWith<$Res> {
+  _$PaymentMethodCopyWithImpl(this._self, this._then);
 
-  final ChoosePaymentEntities _self;
-  final $Res Function(ChoosePaymentEntities) _then;
+  final PaymentMethod _self;
+  final $Res Function(PaymentMethod) _then;
 
-  /// Create a copy of ChoosePaymentEntities
+  /// Create a copy of PaymentMethod
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? boolGetData = null,
-    Object? message = null,
-    Object? errorMessage = null,
+    Object? code = freezed,
+    Object? name = freezed,
+    Object? status = freezed,
   }) {
     return _then(_self.copyWith(
-      boolGetData: null == boolGetData
-          ? _self.boolGetData
-          : boolGetData // ignore: cast_nullable_to_non_nullable
-              as bool,
-      message: null == message
-          ? _self.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-      errorMessage: null == errorMessage
-          ? _self.errorMessage
-          : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String,
+      code: freezed == code
+          ? _self.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      name: freezed == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      status: freezed == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as dynamic,
     ));
   }
 }
 
 /// @nodoc
 
-class _ChoosePaymentEntities implements ChoosePaymentEntities {
-  const _ChoosePaymentEntities(
-      {required this.boolGetData,
-      required this.message,
-      required this.errorMessage});
+class _PaymentMethod implements PaymentMethod {
+  _PaymentMethod(
+      {required this.code, required this.name, required this.status});
 
   @override
-  final bool boolGetData;
+  final dynamic code;
   @override
-  final String message;
+  final dynamic name;
   @override
-  final String errorMessage;
+  final dynamic status;
 
-  /// Create a copy of ChoosePaymentEntities
+  /// Create a copy of PaymentMethod
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  _$ChoosePaymentEntitiesCopyWith<_ChoosePaymentEntities> get copyWith =>
-      __$ChoosePaymentEntitiesCopyWithImpl<_ChoosePaymentEntities>(
-          this, _$identity);
+  _$PaymentMethodCopyWith<_PaymentMethod> get copyWith =>
+      __$PaymentMethodCopyWithImpl<_PaymentMethod>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _ChoosePaymentEntities &&
-            (identical(other.boolGetData, boolGetData) ||
-                other.boolGetData == boolGetData) &&
-            (identical(other.message, message) || other.message == message) &&
-            (identical(other.errorMessage, errorMessage) ||
-                other.errorMessage == errorMessage));
+            other is _PaymentMethod &&
+            const DeepCollectionEquality().equals(other.code, code) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.status, status));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, boolGetData, message, errorMessage);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(code),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(status));
 
   @override
   String toString() {
-    return 'ChoosePaymentEntities(boolGetData: $boolGetData, message: $message, errorMessage: $errorMessage)';
+    return 'PaymentMethod(code: $code, name: $name, status: $status)';
   }
 }
 
 /// @nodoc
-abstract mixin class _$ChoosePaymentEntitiesCopyWith<$Res>
-    implements $ChoosePaymentEntitiesCopyWith<$Res> {
-  factory _$ChoosePaymentEntitiesCopyWith(_ChoosePaymentEntities value,
-          $Res Function(_ChoosePaymentEntities) _then) =
-      __$ChoosePaymentEntitiesCopyWithImpl;
+abstract mixin class _$PaymentMethodCopyWith<$Res>
+    implements $PaymentMethodCopyWith<$Res> {
+  factory _$PaymentMethodCopyWith(
+          _PaymentMethod value, $Res Function(_PaymentMethod) _then) =
+      __$PaymentMethodCopyWithImpl;
   @override
   @useResult
-  $Res call({bool boolGetData, String message, String errorMessage});
+  $Res call({dynamic code, dynamic name, dynamic status});
 }
 
 /// @nodoc
-class __$ChoosePaymentEntitiesCopyWithImpl<$Res>
-    implements _$ChoosePaymentEntitiesCopyWith<$Res> {
-  __$ChoosePaymentEntitiesCopyWithImpl(this._self, this._then);
+class __$PaymentMethodCopyWithImpl<$Res>
+    implements _$PaymentMethodCopyWith<$Res> {
+  __$PaymentMethodCopyWithImpl(this._self, this._then);
 
-  final _ChoosePaymentEntities _self;
-  final $Res Function(_ChoosePaymentEntities) _then;
+  final _PaymentMethod _self;
+  final $Res Function(_PaymentMethod) _then;
 
-  /// Create a copy of ChoosePaymentEntities
+  /// Create a copy of PaymentMethod
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $Res call({
-    Object? boolGetData = null,
-    Object? message = null,
-    Object? errorMessage = null,
+    Object? code = freezed,
+    Object? name = freezed,
+    Object? status = freezed,
   }) {
-    return _then(_ChoosePaymentEntities(
-      boolGetData: null == boolGetData
-          ? _self.boolGetData
-          : boolGetData // ignore: cast_nullable_to_non_nullable
-              as bool,
-      message: null == message
-          ? _self.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-      errorMessage: null == errorMessage
-          ? _self.errorMessage
-          : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String,
+    return _then(_PaymentMethod(
+      code: freezed == code
+          ? _self.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      name: freezed == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      status: freezed == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as dynamic,
     ));
   }
 }

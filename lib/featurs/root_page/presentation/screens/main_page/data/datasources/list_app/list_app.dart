@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
+import 'package:san_art/core/network/url_all.dart';
 import 'package:san_art/core/network/urls.dart';
 import 'package:san_art/featurs/root_page/presentation/screens/main_page/data/model/list_app/model_list_app.dart';
 
@@ -18,9 +19,9 @@ class ListAppDataSourceImpl implements ListAppDataSource {
   @override
   Future<List<ModelListApp>> getData({required int page}) async {
     try {
-      log('${UrlApp.storiesUrl}/posts/$page/comments');
+      log(AllUrl.urlOrder());
       final response =
-          await dio.get('${UrlApp.storiesUrl}/posts/${page.toString()}/comments');
+          await dio.get(AllUrl.urlOrder());
       return (response.data as List)
           .map((userData) => ModelListApp.fromJson(userData))
           .toList();

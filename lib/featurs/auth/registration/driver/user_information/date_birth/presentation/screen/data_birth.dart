@@ -27,6 +27,13 @@ class DataBirthDriverPage extends ConsumerStatefulWidget {
 class _DataBirthDriverPageState extends ConsumerState<DataBirthDriverPage> {
 
   DateTime dateTime = DateTime.now();
+
+  @override
+  void initState() {
+    log("Driver data birth");
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -112,12 +119,13 @@ class _DataBirthDriverPageState extends ConsumerState<DataBirthDriverPage> {
                     border: Border.all(
                         color: (ref.watch(selectDataBirthDriverDateProvider).length > 5)
                             ? Colors.red
-                            : Colors.white60)),
+                            : Colors.grey)),
                 child: Row(
                   children: [
-                    ref.watch(selectDataBirthDriverDateProvider).toString().length > 5
+                    ref.watch(selectDateProvider).toString().length > 5
                         ? Text(
-                      ref.watch(selectDataBirthDriverDateProvider),
+
+                      ref.watch(selectDateProvider),
                       style: TextStyle(
                           fontSize: 16,
 
@@ -144,13 +152,11 @@ class _DataBirthDriverPageState extends ConsumerState<DataBirthDriverPage> {
                       .setUserBirth(
                       date: ref.watch(selectDateProvider).toString())
                       .then((value) {
+                        if(!mounted){
+                          context.router.push(ImageDriverRoute());
+                        }
 
-                        context.router.push(ImageDriverRoute());
-                    // Navigator.push(
-                    //     context,
-                    //     CupertinoPageRoute(
-                    //       builder: (context) => const Registration(),
-                    //     ));
+
                     return true;
                   });
                 } else {

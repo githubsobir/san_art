@@ -1,86 +1,40 @@
+import 'dart:developer';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get_it/get_it.dart';
 import 'package:san_art/featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/a3_choose_payment_page/domain/entities/request/choose_payment_entities.dart';
+import 'package:san_art/featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/a3_choose_payment_page/domain/usecase/get_payment_methods_usecase.dart';
 
-final controllerPayment =
-StateNotifierProvider<ControllerPayment, ChoosePaymentEntities>(
-        (ref) => ControllerPayment());
+// UseCase provider
+final getPaymentMethodsUseCaseProvider = Provider<GetPaymentMethodsUseCase>((ref) {
+  return GetIt.instance<GetPaymentMethodsUseCase>();
+});
 
+// Payment methods provider
+final controllerPayment = FutureProvider<List<PaymentMethod>>((ref) async {
+  try {
+    log("Provider: Payment methods yuklanmoqda...");
 
-class ControllerPayment extends StateNotifier<ChoosePaymentEntities> {
-  ControllerPayment()
-      : super(ChoosePaymentEntities(boolGetData: true, message: "", errorMessage: "")) {
-    getData();
+    final useCase = ref.read(getPaymentMethodsUseCaseProvider);
+    final result = await useCase.call();
+
+    return result.when(
+          (success) {
+        log("Provider: ${success.length} ta payment method keldi");
+        return success;
+      },
+          (error) {
+        log("Provider: Xatolik - $error");
+        throw Exception(error);
+      },
+    );
+  } catch (e) {
+    log("Provider: Exception - $e");
+    throw Exception('Failed to load payment methods: $e');
   }
+});
 
-  // var dio = Dio();
-  // var box = HiveBoxes();
+// Selected payment method provider (optional)
+final selectedPaymentMethodProvider = StateProvider<PaymentMethod?>((ref) => null);
 
-  // List<ModelChoosePaymentType> listModelChoosePayment = [];
-
-  Future getData() async {
-  //   try {
-  //     state =
-  //         state.copyWith(boolGetData1: false, message1: "", errorMessage1: "");
-  //     log("get data");
-  //
-  //     Response response =
-  //     await dio.get("${MainUrl.urlMain2}/api/v1/main/payment-type/");
-  //
-  //     ModelChoosePaymentTypeMain modelChoosePaymentTypeMain =
-  //     ModelChoosePaymentTypeMain.fromJson(response.data);
-  //     listModelChoosePayment = modelChoosePaymentTypeMain.results;
-  //     log(jsonEncode(response.data).toString());
-  //
-  //     state =
-  //         state.copyWith(boolGetData1: true, message1: "", errorMessage1: "");
-  //   } on DioException catch (e) {
-  //     log(e.toString());
-  //     state = state.copyWith(
-  //         boolGetData1: true,
-  //         message1: e.toString(),
-  //         errorMessage1: e.toString());
-  //   } catch (e1) {
-  //     log(e1.toString());
-  //     state = state.copyWith(
-  //         boolGetData1: true,
-  //         message1: e1.toString(),
-  //         errorMessage1: e1.toString());
-  //   }
-  }
-
-  // Future setData({required int index}) async {
-  //   try {
-  //     List<String> list = ["Cash", "Card", "Transfer"];
-  //     state =
-  //         state.copyWith(boolGetData1: false, message1: "", errorMessage1: "");
-  //     FormData formData = FormData.fromMap({"payment_type": list[index]});
-  //     Response response = await dio.post(
-  //         "${MainUrl.urlMain2}/api/v1/main/payment-type/",
-  //         data: formData,
-  //         options:
-  //         Options(headers: {"Authorization": "Bearer ${box.userToken}"}));
-  //
-  //     log(jsonEncode(response.data).toString());
-  //     state =
-  //         state.copyWith(boolGetData1: true, message1: "", errorMessage1: "");
-  //   } on DioException catch (e) {
-  //     log(e.toString());
-  //     state = state.copyWith(
-  //         boolGetData1: true,
-  //         message1: e.toString(),
-  //         errorMessage1: e.toString());
-  //   } catch (e1) {
-  //     log(e1.toString());
-  //     state = state.copyWith(
-  //         boolGetData1: true,
-  //         message1: e1.toString(),
-  //         errorMessage1: e1.toString());
-  //   }
-  // }
-
-  updateUi() {
-    state =
-        state.copyWith(boolGetData: false, message: "", errorMessage: "");
-    state = state.copyWith(boolGetData: true, message: "", errorMessage: "");
-  }
-}
+// Loading state provider (optional)
+final paymentLoadingProvider = StateProvider<bool>((ref) => false);

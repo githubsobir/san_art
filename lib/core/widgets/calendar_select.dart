@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:san_art/core/back_image/back_image1.dart';
 import 'package:san_art/featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/a1_passport_page/presentation/screen/passport_page.dart';
-import 'package:san_art/featurs/auth/registration/exporter/date_birth/presentation/provider/data_birth_provider.dart';
+
+final selectDateProvider = StateProvider.autoDispose((ref) => "");
 
 Future selectDateFunc(
     {required BuildContext context,

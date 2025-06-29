@@ -67,4 +67,13 @@ class AllUrl {
   static String urlSetDateBirth() {
     return UrlApp.storiesUrl;
   }
+
+  static String urlOrder() {
+    return "${UrlApp.storiesUrl}/api/deal/order";
+  }
+
+  static String urlRole() {
+    return "${UrlApp.storiesUrl}/api/core/group";
+  }
+
 }

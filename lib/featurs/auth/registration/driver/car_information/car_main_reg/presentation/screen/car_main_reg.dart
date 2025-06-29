@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -115,21 +117,16 @@ class _CarMainRegistrationPageState
                                           fit: BoxFit.cover)),
                                   child: ListTile(
                                     onTap: () {
-                                      switch (ref
-                                          .read(listDriverModel)[index]
-                                          .action) {
+                                      log(ref.read(listDriverModel)[index].action.toString());
+                                      switch (ref.read(listDriverModel)[index].action) {
                                         case "1":
                                           context.router.push(PassportRoute());
                                         case "2":
                                           context.router
                                               .push(CarLicenceRoute());
-                                        //   case "3":
-                                        //     Navigator.push(
-                                        //         context,
-                                        //         CupertinoPageRoute(
-                                        //           builder: (context) =>
-                                        //           const DriverChooseCompany(),
-                                        //         ));
+                                          case "3":
+                                            context.router
+                                                .push(ChoosePaymentRoute());
                                         //   case "4":
                                         //     Navigator.push(
                                         //         context,
@@ -204,6 +201,14 @@ class _CarMainRegistrationPageState
                                   child: ListTile(
                                     onTap: () {
                                       //
+
+                                      switch(index){
+                                        case 0:
+                                          context.router.push(CarWeightRoute());
+                                          break;
+                                        // case 1:
+                                          // context.router.push(CarTypeRoute());
+                                      }
                                       // if (index == 0) {
                                       //   Navigator.push(
                                       //       context,

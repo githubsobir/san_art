@@ -11,8 +11,8 @@ final listDriverModel = Provider<List<CarMainDriverEntity>>(
     return [
       CarMainDriverEntity(name: "passportOrId".tr(), action: "1", note: ""),
       CarMainDriverEntity(name: "drawerLicense".tr(), action: "2", note: ""),
-      // CarMainDriverEntity(name: "chooseCompany".tr(), action: "3", note: ""),
-      CarMainDriverEntity(name: "chooseMoneyType".tr(), action: "4", note: ""),
+      CarMainDriverEntity(name: "chooseMoneyType".tr(), action: "3", note: ""),
+      // CarMainDriverEntity(name: "chooseCompany".tr(), action: "4", note: ""),
     ];
   },
 );

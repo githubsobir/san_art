@@ -7,12 +7,13 @@ part 'model_choose_role.g.dart';
 @freezed
 abstract class ModelChooseRole with _$ModelChooseRole {
   const factory ModelChooseRole(
-      {required int id,
-      required String valueCategory,
-      required String textCategory,
-      required String imageAssetLink,
-      required bool boolActive,
-      required String note}) = _ModelChooseRole;
+      {   required String icon,
+        required String name,
+        required bool status,
+        required String created_at,
+        required String updated_at,}) = _ModelChooseRole;
+
+
 
   factory ModelChooseRole.fromJson(Map<String, dynamic> json) =>
       _$ModelChooseRoleFromJson(json);
@@ -20,11 +21,10 @@ abstract class ModelChooseRole with _$ModelChooseRole {
   const ModelChooseRole._();
 
   UserRoleEntities toEntity() => UserRoleEntities(
-        id: id,
-        boolActive: boolActive,
-        imageAssetLink: imageAssetLink,
-    valueCategory: valueCategory,
-        note: note,
-        textCategory: textCategory,
+    icon:icon,
+    name:name,
+    status:status,
+    created_at:created_at,
+    updated_at:updated_at,
       );
 }

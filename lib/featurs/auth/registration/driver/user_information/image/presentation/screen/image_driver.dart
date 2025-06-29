@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
@@ -6,8 +7,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:san_art/core/back_image/back_image1.dart';
 import 'package:san_art/core/data/hive_san_art.dart';
+import 'package:san_art/core/routes/routes.dart';
 import 'package:san_art/core/screen_size/get_size.dart';
 import 'package:san_art/core/theme/colors/colors_app.dart';
+import 'package:san_art/core/theme/theme_switcher.dart';
 import 'package:san_art/core/widgets/buttons/button_primary.dart';
 import 'package:san_art/core/widgets/buttons/secondry.dart';
 import 'package:san_art/generated/assets.dart';
@@ -25,6 +28,12 @@ class ImageDriverPage extends ConsumerStatefulWidget {
 class _ImageDriverPageState extends ConsumerState<ImageDriverPage> {
 
   final _box = HiveBoxes();
+
+  @override
+  void initState() {
+    log("Driver Image profile");
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context1) {
@@ -114,16 +123,17 @@ class _ImageDriverPageState extends ConsumerState<ImageDriverPage> {
                   ),
                 ),
                 const SizedBox(height: 20),
-                Text("Rasmingizni kiriting",
+                Text("enterPhoto".tr(),
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontFamily: "Poppins",
                       fontWeight: FontWeight.w700,
                       fontSize: 30,
                     )),
+                ThemeSwitcher(),
                 const Spacer(),
                 PrimaryButton(
-                  text: "Rasm tanlash",
+                  text: "choosePhoto".tr(),
                   onPressed: () {
                     //   setState(() {
                     //     ref
@@ -137,20 +147,12 @@ class _ImageDriverPageState extends ConsumerState<ImageDriverPage> {
                   text: "skip".tr(),
                   onPressed: () {
                     if (_box.userType.toString() == "2") {
-                      // Navigator.push(
-                      //     context,
-                      //     CupertinoDialogRoute(
-                      //         builder: (context) => const RootPage(),
-                      //         context: context));
-                    } else {
-                      // Navigator.push(
-                      //     context,
-                      //     CupertinoDialogRoute(
-                      //         builder: (context) =>
-                      //         const DrawerRegistration(),
-                      //         context: context));
+                      context.router.push(RootRoute(val1: "", val2:""));
+                    }else{
+                      context.router.push(CarMainRegistrationRoute());
                     }
-                  },
+
+                    },
                 )
               ],
             ),

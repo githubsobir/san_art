@@ -144,6 +144,8 @@
   "goBack": "Ortga qaytish",
   "inTrace": "Na reyse",
   "enterPhoneNum": "Telefon raqam kiriting",
-  "fill_all_row": "Barcha maydonlarni to'ldiring"
-
+  "fill_all_row": "Barcha maydonlarni to'ldiring",
+  "enterPhoto": "Rasmingizni kiriting",
+  "choosePhoto": "Rasm tanlash",
+  "carMadeYear": "Ishlab chiqarilgan yil"
 }

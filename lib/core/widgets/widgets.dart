@@ -7,7 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:san_art/core/back_image/back_image1.dart';
 import 'package:san_art/core/data/hive_passport/hive_passport.dart';
 import 'package:san_art/core/widgets/buttons/button_primary.dart';
-import 'package:san_art/featurs/auth/registration/exporter/date_birth/presentation/provider/data_birth_provider.dart';
+import 'package:san_art/core/widgets/calendar_select.dart';
 
 class MyWidgets {
   static snackBarMyWidgets(
