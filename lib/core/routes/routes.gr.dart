@@ -208,7 +208,7 @@ class CarYearInputRoute extends PageRouteInfo<void> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return CarYearInputPage();
+      return const CarYearInputPage();
     },
   );
 }
@@ -401,6 +401,22 @@ class PassportRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const PassportPage();
+    },
+  );
+}
+
+/// generated route for
+/// [PhotoCarDriverPage]
+class PhotoCarDriverRoute extends PageRouteInfo<void> {
+  const PhotoCarDriverRoute({List<PageRouteInfo>? children})
+    : super(PhotoCarDriverRoute.name, initialChildren: children);
+
+  static const String name = 'PhotoCarDriverRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const PhotoCarDriverPage();
     },
   );
 }

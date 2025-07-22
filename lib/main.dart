@@ -63,20 +63,6 @@ class MyApp extends ConsumerWidget {
       statusBarBrightness: Brightness.light, // iOS uchun status bar yorug'
     ));
     final themeMode = ref.watch(themeModeProvider);
-    // return
-    //   MaterialApp(
-    //   localizationsDelegates: context.localizationDelegates,
-    //   supportedLocales: context.supportedLocales,
-    //   locale: context.locale,
-    //   debugShowCheckedModeBanner: false,
-    //
-    //   title: 'Flutter Theme Demo',
-    //   home: UserCategory(windowIdReg: ""),
-    //   theme: AppTheme.lightTheme,
-    //   darkTheme: AppTheme.darkTheme,
-    //   // Use the theme mode from the provider
-    //   themeMode: themeMode,
-    // );
 
     return MaterialApp.router(
       routerConfig: router.config(),

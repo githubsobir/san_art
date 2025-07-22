@@ -14,7 +14,6 @@ class ThemeSwitcher extends ConsumerWidget {
     final brightness = ref.watch(brightnessProvider);
     final isDarkMode = brightness == Brightness.dark;
 
-    // Get the current theme mode
     final themeMode = ref.watch(themeModeProvider);
 
     return Container(

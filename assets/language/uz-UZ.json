@@ -1,5 +1,5 @@
 {
-  "chooseLang": "Tilni tanlang",
+  "chooseLang": "Tilni tanlang uz",
   "chooseRoll": "O'z rolingizni tanlang",
   "confirmation": "Tasdiqlash",
   "continue": "Davom etish",
@@ -147,5 +147,6 @@
   "fill_all_row": "Barcha maydonlarni to'ldiring",
   "enterPhoto": "Rasmingizni kiriting",
   "choosePhoto": "Rasm tanlash",
-  "carMadeYear": "Ishlab chiqarilgan yil"
+  "carMadeYear": "Ishlab chiqarilgan yil",
+  "nextStep": "Keyingi qadam"
 }

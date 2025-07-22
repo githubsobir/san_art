@@ -14,195 +14,173 @@ part of 'passport_entities.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$PassportEntities {
-  bool get boolGetData;
-  String get message;
-  List<File> get list;
-  String get errorMessage;
+mixin _$PassportStateEntities {
+  int get id;
+  String get type;
+  List<String> get images;
 
-  /// Create a copy of PassportEntities
+  /// Create a copy of PassportStateEntities
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  $PassportEntitiesCopyWith<PassportEntities> get copyWith =>
-      _$PassportEntitiesCopyWithImpl<PassportEntities>(
-          this as PassportEntities, _$identity);
+  $PassportStateEntitiesCopyWith<PassportStateEntities> get copyWith =>
+      _$PassportStateEntitiesCopyWithImpl<PassportStateEntities>(
+          this as PassportStateEntities, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is PassportEntities &&
-            (identical(other.boolGetData, boolGetData) ||
-                other.boolGetData == boolGetData) &&
-            (identical(other.message, message) || other.message == message) &&
-            const DeepCollectionEquality().equals(other.list, list) &&
-            (identical(other.errorMessage, errorMessage) ||
-                other.errorMessage == errorMessage));
+            other is PassportStateEntities &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.type, type) || other.type == type) &&
+            const DeepCollectionEquality().equals(other.images, images));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, boolGetData, message,
-      const DeepCollectionEquality().hash(list), errorMessage);
+  int get hashCode => Object.hash(
+      runtimeType, id, type, const DeepCollectionEquality().hash(images));
 
   @override
   String toString() {
-    return 'PassportEntities(boolGetData: $boolGetData, message: $message, list: $list, errorMessage: $errorMessage)';
+    return 'PassportStateEntities(id: $id, type: $type, images: $images)';
   }
 }
 
 /// @nodoc
-abstract mixin class $PassportEntitiesCopyWith<$Res> {
-  factory $PassportEntitiesCopyWith(
-          PassportEntities value, $Res Function(PassportEntities) _then) =
-      _$PassportEntitiesCopyWithImpl;
+abstract mixin class $PassportStateEntitiesCopyWith<$Res> {
+  factory $PassportStateEntitiesCopyWith(PassportStateEntities value,
+          $Res Function(PassportStateEntities) _then) =
+      _$PassportStateEntitiesCopyWithImpl;
   @useResult
-  $Res call(
-      {bool boolGetData, String message, List<File> list, String errorMessage});
+  $Res call({int id, String type, List<String> images});
 }
 
 /// @nodoc
-class _$PassportEntitiesCopyWithImpl<$Res>
-    implements $PassportEntitiesCopyWith<$Res> {
-  _$PassportEntitiesCopyWithImpl(this._self, this._then);
+class _$PassportStateEntitiesCopyWithImpl<$Res>
+    implements $PassportStateEntitiesCopyWith<$Res> {
+  _$PassportStateEntitiesCopyWithImpl(this._self, this._then);
 
-  final PassportEntities _self;
-  final $Res Function(PassportEntities) _then;
+  final PassportStateEntities _self;
+  final $Res Function(PassportStateEntities) _then;
 
-  /// Create a copy of PassportEntities
+  /// Create a copy of PassportStateEntities
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? boolGetData = null,
-    Object? message = null,
-    Object? list = null,
-    Object? errorMessage = null,
+    Object? id = null,
+    Object? type = null,
+    Object? images = null,
   }) {
     return _then(_self.copyWith(
-      boolGetData: null == boolGetData
-          ? _self.boolGetData
-          : boolGetData // ignore: cast_nullable_to_non_nullable
-              as bool,
-      message: null == message
-          ? _self.message
-          : message // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      type: null == type
+          ? _self.type
+          : type // ignore: cast_nullable_to_non_nullable
               as String,
-      list: null == list
-          ? _self.list
-          : list // ignore: cast_nullable_to_non_nullable
-              as List<File>,
-      errorMessage: null == errorMessage
-          ? _self.errorMessage
-          : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String,
+      images: null == images
+          ? _self.images
+          : images // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
 
 /// @nodoc
 
-class _PassportEntities implements PassportEntities {
-  _PassportEntities(
-      {required this.boolGetData,
-      required this.message,
-      required final List<File> list,
-      required this.errorMessage})
-      : _list = list;
+class _PassportStateEntities implements PassportStateEntities {
+  const _PassportStateEntities(
+      {required this.id,
+      required this.type,
+      required final List<String> images})
+      : _images = images;
 
   @override
-  final bool boolGetData;
+  final int id;
   @override
-  final String message;
-  final List<File> _list;
+  final String type;
+  final List<String> _images;
   @override
-  List<File> get list {
-    if (_list is EqualUnmodifiableListView) return _list;
+  List<String> get images {
+    if (_images is EqualUnmodifiableListView) return _images;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_list);
+    return EqualUnmodifiableListView(_images);
   }
 
-  @override
-  final String errorMessage;
-
-  /// Create a copy of PassportEntities
+  /// Create a copy of PassportStateEntities
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  _$PassportEntitiesCopyWith<_PassportEntities> get copyWith =>
-      __$PassportEntitiesCopyWithImpl<_PassportEntities>(this, _$identity);
+  _$PassportStateEntitiesCopyWith<_PassportStateEntities> get copyWith =>
+      __$PassportStateEntitiesCopyWithImpl<_PassportStateEntities>(
+          this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _PassportEntities &&
-            (identical(other.boolGetData, boolGetData) ||
-                other.boolGetData == boolGetData) &&
-            (identical(other.message, message) || other.message == message) &&
-            const DeepCollectionEquality().equals(other._list, _list) &&
-            (identical(other.errorMessage, errorMessage) ||
-                other.errorMessage == errorMessage));
+            other is _PassportStateEntities &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.type, type) || other.type == type) &&
+            const DeepCollectionEquality().equals(other._images, _images));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, boolGetData, message,
-      const DeepCollectionEquality().hash(_list), errorMessage);
+  int get hashCode => Object.hash(
+      runtimeType, id, type, const DeepCollectionEquality().hash(_images));
 
   @override
   String toString() {
-    return 'PassportEntities(boolGetData: $boolGetData, message: $message, list: $list, errorMessage: $errorMessage)';
+    return 'PassportStateEntities(id: $id, type: $type, images: $images)';
   }
 }
 
 /// @nodoc
-abstract mixin class _$PassportEntitiesCopyWith<$Res>
-    implements $PassportEntitiesCopyWith<$Res> {
-  factory _$PassportEntitiesCopyWith(
-          _PassportEntities value, $Res Function(_PassportEntities) _then) =
-      __$PassportEntitiesCopyWithImpl;
+abstract mixin class _$PassportStateEntitiesCopyWith<$Res>
+    implements $PassportStateEntitiesCopyWith<$Res> {
+  factory _$PassportStateEntitiesCopyWith(_PassportStateEntities value,
+          $Res Function(_PassportStateEntities) _then) =
+      __$PassportStateEntitiesCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {bool boolGetData, String message, List<File> list, String errorMessage});
+  $Res call({int id, String type, List<String> images});
 }
 
 /// @nodoc
-class __$PassportEntitiesCopyWithImpl<$Res>
-    implements _$PassportEntitiesCopyWith<$Res> {
-  __$PassportEntitiesCopyWithImpl(this._self, this._then);
+class __$PassportStateEntitiesCopyWithImpl<$Res>
+    implements _$PassportStateEntitiesCopyWith<$Res> {
+  __$PassportStateEntitiesCopyWithImpl(this._self, this._then);
 
-  final _PassportEntities _self;
-  final $Res Function(_PassportEntities) _then;
+  final _PassportStateEntities _self;
+  final $Res Function(_PassportStateEntities) _then;
 
-  /// Create a copy of PassportEntities
+  /// Create a copy of PassportStateEntities
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $Res call({
-    Object? boolGetData = null,
-    Object? message = null,
-    Object? list = null,
-    Object? errorMessage = null,
+    Object? id = null,
+    Object? type = null,
+    Object? images = null,
   }) {
-    return _then(_PassportEntities(
-      boolGetData: null == boolGetData
-          ? _self.boolGetData
-          : boolGetData // ignore: cast_nullable_to_non_nullable
-              as bool,
-      message: null == message
-          ? _self.message
-          : message // ignore: cast_nullable_to_non_nullable
+    return _then(_PassportStateEntities(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      type: null == type
+          ? _self.type
+          : type // ignore: cast_nullable_to_non_nullable
               as String,
-      list: null == list
-          ? _self._list
-          : list // ignore: cast_nullable_to_non_nullable
-              as List<File>,
-      errorMessage: null == errorMessage
-          ? _self.errorMessage
-          : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String,
+      images: null == images
+          ? _self._images
+          : images // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }

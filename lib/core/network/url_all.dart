@@ -76,4 +76,8 @@ class AllUrl {
     return "${UrlApp.storiesUrl}/api/core/group";
   }
 
+  static String urlPhoto() {
+    return "${UrlApp.storiesUrl}/api/car/car-files";
+  }
+
 }

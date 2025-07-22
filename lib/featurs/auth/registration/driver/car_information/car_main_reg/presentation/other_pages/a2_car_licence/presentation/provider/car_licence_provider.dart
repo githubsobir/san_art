@@ -4,7 +4,10 @@ import 'dart:io';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:san_art/core/data/hive_passport/hive_passport.dart';
+import 'package:san_art/core/service/injection/injection_container.dart';
 import 'package:san_art/featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/a2_car_licence/domain/entities/request/car_licence_entities.dart';
+import 'package:san_art/featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/a2_car_licence/domain/repository/country_repository.dart';
+import 'package:san_art/featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/a2_car_licence/domain/usecase/countr_usecase.dart';
 
 final selectCountryProvider = StateProvider((ref) => "");
 final selectCountryIdProvider = StateProvider((ref) => "");
@@ -12,6 +15,26 @@ final selectCountryIdProvider = StateProvider((ref) => "");
 final controllerTexCar =
     StateNotifierProvider.autoDispose<ControllerTexCar, CarLicenceEntities>(
         (ref) => ControllerTexCar());
+
+final countryUsecaseProvider = Provider<CountryUsecase>(
+    (ref) => CountryUsecase(getIt<CountryRepository>()));
+final selectGetCountryListProvider = FutureProvider.autoDispose((ref) async {
+  log("889");
+  final usecase = ref.watch(countryUsecaseProvider);
+  log("1");
+  final result = await usecase.getCountry();
+  log("2");
+
+  result.when(
+    (success) => log(success.toString()),
+    (error) {
+      log("8890");
+      log(error.message.toString());
+      },
+  );
+
+  return result;
+});
 
 class ControllerTexCar extends StateNotifier<CarLicenceEntities> {
   ControllerTexCar()
@@ -27,7 +50,7 @@ class ControllerTexCar extends StateNotifier<CarLicenceEntities> {
   late File file4;
 
   Future getImage(int index) async {
-    try{
+    try {
       state = state.copyWith(boolGetData: false, txtError: "");
       final imagePicker = ImagePicker();
 
@@ -50,13 +73,13 @@ class ControllerTexCar extends StateNotifier<CarLicenceEntities> {
       }
 
       state = state.copyWith(boolGetData: true, txtError: "");
-    }catch(e){
+    } catch (e) {
       state = state.copyWith(boolGetData: true, txtError: e.toString());
     }
   }
 
   Future getImageCamera(int index) async {
-   try {
+    try {
       state = state.copyWith(boolGetData: false, txtError: "");
       final imagePicker = ImagePicker();
 
@@ -79,9 +102,9 @@ class ControllerTexCar extends StateNotifier<CarLicenceEntities> {
         file4 = File(pickedFile!.path);
       }
       state = state.copyWith(boolGetData: true, txtError: "");
-    }catch(e){
-     state = state.copyWith(boolGetData: true, txtError: "");
-   }
+    } catch (e) {
+      state = state.copyWith(boolGetData: true, txtError: "");
+    }
   }
 
   setTexCarServer(

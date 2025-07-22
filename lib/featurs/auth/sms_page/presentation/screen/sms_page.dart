@@ -80,7 +80,6 @@ class _SmsPageState extends ConsumerState<SmsPage> {
                 _buildResendSection(),
                 const Spacer(),
                 _buildSubmitButton(),
-                const ThemeSwitcher(),
                 const SizedBox(height: 20),
               ],
             ),

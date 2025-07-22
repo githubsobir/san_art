@@ -1,26 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:san_art/core/data/hive_san_art.dart';
 
 /// StateProvider to control the theme mode (light/dark/system)
 final themeModeProvider = StateProvider<ThemeMode>((ref) {
-  // Default theme is system theme
-  return ThemeMode.system;
+  return ref.watch(themeHive.notifier).state.theme.toString() == "1"
+      ? ThemeMode.light
+      : ThemeMode.dark;
+});
+
+final themeHive = StateProvider<HiveBoxes>((ref) {
+  return HiveBoxes();
 });
 
 /// Provider to expose the current brightness based on theme mode and platform
 final brightnessProvider = Provider<Brightness>((ref) {
   final themeMode = ref.watch(themeModeProvider);
 
-  // Get the platform brightness for system theme determination
-  final platformBrightness = WidgetsBinding.instance.platformDispatcher.platformBrightness;
+// Get the platform brightness for system theme determination
+  final platformBrightness =
+      WidgetsBinding.instance.platformDispatcher.platformBrightness;
 
   switch (themeMode) {
     case ThemeMode.light:
+      ref.read(themeHive.notifier).state.theme = "1";
       return Brightness.light;
     case ThemeMode.dark:
+      ref.read(themeHive.notifier).state.theme = "0";
       return Brightness.dark;
     case ThemeMode.system:
-    return platformBrightness;
+      return platformBrightness;
   }
 });
 

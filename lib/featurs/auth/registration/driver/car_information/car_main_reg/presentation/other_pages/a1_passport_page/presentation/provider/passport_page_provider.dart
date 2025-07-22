@@ -1,102 +1,426 @@
+// import 'dart:async';
+// import 'dart:developer';
+// import 'dart:io';
+//
+// import 'package:flutter_riverpod/flutter_riverpod.dart';
+// import 'package:image_picker/image_picker.dart';
+// import 'package:san_art/core/service/injection/injection_container.dart';
+// import 'package:san_art/featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/a1_passport_page/domain/entities/request/passport_entities.dart';
+// import 'package:san_art/featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/a1_passport_page/domain/usecase/upload_data_passport.dart';
+//
+// class UploadPassportState {
+//   final bool isUploading;
+//   final int uploadedCount;
+//   final int totalCount;
+//   final String? error;
+//
+//   UploadPassportState({
+//     this.isUploading = false,
+//     this.uploadedCount = 0,
+//     this.totalCount = 0,
+//     this.error,
+//   });
+//
+//   double get progress => totalCount > 0 ? uploadedCount / totalCount : 0.0;
+// }
+//
+// final uploadPassportStateProvider =
+//     StateNotifierProvider<UploadStateNotifier, UploadPassportState>(
+//   (ref) => UploadStateNotifier(),
+// );
+//
+// class UploadStateNotifier extends StateNotifier<UploadPassportState> {
+//   UploadStateNotifier() : super(UploadPassportState());
+//
+//   void startUpload(int totalCount) {
+//     state = UploadPassportState(
+//       isUploading: true,
+//       uploadedCount: 0,
+//       totalCount: totalCount,
+//     );
+//   }
+//
+//   void updateProgress(int uploadedCount) {
+//     state = UploadPassportState(
+//       isUploading: true,
+//       uploadedCount: uploadedCount,
+//       totalCount: state.totalCount,
+//     );
+//   }
+//
+//   void uploadCompleted() {
+//     state = UploadPassportState(
+//       isUploading: false,
+//       uploadedCount: state.totalCount,
+//       totalCount: state.totalCount,
+//     );
+//   }
+//
+//   void uploadFailed(String error) {
+//     state = UploadPassportState(
+//       isUploading: false,
+//       uploadedCount: state.uploadedCount,
+//       totalCount: state.totalCount,
+//       error: error,
+//     );
+//   }
+//
+//   void reset() {
+//     state = UploadPassportState();
+//   }
+// }
+//
+// final passportWindowID = StateProvider<int>((ref) => 0);
+// final controllerPassportExpiration = StateProvider<String>((ref) => "");
+//
+// final controllerPassport =
+//     AsyncNotifierProvider<ControllerPassport, PassportEntities>(
+//         ControllerPassport.new);
+//
+// final uploadPassportUseCaseProvider = Provider<UploadPassportUsecase>((ref) {
+//   return getIt<UploadPassportUsecase>();
+// });
+//
+// class ControllerPassport extends AsyncNotifier<PassportEntities> {
+//   List<File> imageList = [];
+//    File? file1;
+//    File? file2;
+//    File? file3;
+//   late UploadPassportUsecase uploadPassportUsecase;
+//
+//   @override
+//   FutureOr<PassportEntities> build() {
+//     uploadPassportUsecase = ref.read(uploadPassportUseCaseProvider);
+//     return PassportEntities(passportSerNum: '', additionalString: '');
+//   }
+//
+//   void updateState() {
+//     state =
+//         AsyncData(PassportEntities(passportSerNum: '', additionalString: ''));
+//   }
+//
+//   Future getImage(int index) async {
+//     // state = state.copyWith(
+//     //     boolGetData: false, message: "", errorMessage: "", list: []);
+//     final imagePicker = ImagePicker();
+//
+//     final pickedFile = await imagePicker.pickImage(source: ImageSource.gallery);
+//
+//     if (pickedFile != null) {
+//       if (index == 0) {
+//         file1 = File(pickedFile.path);
+//       } else if (index == 1) {
+//         file2 = File(pickedFile.path);
+//       } else if (index == 2) {
+//         file3 = File(pickedFile.path);
+//       }
+//     }
+//   }
+//
+//   Future getImageCamera(int index) async {
+//     // state = state.copyWith(
+//     //     boolGetData: false, list: imageList, message: "", errorMessage: "");
+//     final imagePicker = ImagePicker();
+//
+//     final pickedFile = await imagePicker.pickImage(source: ImageSource.camera);
+//
+//     try {
+//       if (index == 0) {
+//         file1 = File(pickedFile!.path);
+//       } else if (index == 1) {
+//         file2 = File(pickedFile!.path);
+//       } else if (index == 2) {
+//         file3 = File(pickedFile!.path);
+//       }
+//     } catch (e) {
+//       log(e.toString());
+//     }
+//     updateState();
+//   }
+//
+//   setDefault() async {
+//     await Future.delayed(const Duration(milliseconds: 100));
+//     updateState();
+//   }
+//
+//   setAllData({required String serNum, required String datePassport}) async {
+//     ///   uploadPassportStateProvider orqali yuborilishni kontrol qilishim kerak
+//     final uploadPassportState = ref.read(uploadPassportStateProvider.notifier);
+//
+//     List<Map<String, File>> list = [
+//       {"passport_front": file1!},
+//       {"passport_left": file2!},
+//       {"passport_face": file3!}
+//     ];
+//
+//     uploadPassportState.startUpload(list.length);
+//
+//     for (int i = 0; i < list.length; i++) {
+//       try {
+//         // await uploadPassportUsecase.getData(
+//         //   carPhotosName: list[i].keys.first,
+//         //   carPhotosPath: list[i].values.first.path,
+//         // );
+//
+//
+//         await Future.delayed(const Duration(seconds: 2));
+//         uploadPassportState.updateProgress(i + 1);
+//         await Future.delayed(const Duration(seconds: 1));
+//         log("Yuklandi: ${list[i].keys.first} (${i + 1}/${list.length})");
+//       } catch (e) {
+//         log("Xatolik ${list[i].keys.first} yuklanayotganda: $e");
+//         uploadPassportState
+//             .uploadFailed("Xatolik ${list[i].keys.first} yuklanayotganda: $e");
+//         rethrow;
+//       }
+//       // Barcha fayllar muvaffaqiyatli yuklandi
+//
+//       log("Barcha fayllar muvaffaqiyatli yuklandi!");
+//     }
+//     uploadPassportState.uploadCompleted();
+//   }
+// }
+import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:san_art/core/service/injection/injection_container.dart';
 import 'package:san_art/featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/a1_passport_page/domain/entities/request/passport_entities.dart';
+import 'package:san_art/featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/a1_passport_page/domain/usecase/upload_data_passport.dart';
+
+// PassportEntities'ni kengaytirish
+// class PassportEntitiesExtended extends PassportStateEntities {
+//   final File? file1;
+//   final File? file2;
+//   final File? file3;
+//
+//   PassportEntitiesExtended({
+//     required String passportSerNum,
+//     required String additionalString,
+//     this.file1,
+//     this.file2,
+//     this.file3,
+//   }) : super(
+//             passportSerNum: passportSerNum,
+//             additionalString: additionalString,
+//             file1: file1,
+//             file2: file2,
+//             file3: file3);
+//
+//   PassportEntitiesExtended copyWith({
+//     String? passportSerNum,
+//     String? additionalString,
+//     File? file1,
+//     File? file2,
+//     File? file3,
+//   }) {
+//     return PassportEntitiesExtended(
+//       passportSerNum: passportSerNum ?? this.passportSerNum,
+//       additionalString: additionalString ?? this.additionalString,
+//       file1: file1 ?? this.file1,
+//       file2: file2 ?? this.file2,
+//       file3: file3 ?? this.file3,
+//     );
+//   }
+//
+//   @override
+//   // TODO: implement additionalString
+//   String get additionalString => throw UnimplementedError();
+//
+//   @override
+//   // TODO: implement passportSerNum
+//   String get passportSerNum => throw UnimplementedError();
+// }
+
+class UploadPassportState {
+  final bool isUploading;
+  final int uploadedCount;
+  final int totalCount;
+  final String? error;
+
+  UploadPassportState({
+    this.isUploading = false,
+    this.uploadedCount = 0,
+    this.totalCount = 0,
+    this.error,
+  });
+
+  double get progress => totalCount > 0 ? uploadedCount / totalCount : 0.0;
+}
+
+final uploadPassportStateProvider =
+    StateNotifierProvider<UploadStateNotifier, UploadPassportState>(
+  (ref) => UploadStateNotifier(),
+);
+
+class UploadStateNotifier extends StateNotifier<UploadPassportState> {
+  UploadStateNotifier() : super(UploadPassportState());
+
+  void startUpload(int totalCount) {
+    state = UploadPassportState(
+      isUploading: true,
+      uploadedCount: 0,
+      totalCount: totalCount,
+    );
+  }
+
+  void updateProgress(int uploadedCount) {
+    state = UploadPassportState(
+      isUploading: true,
+      uploadedCount: uploadedCount,
+      totalCount: state.totalCount,
+    );
+  }
+
+  void uploadCompleted() {
+    state = UploadPassportState(
+      isUploading: false,
+      uploadedCount: state.totalCount,
+      totalCount: state.totalCount,
+    );
+  }
+
+  void uploadFailed(String error) {
+    state = UploadPassportState(
+      isUploading: false,
+      uploadedCount: state.uploadedCount,
+      totalCount: state.totalCount,
+      error: error,
+    );
+  }
+
+  void reset() {
+    state = UploadPassportState();
+  }
+}
 
 final passportWindowID = StateProvider<int>((ref) => 0);
 final controllerPassportExpiration = StateProvider<String>((ref) => "");
 
-
 final controllerPassport =
-StateNotifierProvider<ControllerPassport, PassportEntities>(
-        (ref) => ControllerPassport());
+    AsyncNotifierProvider<ControllerPassport, PassportStateEntities>(
+        ControllerPassport.new);
 
-class ControllerPassport extends StateNotifier<PassportEntities> {
-  ControllerPassport()
-      : super(PassportEntities(
-      boolGetData: true, message: "", errorMessage: "", list: []));
+final uploadPassportUseCaseProvider = Provider<UploadPassportUsecase>((ref) {
+  return getIt<UploadPassportUsecase>();
+});
 
-  // late Dio dio = Dio();
-  // var box = HiveBoxDriverReg();
+class ControllerPassport extends AsyncNotifier<PassportStateEntities> {
+  late UploadPassportUsecase uploadPassportUsecase;
+  File? file1;
+  File? file2;
+  File? file3;
 
-  List<File> imageList = [];
-  late File file1;
-  late File file2;
-  late File file3;
+  @override
+  FutureOr<PassportStateEntities> build() {
+    uploadPassportUsecase = ref.read(uploadPassportUseCaseProvider);
+    return PassportStateEntities(
+      id: 1,
+      type: "",
+      images: [],
+    );
+  }
+
+  void updateState() {
+    final currentState = state.valueOrNull;
+    if (currentState != null) {
+      state = AsyncData(currentState.copyWith());
+    }
+  }
 
   Future getImage(int index) async {
-    state = state.copyWith(
-        boolGetData: false, message: "", errorMessage: "", list: []);
     final imagePicker = ImagePicker();
-
     final pickedFile = await imagePicker.pickImage(source: ImageSource.gallery);
 
-    if (pickedFile != null) {
-      if (index == 0) {
-        file1 = File(pickedFile.path);
-      } else if (index == 1) {
-        file2 = File(pickedFile.path);
-      } else if (index == 2) {
-        file3 = File(pickedFile.path);
+    try {
+      if (pickedFile != null) {
+        final currentState = state.valueOrNull;
+        if (currentState != null) {
+          if (index == 0) {
+            file1 = File(pickedFile.path);
+          } else if (index == 1) {
+            file2 = File(pickedFile.path);
+          } else if (index == 2) {
+            file3 = File(pickedFile.path);
+          }
+          _updateState();
+        }
       }
+    } catch (e) {
+      log("getImageCamera()");
+      log(e.toString());
     }
-
-    state = state.copyWith(
-        boolGetData: true, list: imageList, message: "", errorMessage: "");
   }
 
   Future getImageCamera(int index) async {
-    state = state.copyWith(
-        boolGetData: false, list: imageList, message: "", errorMessage: "");
     final imagePicker = ImagePicker();
-
     final pickedFile = await imagePicker.pickImage(source: ImageSource.camera);
 
     try {
-      if (index == 0) {
-        file1 = File(pickedFile!.path);
-      } else if (index == 1) {
-        file2 = File(pickedFile!.path);
-      } else if (index == 2) {
-        file3 = File(pickedFile!.path);
+      if (pickedFile != null) {
+        final currentState = state.valueOrNull;
+        if (currentState != null) {
+          if (index == 0) {
+            file1 = File(pickedFile.path);
+          } else if (index == 1) {
+            file2 = File(pickedFile.path);
+          } else if (index == 2) {
+            file3 = File(pickedFile.path);
+          }
+          _updateState();
+        }
       }
     } catch (e) {
+      log("getImageCamera()");
+
       log(e.toString());
     }
-    state = state.copyWith(
-        boolGetData: true, list: imageList, message: "", errorMessage: "");
   }
 
-
-
-
-  setDefault() async {
-    state = state.copyWith(
-        boolGetData: false, message: '', list: [], errorMessage: "");
-    await Future.delayed(const Duration(milliseconds: 100));
-    state = state.copyWith(
-        boolGetData: true, message: '', list: [], errorMessage: "");
+  void _updateState() {
+    state = AsyncData(
+      PassportStateEntities(
+        id: 1,
+        type: "",
+        images: [],
+      ),
+    );
   }
 
-  setAllData({required String serNum, required String datePassport}) {
-    // try{
-    //   box.passportSerNum = serNum;
-    //   box.passportExpiration = datePassport;
-    //   box.passportImage1 = file1.path;
-    //   box.passportImage2 = file2.path;
-    //   box.passportImage3 = file3.path;
-    // }catch(e){
-    //   box.passportSerNum = serNum;
-    //   box.passportImage1 = box.passportImage1;
-    //   box.passportImage2 = box.passportImage2;
-    //   box.passportImage3 = box.passportImage3;
-    // }
-    //
-    // log( box.passportSerNum);
-    // log( box.passportImage1);
-    // log( box.passportImage2);
-    // log( box.passportImage3);
+  setAllData({required String serNum, required String datePassport}) async {
+    final uploadPassportState = ref.read(uploadPassportStateProvider.notifier);
+    final currentState = state.valueOrNull;
+
+    if (currentState == null) return;
+
+    List<Map<String, File>> list = [
+      {"passport_front": file1!},
+      {"passport_left": file2!},
+      {"passport_face": file3!}
+    ];
+
+    uploadPassportState.startUpload(list.length);
+
+    for (int i = 0; i < list.length; i++) {
+      try {
+        // await uploadPassportUsecase.getData(
+        //   carPhotosName: list[i].keys.first,
+        //   carPhotosPath: list[i].values.first.path,
+        // );
+
+        await Future.delayed(const Duration(seconds: 2));
+        uploadPassportState.updateProgress(i + 1);
+        await Future.delayed(const Duration(seconds: 1));
+        log("Yuklandi: ${list[i].keys.first} (${i + 1}/${list.length})");
+      } catch (e) {
+        log("Xatolik ${list[i].keys.first} yuklanayotganda: $e");
+        uploadPassportState
+            .uploadFailed("Xatolik ${list[i].keys.first} yuklanayotganda: $e");
+        rethrow;
+      }
+    }
+    uploadPassportState.uploadCompleted();
   }
 }

@@ -12,11 +12,16 @@ import 'package:san_art/core/theme/theme_switcher.dart';
 import 'package:san_art/featurs/choose_language/presentation/providers/language_provider.dart';
 
 @RoutePage()
-class LanguagePage extends ConsumerWidget {
+class LanguagePage extends ConsumerStatefulWidget {
   const LanguagePage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<LanguagePage> createState() => _LanguagePageState();
+}
+
+class _LanguagePageState extends ConsumerState<LanguagePage> {
+  @override
+  Widget build(BuildContext context) {
     final providerFactory = getIt<ProviderFactory>();
     final listLanguage = ref.watch(providerFactory.languageNotifierProvider);
     var box = HiveBoxes();
@@ -47,7 +52,6 @@ class LanguagePage extends ConsumerWidget {
                                     listLanguage[index].imageAssetLink,
                                     height: 35,
                                     width: 35,
-
                                     fit: BoxFit.cover,
                                     alignment: Alignment.center,
                                   ),
@@ -66,41 +70,36 @@ class LanguagePage extends ConsumerWidget {
                                         context.setLocale(Locale(
                                             listLanguage[index].langId1,
                                             listLanguage[index].langId2));
-
                                         ref
                                             .read(languageProvider2.notifier)
                                             .setLanguage(
                                                 listLanguage[index].langId1);
-
                                         listLanguage[index].boolLang = true;
                                         box.langUser = "1";
                                         box.langFulName =
                                             listLanguage[index].langName;
                                         box.langUserLang =
                                             listLanguage[index].langId1;
-
-                                        log(
-                                            "Current locale: ${context.locale.toString()}");
+                                        setState(() {});
+                                        log("Current locale: ${context.locale.toString()}");
                                       }),
                                 ),
-                                // onTap: () {
-                                //   context.setLocale(Locale(
-                                //       listLanguage[index].langId1,
-                                //       listLanguage[index].langId2));
-                                //
-                                //   ref
-                                //       .read(languageProvider.notifier)
-                                //       .state =
-                                //       listLanguage[index].langId1;
-                                //   listLanguage[index].boolLang = true;
-                                //
-                                //   box.langUser = "1";
-                                //   box.langFulName =
-                                //       listLanguage[index].langName;
-                                //   box.langUserLang =
-                                //       listLanguage[index].langId1;
-                                //
-                                // },
+                                onTap: () {
+                                  context.setLocale(Locale(
+                                      listLanguage[index].langId1,
+                                      listLanguage[index].langId2));
+
+                                  ref.read(languageProvider.notifier).state =
+                                      listLanguage[index].langId1;
+                                  listLanguage[index].boolLang = true;
+
+                                  box.langUser = "1";
+                                  box.langFulName =
+                                      listLanguage[index].langName;
+                                  box.langUserLang =
+                                      listLanguage[index].langId1;
+                                  setState(() {});
+                                },
                               ),
                             )),
                   ),

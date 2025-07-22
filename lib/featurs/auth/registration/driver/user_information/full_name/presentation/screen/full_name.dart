@@ -87,7 +87,7 @@ class _FullNameDriverState extends ConsumerState<FullNameDriverPage> {
                   style: TextStyle(
                       fontWeight: FontWeight.w700,
                       fontFamily: "Poppins",
-                      fontSize: 30)),
+                      fontSize: 25)),
               const SizedBox(height: 32),
               Text("name".tr(),
                   style: TextStyle(

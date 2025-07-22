@@ -1,11 +1,9 @@
-import 'dart:convert';
 import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:san_art/core/back_image/back_image1.dart';
 import 'package:san_art/core/data/hive_san_art.dart';
 import 'package:san_art/core/routes/routes.dart';
@@ -89,8 +87,8 @@ class _UserCategoryState extends ConsumerState<UserCategoryPage> {
         data: (data) {
           log("Data loaded successfully");
           return data.when(
-                (success) => _buildRoleListView(success),
-                (error) => _buildErrorWidget(error.toString()),
+            (success) => _buildRoleListView(success),
+            (error) => _buildErrorWidget(error.toString()),
           );
         },
         error: (error, stackTrace) {
@@ -127,17 +125,18 @@ class _UserCategoryState extends ConsumerState<UserCategoryPage> {
   }
 
   Widget _buildRoleItem(dynamic roleData, int index) {
-
     final isSelected = ref.watch(userCategoryControllerIndex) == index + 1;
     return AnimatedContainer(
       duration: const Duration(milliseconds: 200),
       decoration: BoxDecoration(
         border: Border.all(
-          width: isSelected ? 2 : 0.5,
-          color: isSelected ? AppColors.primaryButtonColor(context) : Colors.grey,
+          width: isSelected ? 1 : 0.5,
+          color:
+              isSelected ? AppColors.primaryButtonColor(context) : Colors.grey,
         ),
         borderRadius: BorderRadius.circular(20.0),
-        color: isSelected ? Theme.of(context).primaryColor.withOpacity(0.1) : null,
+        color:
+            isSelected ? Theme.of(context).primaryColor.withOpacity(0.1) : null,
       ),
       child: Material(
         color: Colors.transparent,
@@ -191,21 +190,22 @@ class _UserCategoryState extends ConsumerState<UserCategoryPage> {
                 // Tanlash indikatori
                 AnimatedContainer(
                   duration: const Duration(milliseconds: 200),
-                  width: 24,
-                  height: 24,
+                  width: 16,
+                  height: 16,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(
-                      color: isSelected ? AppColors.primaryButtonColor(context) : Colors.grey,
-                      width: 2,
+                      color:
+                          isSelected ? Colors.transparent : Colors.transparent,
+                      width: 1,
                     ),
                   ),
                   child: isSelected
                       ? Icon(
-                    Icons.check,
-                    size: 16,
-                    color: AppColors.primaryButtonColor(context),
-                  )
+                          Icons.radio_button_checked,
+                          // size: 16,
+                          color: AppColors.primaryButtonColor(context),
+                        )
                       : null,
                 ),
               ],
@@ -254,7 +254,7 @@ class _UserCategoryState extends ConsumerState<UserCategoryPage> {
   }
 
   Widget _buildActionButtons() {
-    final selectedRole = ref.watch(userCategoryControllerCheckBoxValue);
+    ref.watch(userCategoryControllerCheckBoxValue);
     return Column(
       children: [
         PrimaryButton(
@@ -291,11 +291,11 @@ class _UserCategoryState extends ConsumerState<UserCategoryPage> {
 
   String _getRoleName(UserRoleEntities roleData) {
     // roleData dan nom olish
-    return roleData.icon.toString() ?? "Unknown Role";
+    return roleData.icon.toString();
   }
 
   String _getRoleDescription(UserRoleEntities roleData) {
-    return roleData.name.toString() ?? "No description available";
+    return roleData.name.toString();
   }
 
   void _onRoleSelected(dynamic roleData, int index) {
@@ -335,7 +335,6 @@ class _UserCategoryState extends ConsumerState<UserCategoryPage> {
   void _onSkipPressed() {
     box.userType = "-";
     context.router.push(RootRoute(val1: "", val2: ""));
-
   }
 
   void _showErrorSnackBar(String message) {
@@ -347,7 +346,6 @@ class _UserCategoryState extends ConsumerState<UserCategoryPage> {
           message,
           style: const TextStyle(
             fontWeight: FontWeight.bold,
-
           ),
         ),
         duration: const Duration(milliseconds: 2500),

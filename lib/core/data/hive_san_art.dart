@@ -456,6 +456,24 @@ class HiveBoxes {
     }
   }
 
+  String get theme{
+    try {
+      return _box.get("theme");
+    } catch (e) {
+      log(e.toString());
+      return "";
+    }
+  }
+
+  set theme(String theme) {
+    try {
+      _box.delete("theme");
+      _box.put("theme", theme);
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
 
   ///
 

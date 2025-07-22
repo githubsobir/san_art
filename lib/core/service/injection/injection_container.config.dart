@@ -36,6 +36,22 @@ import '../../../featurs/auth/login/domain/repository/region_repository.dart'
 import '../../../featurs/auth/login/domain/usecases/get_region_usecase.dart'
     as _i159;
 import '../../../featurs/auth/login/domain/usecases/login_usecase.dart' as _i46;
+import '../../../featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/a1_passport_page/data/datasources/passport_upload_datasource.dart'
+    as _i962;
+import '../../../featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/a1_passport_page/data/repository_impl/passport_repository_impl.dart'
+    as _i498;
+import '../../../featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/a1_passport_page/domain/repository/passport_impl.dart'
+    as _i953;
+import '../../../featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/a1_passport_page/domain/usecase/upload_data_passport.dart'
+    as _i111;
+import '../../../featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/a2_car_licence/data/datasources/country_datasource/country_datasource.dart'
+    as _i73;
+import '../../../featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/a2_car_licence/data/repository_impl/country_repos_impl.dart'
+    as _i931;
+import '../../../featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/a2_car_licence/domain/repository/country_repository.dart'
+    as _i906;
+import '../../../featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/a2_car_licence/domain/usecase/countr_usecase.dart'
+    as _i177;
 import '../../../featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/a3_choose_payment_page/data/datasources/payment_remote_datasource.dart'
     as _i702;
 import '../../../featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/a3_choose_payment_page/data/repository_impl/payment_repository_impl.dart'
@@ -52,6 +68,14 @@ import '../../../featurs/auth/registration/driver/car_information/car_main_reg/p
     as _i758;
 import '../../../featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/a5_car_mark_choose/domain/usecase/car_mark_usecase.dart'
     as _i335;
+import '../../../featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/a6_photo_car_page/data/datasources/upload_datasource.dart'
+    as _i1;
+import '../../../featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/a6_photo_car_page/data/repository_impl/car_photo_repository_impl.dart'
+    as _i207;
+import '../../../featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/a6_photo_car_page/domain/repository/car_photo_repository.dart'
+    as _i829;
+import '../../../featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/a6_photo_car_page/domain/usecase/upload_images_usecase.dart'
+    as _i922;
 import '../../../featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/car_brand/data/datasources/car_brand_datasource.dart'
     as _i614;
 import '../../../featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/car_brand/data/repository_impl/car_repository_impl.dart'
@@ -213,6 +237,8 @@ _i174.GetIt init(
       () => _i775.CarTypeDataSourceImpl(gh<_i361.Dio>()));
   gh.factory<_i502.GetPaymentMethodsUseCase>(
       () => _i502.GetPaymentMethodsUseCase(gh<_i1069.PaymentRepository>()));
+  gh.factory<_i73.CountryDatasource>(
+      () => _i73.CountryDatasourceImpl(gh<_i361.Dio>()));
   gh.factory<_i465.DateDataSource>(
       () => _i465.DateDataSourceImpl(gh<_i361.Dio>()));
   gh.factory<_i256.ChoseRoleDataSource>(
@@ -226,6 +252,8 @@ _i174.GetIt init(
   gh.factory<_i728.FullNameDataSource>(() => _i728.FullNameDataSourceImpl());
   gh.factory<_i495.RegistrationDataSource>(
       () => _i495.RegistrationDataSourceImpl(gh<_i361.Dio>()));
+  gh.factory<_i962.PassportUploadDataSource>(
+      () => _i962.PassportUploadDataSourceImpl(dio: gh<_i361.Dio>()));
   gh.factory<_i679.ListAppDataSource>(
       () => _i679.ListAppDataSourceImpl(dio: gh<_i361.Dio>()));
   gh.factory<_i889.RegionRepository>(
@@ -246,16 +274,24 @@ _i174.GetIt init(
       () => _i1023.SearchUsecase(gh<_i633.SearchRepository>()));
   gh.factory<_i758.CarMarkRepository>(
       () => _i218.CarMarkRepositoryImpl(gh<_i387.CarMarkDataSource>()));
+  gh.factory<_i1.UploadDataSource>(
+      () => _i1.UploadDataSourceImpl(dio: gh<_i361.Dio>()));
+  gh.factory<_i906.CountryRepository>(
+      () => _i931.CountryRepositoryImpl(gh<_i73.CountryDatasource>()));
   gh.factory<_i521.LoginRemoteDataSource>(
       () => _i521.LoginRemoteDataSourceImpl(dio: gh<_i361.Dio>()));
   gh.factory<_i286.StoriesRemoteDataSource>(
       () => _i286.StoriesRemoteDataSourceImpl(dio: gh<_i361.Dio>()));
+  gh.factory<_i953.PassportRepository>(() => _i498.PassportRepositoryImpl(
+      passportUploadDataSource: gh<_i962.PassportUploadDataSource>()));
   gh.factory<_i892.FullNameRepository>(
       () => _i239.FullNameRepositoryImpl(gh<_i728.FullNameDataSource>()));
   gh.factory<_i159.GetRegionsUseCase>(
       () => _i159.GetRegionsUseCase(gh<_i889.RegionRepository>()));
   gh.factory<_i525.SmsRemoteDataSource>(
       () => _i525.SmsRemoteDataSourceImpl(dio: gh<_i361.Dio>()));
+  gh.factory<_i829.CarPhotoRepository>(() => _i207.CarPhotoRepositoryImpl(
+      uploadDataSource: gh<_i1.UploadDataSource>()));
   gh.factory<_i509.RegistrationRepository>(() =>
       _i716.RegistrationRepositoryImpl(gh<_i495.RegistrationDataSource>()));
   gh.factory<_i657.RegistrationUsecase>(
@@ -272,6 +308,10 @@ _i174.GetIt init(
       () => _i87.CarWeightUsecase(gh<_i656.CarWeightRepository>()));
   gh.factory<_i692.CarBrandRepository>(
       () => _i563.CarBrandRepositoryImpl(gh<_i614.CarBrandDataSourceImpl>()));
+  gh.factory<_i922.UploadImagesUseCase>(
+      () => _i922.UploadImagesUseCase(gh<_i829.CarPhotoRepository>()));
+  gh.factory<_i177.CountryUsecase>(
+      () => _i177.CountryUsecase(gh<_i906.CountryRepository>()));
   gh.factory<_i259.GetStoriesUseCase>(
       () => _i259.GetStoriesUseCase(gh<_i161.StoriesRepository>()));
   gh.factory<_i838.DateRepository>(
@@ -296,6 +336,8 @@ _i174.GetIt init(
           gh<_i504.RegistrationPhoneRegionRepository>()));
   gh.factory<_i335.CarMarkUsecase>(
       () => _i335.CarMarkUsecase(gh<_i758.CarMarkRepository>()));
+  gh.factory<_i111.UploadPassportUsecase>(
+      () => _i111.UploadPassportUsecase(gh<_i953.PassportRepository>()));
   gh.factory<_i258.CarColorUsecase>(
       () => _i258.CarColorUsecase(gh<_i699.CarColorRepository>()));
   gh.factory<_i473.LoginRepository>(() => _i467.LoginRepositoryIml(

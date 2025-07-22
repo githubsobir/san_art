@@ -12,6 +12,7 @@ import 'package:san_art/core/screen_size/get_size.dart';
 import 'package:san_art/core/theme/colors/colors_app.dart';
 import 'package:san_art/core/widgets/snacbars/widget_snackbars.dart';
 import 'package:san_art/featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/a1_passport_page/presentation/provider/passport_page_provider.dart';
+import 'package:san_art/featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/a1_passport_page/presentation/widgets/dialog_upload/passport_upload.dart';
 
 @RoutePage()
 class PassportPage extends ConsumerStatefulWidget {
@@ -43,8 +44,44 @@ class _PassportPageState extends ConsumerState<PassportPage> {
     super.dispose();
   }
 
+  onPressButton() {
+    txtPassport.text.toString().length > 5
+        ? {
+            ref
+                .read(controllerPassport.notifier)
+                .setAllData(serNum: "", datePassport: ""),
+            getDialog()
+            // MyWidgets.nextStep(
+            //     onPressed: () {
+            //       ref
+            //           .read(controllerPassport.notifier)
+            //           .setAllData(serNum: txtPassport.text, datePassport: ref.watch(controllerPassportExpiration));
+            //       // ref.read(controllerBoolPassport.notifier).update(
+            //       //       (state) => true,
+            //       // );
+            //       // Navigator.push(
+            //       //     context,
+            //       //     CupertinoPageRoute(
+            //       //       builder: (context) => const DriverLicense(),
+            //       //     ));
+            //     },
+            //     context: context,
+            //     text: "savedInfo".tr())
+          }
+        : {
+            WidgetSnackBar.errorSnackBar(
+                context: context, text: "enterPassportInfo".tr())
+          };
+  }
+
   @override
   Widget build(BuildContext context) {
+    ref.watch(controllerPassport);
+
+    ref.listen(uploadPassportStateProvider, (previous, next) {
+      if (next.error != null) {}
+    });
+
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
@@ -250,7 +287,7 @@ class _PassportPageState extends ConsumerState<PassportPage> {
                                 height: 104,
                                 width: AppSize.getW(context) * 0.4,
                                 fit: BoxFit.cover,
-                                ref.watch(controllerPassport.notifier).file1),
+                                ref.watch(controllerPassport.notifier).file1!),
                           ),
                         )
                       : Container(
@@ -267,7 +304,7 @@ class _PassportPageState extends ConsumerState<PassportPage> {
                                   child: Image.file(
                                     ref
                                         .watch(controllerPassport.notifier)
-                                        .file1,
+                                        .file1!,
                                     fit: BoxFit.cover,
                                     errorBuilder: (context, error, stackTrace) {
                                       return Icon(
@@ -320,7 +357,7 @@ class _PassportPageState extends ConsumerState<PassportPage> {
                       ? ClipRRect(
                           borderRadius: BorderRadius.circular(8),
                           child: Image.file(
-                            ref.watch(controllerPassport.notifier).file2,
+                            ref.watch(controllerPassport.notifier).file2!,
                             height: 104,
                             width: AppSize.getW(context) * 0.4,
                             fit: BoxFit.cover,
@@ -334,7 +371,7 @@ class _PassportPageState extends ConsumerState<PassportPage> {
                       : Container(
                           height: 104,
                           width: AppSize.getW(context) * 0.4,
-                          padding: const EdgeInsets.all(15),
+                          padding: const EdgeInsets.all(12),
                           decoration: BoxDecoration(
                               border: Border.all(
                                   color: AppColors.textAppBarColor(context)),
@@ -384,7 +421,7 @@ class _PassportPageState extends ConsumerState<PassportPage> {
                     ? ClipRRect(
                         borderRadius: BorderRadius.circular(8),
                         child: Image.file(
-                            ref.watch(controllerPassport.notifier).file3,
+                            ref.watch(controllerPassport.notifier).file3!,
                             height: 104,
                             width: AppSize.getW(context) * 0.4,
                             errorBuilder: (context, error, stackTrace) {
@@ -555,7 +592,7 @@ class _PassportPageState extends ConsumerState<PassportPage> {
                                 height: 104,
                                 width: AppSize.getW(context) * 0.4,
                                 fit: BoxFit.cover,
-                                ref.watch(controllerPassport.notifier).file1),
+                                ref.watch(controllerPassport.notifier).file1!),
                           ),
                         )
                       : Container(
@@ -572,7 +609,7 @@ class _PassportPageState extends ConsumerState<PassportPage> {
                                   child: Image.file(
                                     ref
                                         .watch(controllerPassport.notifier)
-                                        .file1,
+                                        .file1!,
                                     fit: BoxFit.cover,
                                     errorBuilder: (context, error, stackTrace) {
                                       return Icon(
@@ -625,7 +662,7 @@ class _PassportPageState extends ConsumerState<PassportPage> {
                       ? ClipRRect(
                           borderRadius: BorderRadius.circular(8),
                           child: Image.file(
-                            ref.watch(controllerPassport.notifier).file2,
+                            ref.watch(controllerPassport.notifier).file2!,
                             height: 104,
                             width: AppSize.getW(context) * 0.4,
                             fit: BoxFit.cover,
@@ -678,17 +715,17 @@ class _PassportPageState extends ConsumerState<PassportPage> {
               padding: const EdgeInsets.all(15),
               child: GestureDetector(
                 onTap: () {
-                  ref.watch(controllerPassport).list.isEmpty
-                      ? context.router.push(PhotoPassport1Route())
-                      : ref.watch(controllerPassport).list.length == 1
-                          ? context.router.push(PhotoPassport2Route())
-                          : context.router.push(PhotoPassport3Route());
+                  // ref.watch(controllerPassport).list.isEmpty
+                  //     ? context.router.push(PhotoPassport1Route())
+                  //     : ref.watch(controllerPassport).list.length == 1
+                  //         ? context.router.push(PhotoPassport2Route())
+                  //         : context.router.push(PhotoPassport3Route());
                 },
                 child: getImage(ref, 2) == "1"
                     ? ClipRRect(
                         borderRadius: BorderRadius.circular(8),
                         child: Image.file(
-                          ref.watch(controllerPassport.notifier).file3,
+                          ref.watch(controllerPassport.notifier).file3!,
                           height: 104,
                           width: AppSize.getW(context) * 0.4,
                           errorBuilder: (context, error, stackTrace) {
@@ -758,45 +795,32 @@ class _PassportPageState extends ConsumerState<PassportPage> {
     );
   }
 
-  onPressButton() {
-    txtPassport.text.toString().length > 5
-        ? {
-            // MyWidgets.nextStep(
-            //     onPressed: () {
-            //       ref
-            //           .read(controllerPassport.notifier)
-            //           .setAllData(serNum: txtPassport.text, datePassport: ref.watch(controllerPassportExpiration));
-            //       // ref.read(controllerBoolPassport.notifier).update(
-            //       //       (state) => true,
-            //       // );
-            //       // Navigator.push(
-            //       //     context,
-            //       //     CupertinoPageRoute(
-            //       //       builder: (context) => const DriverLicense(),
-            //       //     ));
-            //     },
-            //     context: context,
-            //     text: "savedInfo".tr())
-          }
-        : {
-            WidgetSnackBar.errorSnackBar(
-                context: context, text: "enterPassportInfo".tr())
-          };
+  getDialog() async {
+    await showDialog(
+      context: context,
+      builder: (context) => SizedBox(
+        child: AlertDialog(
+          backgroundColor: Colors.transparent,
+          contentPadding: EdgeInsets.zero,
+          content: SizedBox(height: 140, child: LoadingPassportDialog()),
+        ),
+      ),
+    );
   }
 }
 
 String getImage(WidgetRef ref, int index) {
   try {
     if (index == 0) {
-      return ref.watch(controllerPassport.notifier).file1.path.length > 12
+      return ref.watch(controllerPassport.notifier).file1!.path.length > 12
           ? "1"
           : "0";
     } else if (index == 1) {
-      return ref.watch(controllerPassport.notifier).file2.path.length > 12
+      return ref.watch(controllerPassport.notifier).file2!.path.length > 12
           ? "1"
           : "0";
     } else {
-      return ref.watch(controllerPassport.notifier).file3.path.length > 12
+      return ref.watch(controllerPassport.notifier).file3!.path.length > 12
           ? "1"
           : "0";
     }

@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:san_art/core/data/hive_san_art.dart';
 import 'package:san_art/featurs/auth/choose_role/presentation/screen/choose_role.dart';
 import 'package:san_art/featurs/auth/login/presentation/screens/login_page.dart';
 import 'package:san_art/featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/a1_passport_page/presentation/screen/passport_page.dart';
@@ -12,6 +13,7 @@ import 'package:san_art/featurs/auth/registration/driver/car_information/car_mai
 import 'package:san_art/featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/a2_car_licence/presentation/screen/widgets/photo_tex_car2.dart';
 import 'package:san_art/featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/a3_choose_payment_page/presentation/screen/choose_payment_page.dart';
 import 'package:san_art/featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/a5_car_mark_choose/presentation/screen/car_mark_ui.dart';
+import 'package:san_art/featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/a6_photo_car_page/presentation/screen/photo_car_page.dart';
 import 'package:san_art/featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/car_brand/presentation/screen/car_brand_ui.dart';
 import 'package:san_art/featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/car_color/presentation/screen/car_color_ui.dart';
 import 'package:san_art/featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/car_type/presentation/screen/car_type_ui.dart';
@@ -36,23 +38,34 @@ part 'routes.gr.dart';
 
 @AutoRouterConfig()
 class AppRouter extends RootStackRouter {
+  var hive = HiveBoxes();
+
   @override
   List<AutoRoute> get routes => [
-        AutoRoute(page: LanguageRoute.page, path: "/language"),
+        AutoRoute(
+            page: LanguageRoute.page,
+            path: "/language",
+            initial: hive.langUser != "1"),
         AutoRoute(page: RootRoute.page, path: "/root_page"),
         AutoRoute(page: UserCategoryRoute.page, path: "/role"),
-        AutoRoute(page: ChooseLogRegRoute.page, path: "/chooseLogReg"),
+        AutoRoute(
+            page: ChooseLogRegRoute.page,
+            path: "/chooseLogReg",
+        ),
         AutoRoute(page: LoginRoute.page, path: "/login"),
         AutoRoute(page: FullNameRoute.page, path: "/full_name"),
         AutoRoute(page: FullNameDriverRoute.page, path: "/full_name_driver"),
         AutoRoute(page: DataBirthRoute.page, path: "/data_birth_page"),
-        AutoRoute(page: DataBirthDriverRoute.page, path: "/data_birth_driver_page"),
-        AutoRoute(page: RegistrationPhoneRoute.page, path: "/registration_phone"),
+        AutoRoute(
+            page: DataBirthDriverRoute.page, path: "/data_birth_driver_page"),
+        AutoRoute(
+            page: RegistrationPhoneRoute.page, path: "/registration_phone"),
         AutoRoute(page: SmsRoute.page, path: "/sms_page"),
         AutoRoute(page: ImageUserExporterRoute.page, path: "/image_export"),
         AutoRoute(page: ImageDriverRoute.page, path: "/image_driver"),
-        AutoRoute(page: CarMainRegistrationRoute.page, path: "/car_main_registration_page",  initial: true),
-
+        AutoRoute(
+            page: CarMainRegistrationRoute.page,
+            path: "/car_main_registration_page",     initial: hive.langUser == "1"),
 
         ///
         AutoRoute(page: PassportRoute.page, path: "/passport"),
@@ -68,27 +81,19 @@ class AppRouter extends RootStackRouter {
             page: PhotoTexCar1Route.page, path: "/car_licence_photo1_page"),
         AutoRoute(
             page: PhotoTexCar2Route.page, path: "/car_licence_photo2_page"),
-        AutoRoute(
-            page: ChoosePaymentRoute.page, path: "/choose_payment3_page"),
+        AutoRoute(page: ChoosePaymentRoute.page, path: "/choose_payment3_page"),
 
-        AutoRoute(
-            page: CarWeightRoute.page, path: "/choose_weight0_page"),
+        AutoRoute(page: CarWeightRoute.page, path: "/choose_weight0_page"),
 
+        AutoRoute(page: CarMarkUiRoute.page, path: "/car_mark_page"),
 
-        AutoRoute(
-            page: CarMarkUiRoute.page, path: "/car_mark_page"),
+        AutoRoute(page: CarTypeUiRoute.page, path: "/car_type_page"),
 
-        AutoRoute(
-            page: CarTypeUiRoute.page, path: "/car_type_page"),
+        AutoRoute(page: CarBrandUiRoute.page, path: "/car_brand_page"),
 
-        AutoRoute(
-            page: CarBrandUiRoute.page, path: "/car_brand_page"),
+        AutoRoute(page: CarColorUiRoute.page, path: "/car_brand_page"),
 
-
-        AutoRoute(
-            page: CarColorUiRoute.page, path: "/car_brand_page"),
-
-        AutoRoute(
-            page: CarYearInputRoute.page, path: "/car_year_page"),
+        AutoRoute(page: CarYearInputRoute.page, path: "/car_year_page"),
+        AutoRoute(page: PhotoCarDriverRoute.page, path: "/car_photo_page"),
       ];
 }

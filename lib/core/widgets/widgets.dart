@@ -8,6 +8,7 @@ import 'package:san_art/core/back_image/back_image1.dart';
 import 'package:san_art/core/data/hive_passport/hive_passport.dart';
 import 'package:san_art/core/widgets/buttons/button_primary.dart';
 import 'package:san_art/core/widgets/calendar_select.dart';
+import 'package:san_art/featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/a2_car_licence/presentation/screen/widgets/country_list.dart';
 
 class MyWidgets {
   static snackBarMyWidgets(
@@ -20,17 +21,21 @@ class MyWidgets {
   late DateTime selectedDate = DateTime(2006, 1, 1);
   var box = HiveBoxDriverReg();
 
-  static Widget loader({required BuildContext context}){
-    return const CupertinoActivityIndicator( radius: 10,);
+  static Widget loader({required BuildContext context}) {
+    return const CupertinoActivityIndicator(
+      radius: 10,
+    );
   }
 
   static nextStep(
-      {required VoidCallback onPressed, required BuildContext context, required String text}) async {
+      {required VoidCallback onPressed,
+      required BuildContext context,
+      required String text}) async {
     await showDialog(
       context: context,
-      builder: (context) =>  AlertDialog(
+      builder: (context) => AlertDialog(
         content: Padding(
-          padding: const EdgeInsets.fromLTRB(8, 20,8,15),
+          padding: const EdgeInsets.fromLTRB(8, 20, 8, 15),
           child: Text(
             text,
             textAlign: TextAlign.center,
@@ -38,9 +43,11 @@ class MyWidgets {
           ),
         ),
         actions: [
-          PrimaryButton(text:  'continue'.tr(), onPressed: (){
-            onPressed();
-          })
+          PrimaryButton(
+              text: 'continue'.tr(),
+              onPressed: () {
+                onPressed();
+              })
         ],
       ),
     );
@@ -48,11 +55,11 @@ class MyWidgets {
 
   Future selectDateFunc(
       {required BuildContext context,
-        required int minimumDate,
-        required int maximumDate,
-        required int currentYear,
-        required int currentMonth,
-        required int currentDay}) async {
+      required int minimumDate,
+      required int maximumDate,
+      required int currentYear,
+      required int currentMonth,
+      required int currentDay}) async {
     await showCupertinoModalPopup(
       context: context,
       builder: (BuildContext context) {
@@ -62,7 +69,7 @@ class MyWidgets {
             child: Container(
               height: 230,
               color: Colors.white,
-              child:   Column(
+              child: Column(
                 children: [
                   GestureDetector(
                     onTap: () {
@@ -82,11 +89,7 @@ class MyWidgets {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Icon(
-                            Icons.check
-                          )
-                        ],
+                        children: [Icon(Icons.check)],
                       ),
                     ),
                   ),
@@ -106,11 +109,11 @@ class MyWidgets {
                               // primaryColor:   AppColors.white100,
                               // tabLabelTextStyle:  TextStyle(color: AppColors.white100),
 
-                              dateTimePickerTextStyle: TextStyle(
-                                   fontSize: 20),
+                              dateTimePickerTextStyle: TextStyle(fontSize: 20),
                             )),
                         child: CupertinoDatePicker(
-                          initialDateTime: DateTime(currentYear, currentMonth, currentDay),
+                          initialDateTime:
+                              DateTime(currentYear, currentMonth, currentDay),
                           onDateTimeChanged: (DateTime newDate) {
                             selectedDate = newDate;
                             boolSelected = true;
@@ -133,82 +136,8 @@ class MyWidgets {
     );
   }
 
-  getCountryList(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      builder: (context) => Stack(
-        children: [
-          // const BackgroundWidget2(),
-          Container(
-            height: MyWidgets.getH(context) * 0.6,
-            margin: const EdgeInsets.all(10),
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding:
-                    const EdgeInsets.only(left: 10, right: 10, top: 15),
-                    child: Text("region".tr(),
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-
-                            fontSize: 20)),
-                  ),
-                  // Expanded(
-                  //   child: Consumer(
-                  //     builder: (context, ref, child) {
-                  //       return ref.watch(getCountryListProvider).when(
-                  //           data: (data) {
-                  //             return ListView.builder(
-                  //               itemCount: data.length,
-                  //               itemBuilder: (context, index) => Column(
-                  //                 children: [
-                  //                   const Divider(),
-                  //                   ListTile(
-                  //                     onTap: () {
-                  //                       ref.read(selectCountryProvider.notifier).update((state) => data[index].name.toString());
-                  //                       ref.read(selectCountryIdProvider.notifier).update((state) => data[index].id.toString());
-                  //                       box.carGosRegionId = data[index].id.toString();
-                  //                       box.carGosRegionName = data[index].name.toString();
-                  //                       log(data[index].id.toString());
-                  //                       Navigator.of(context).pop();
-                  //                     },
-                  //                     leading: CachedNetworkImage(
-                  //                       imageUrl: data[index].flag.toString(),
-                  //                       height: 36,
-                  //                       width: 36,
-                  //                       fit: BoxFit.cover,
-                  //                       errorWidget: (context, url, error) {
-                  //                         return const Icon(Icons.language);
-                  //                       },
-                  //                     ),
-                  //                     title: Text(
-                  //                       data[index].name.toString(),
-                  //                       style: const TextStyle(
-                  //                           color: Colors.white,
-                  //                           fontWeight: FontWeight.bold),
-                  //                     ),
-                  //                   ),
-                  //                 ],
-                  //               ),
-                  //             );
-                  //           }, error: (error, er2) {
-                  //         return Center(
-                  //           child: Text(er2.toString()),
-                  //         );
-                  //       }, loading: () {
-                  //         return const Center(child: Text("laoding"));
-                  //       });
-                  //     },
-                  //   ),
-                  // )
-                ]),
-          ),
-        ],
-      ),
-    );
+  getCountryList(BuildContext context, WidgetRef ref) {
+    showModalBottomSheet(context: context, builder: (context) => CountryList());
   }
 
   static double getH(BuildContext context) {
@@ -228,7 +157,6 @@ class MyWidgets {
     } else {
       return 220;
     }
-
   }
 
   static IconData iconReturn(int index) {

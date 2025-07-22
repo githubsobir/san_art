@@ -206,8 +206,8 @@ class _CarMainRegistrationPageState
                                         case 0:
                                           context.router.push(CarWeightRoute());
                                           break;
-                                        // case 1:
-                                          // context.router.push(CarTypeRoute());
+                                        case 1:
+                                          context.router.push(PhotoCarDriverRoute());
                                       }
                                       // if (index == 0) {
                                       //   Navigator.push(
