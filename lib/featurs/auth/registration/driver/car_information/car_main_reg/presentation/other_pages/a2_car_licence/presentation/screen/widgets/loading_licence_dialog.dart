@@ -1,27 +1,25 @@
 import 'dart:developer';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:san_art/core/back_image/back_image1.dart';
-import 'package:san_art/core/routes/routes.dart';
 import 'package:san_art/core/theme/colors/colors_app.dart';
-import 'package:san_art/featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/a1_passport_page/presentation/provider/passport_page_provider.dart';
-import 'package:san_art/featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/a6_photo_car_page/presentation/provider/car_photo_state.dart';
+import 'package:san_art/featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/a2_car_licence/presentation/provider/car_licence_provider.dart';
 
-class LoadingPassportDialog extends ConsumerStatefulWidget {
-  const LoadingPassportDialog({super.key});
+class LoadingLicenceDialog extends ConsumerStatefulWidget {
+  const LoadingLicenceDialog({super.key});
 
   @override
-  ConsumerState<LoadingPassportDialog> createState() => _LoadingPassportDialogState();
+  ConsumerState<LoadingLicenceDialog> createState() =>
+      _LoadingLicenceDialogState();
 }
 
-class _LoadingPassportDialogState extends ConsumerState<LoadingPassportDialog> {
+class _LoadingLicenceDialogState extends ConsumerState<LoadingLicenceDialog> {
   @override
   Widget build(BuildContext context) {
-    final uploadState = ref.watch(uploadPassportStateProvider);
-    ref.listen(uploadStateProvider, (previous, next) {
+    final uploadState = ref.watch(uploadLicenceStateProvider);
+    ref.listen(controllerTexCar, (previous, next) {
       log(uploadState.uploadedCount.toString());
       log("SOBIR");
       log(uploadState.totalCount.toString());
@@ -122,7 +120,8 @@ class _LoadingPassportDialogState extends ConsumerState<LoadingPassportDialog> {
                             const SizedBox(width: 12),
                             Expanded(
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Text(
@@ -136,14 +135,19 @@ class _LoadingPassportDialogState extends ConsumerState<LoadingPassportDialog> {
                                   const SizedBox(height: 10),
                                   MaterialButton(
                                     height: 36,
-                                    color: AppColors.primaryButtonColor(context),
+                                    color:
+                                        AppColors.primaryButtonColor(context),
                                     minWidth: double.infinity,
                                     shape: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(10), borderSide: BorderSide.none),
-                                    onPressed: (){
-                                      context.pushRoute(CarLicenceRoute());
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: BorderSide.none),
+                                    onPressed: () {
+                                      ///
+                                      /// next page
+                                      ///
+                                      ///
                                     },
-                                    child:  Text(
+                                    child: Text(
                                       "nextStep".tr(),
                                       style: TextStyle(color: Colors.white),
                                     ),

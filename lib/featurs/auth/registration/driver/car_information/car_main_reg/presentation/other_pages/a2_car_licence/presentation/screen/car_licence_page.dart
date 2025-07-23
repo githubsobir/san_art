@@ -166,7 +166,7 @@ class _CarLicencePageState extends ConsumerState<CarLicencePage> {
                           ///
                           /// if ichinidan ! ni olishim kerak
                           ///
-                          if (!(ref.watch(selectCountryProvider).isNotEmpty ||
+                          if ((ref.watch(selectCountryProvider).isNotEmpty ||
                                   box.carGosRegionName.isNotEmpty) &&
                               txt1.text.isNotEmpty &&
                               txt2.text.isNotEmpty) {

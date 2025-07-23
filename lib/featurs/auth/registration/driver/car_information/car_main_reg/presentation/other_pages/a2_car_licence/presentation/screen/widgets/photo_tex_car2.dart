@@ -41,7 +41,7 @@ class _PhotoTexCar2State extends ConsumerState<PhotoTexCar2Page> {
           )
         ],
       ),
-      body: backImage1(child: SafeArea(child: ref.watch(controllerTexCar).boolGetData
+      body: backImage1(child: SafeArea(child: !ref.watch(controllerTexCar).isLoading
           ? Container(
         margin: const EdgeInsets.all(20),
         child: SingleChildScrollView(

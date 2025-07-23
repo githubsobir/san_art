@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:san_art/core/back_image/back_image1.dart';
 import 'package:san_art/core/screen_size/get_size.dart';
 import 'package:san_art/core/theme/colors/colors_app.dart';
-import 'package:san_art/core/theme/theme_switcher.dart';
 import 'package:san_art/core/widgets/buttons/button_primary.dart';
 import 'package:san_art/core/widgets/loading.dart';
 import 'package:san_art/featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/a2_car_licence/presentation/provider/car_licence_provider.dart';
@@ -28,7 +27,7 @@ class _PhotoTexCar1State extends ConsumerState<PhotoTexCar1Page> {
         appBar: AppBar(
           elevation: 0,
           backgroundColor: AppColors.transparent,
-          iconTheme:  IconThemeData(color: AppColors.textAppBarColor(context)),
+          iconTheme: IconThemeData(color: AppColors.textAppBarColor(context)),
           actions: [
             Padding(
               padding: const EdgeInsets.only(right: 20),
@@ -43,7 +42,7 @@ class _PhotoTexCar1State extends ConsumerState<PhotoTexCar1Page> {
         ),
         body: backImage1(
             child: SafeArea(
-              child: ref.watch(controllerTexCar).boolGetData
+              child: !ref.watch(controllerTexCar).isLoading
                   ? Container(
                       margin: const EdgeInsets.all(20),
                       child: SingleChildScrollView(
@@ -110,18 +109,21 @@ class _PhotoTexCar1State extends ConsumerState<PhotoTexCar1Page> {
                               ],
                             ),
                             const SizedBox(height: 30),
-                            PrimaryButton(text:  "makePhoto".tr(), onPressed: () {
-                              ref
-                                  .read(controllerTexCar.notifier)
-                                  .getImageCamera(widget.indexImage);
-                            }),
+                            PrimaryButton(
+                                text: "makePhoto".tr(),
+                                onPressed: () {
+                                  ref
+                                      .read(controllerTexCar.notifier)
+                                      .getImageCamera(widget.indexImage);
+                                }),
                             const SizedBox(height: 25),
-                            PrimaryButton(text:  "galleryPhoto".tr(), onPressed: () {
-                              ref
-                                  .read(controllerTexCar.notifier)
-                                  .getImage(widget.indexImage);
-                            }),
-
+                            PrimaryButton(
+                                text: "galleryPhoto".tr(),
+                                onPressed: () {
+                                  ref
+                                      .read(controllerTexCar.notifier)
+                                      .getImage(widget.indexImage);
+                                }),
                           ],
                         ),
                       ),

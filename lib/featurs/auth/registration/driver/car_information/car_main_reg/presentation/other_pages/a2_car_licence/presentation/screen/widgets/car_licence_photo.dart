@@ -6,11 +6,11 @@ import 'package:san_art/core/back_image/back_image1.dart';
 import 'package:san_art/core/routes/routes.dart';
 import 'package:san_art/core/screen_size/get_size.dart';
 import 'package:san_art/core/theme/colors/colors_app.dart';
-import 'package:san_art/core/theme/theme_switcher.dart';
 import 'package:san_art/core/widgets/buttons/button_primary.dart';
 import 'package:san_art/core/widgets/loading.dart';
 import 'package:san_art/core/widgets/widgets.dart';
 import 'package:san_art/featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/a2_car_licence/presentation/provider/car_licence_provider.dart';
+import 'package:san_art/featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/a2_car_licence/presentation/screen/widgets/loading_licence_dialog.dart';
 import 'package:san_art/featurs/auth/registration/driver/car_information/car_main_reg/presentation/provider/car_main_reg_provider.dart';
 
 @RoutePage()
@@ -43,7 +43,7 @@ class _CarLicencePhotoPageState extends ConsumerState<CarLicencePhotoPage> {
       ),
       body: backImage1(
           child: SafeArea(
-              child: ref.watch(controllerTexCar).boolGetData
+              child: !ref.watch(controllerTexCar).isLoading
                   ? SafeArea(
                       child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -74,12 +74,13 @@ class _CarLicencePhotoPageState extends ConsumerState<CarLicencePhotoPage> {
                                 //         indexImage: 0,
                                 //       ),
                                 //     ));
-                                context.router.push(PhotoTexCar1Route(indexImage: 0));
+                                context.router
+                                    .push(PhotoTexCar1Route(indexImage: 0));
                               },
                               child: getDataFile(0, ref) == "1"
                                   ? ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
-                                    child: Image.file(
+                                      borderRadius: BorderRadius.circular(8),
+                                      child: Image.file(
                                         ref
                                             .watch(controllerTexCar.notifier)
                                             .file1,
@@ -87,13 +88,15 @@ class _CarLicencePhotoPageState extends ConsumerState<CarLicencePhotoPage> {
                                         width: AppSize.getW(context) * 0.4,
                                         fit: BoxFit.cover,
                                       ),
-                                  )
+                                    )
                                   : Container(
                                       height: 104,
                                       width: AppSize.getW(context) * 0.4,
                                       padding: const EdgeInsets.all(15),
                                       decoration: BoxDecoration(
-                                          border: Border.all(color: AppColors.textAppBarColor(context)),
+                                          border: Border.all(
+                                              color: AppColors.textAppBarColor(
+                                                  context)),
                                           borderRadius:
                                               BorderRadius.circular(10)),
                                       child: Center(
@@ -126,13 +129,13 @@ class _CarLicencePhotoPageState extends ConsumerState<CarLicencePhotoPage> {
                                 //         indexImage: 1,
                                 //       ),
                                 //     ));
-                                context.router.push(PhotoTexCar2Route(indexImage: 1));
+                                context.router
+                                    .push(PhotoTexCar2Route(indexImage: 1));
                               },
                               child: getDataFile(1, ref) == "1"
-                                  ?
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
-                                child: Image.file(
+                                  ? ClipRRect(
+                                      borderRadius: BorderRadius.circular(8),
+                                      child: Image.file(
                                         ref
                                             .watch(controllerTexCar.notifier)
                                             .file2,
@@ -140,13 +143,15 @@ class _CarLicencePhotoPageState extends ConsumerState<CarLicencePhotoPage> {
                                         width: AppSize.getW(context) * 0.4,
                                         fit: BoxFit.cover,
                                       ),
-                              )
+                                    )
                                   : Container(
                                       height: 104,
                                       width: AppSize.getW(context) * 0.4,
                                       padding: const EdgeInsets.all(15),
                                       decoration: BoxDecoration(
-                                          border: Border.all(color: AppColors.textAppBarColor(context)),
+                                          border: Border.all(
+                                              color: AppColors.textAppBarColor(
+                                                  context)),
                                           borderRadius:
                                               BorderRadius.circular(10)),
                                       child: Center(
@@ -180,9 +185,7 @@ class _CarLicencePhotoPageState extends ConsumerState<CarLicencePhotoPage> {
                             "photoTexPass2".tr(),
                             textAlign: TextAlign.start,
                             style: TextStyle(
-                                fontWeight: FontWeight.bold,
-
-                                fontSize: 28),
+                                fontWeight: FontWeight.bold, fontSize: 28),
                           ),
                         ),
                         Row(
@@ -199,12 +202,13 @@ class _CarLicencePhotoPageState extends ConsumerState<CarLicencePhotoPage> {
                                 //         indexImage: 2,
                                 //       ),
                                 //     ));
-                                context.router.push(PhotoTexCar1Route(indexImage: 2));
+                                context.router
+                                    .push(PhotoTexCar1Route(indexImage: 2));
                               },
                               child: getDataFile(2, ref) == "1"
                                   ? ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
-                                child: Image.file(
+                                      borderRadius: BorderRadius.circular(8),
+                                      child: Image.file(
                                         ref
                                             .watch(controllerTexCar.notifier)
                                             .file3,
@@ -212,13 +216,15 @@ class _CarLicencePhotoPageState extends ConsumerState<CarLicencePhotoPage> {
                                         width: AppSize.getW(context) * 0.4,
                                         fit: BoxFit.cover,
                                       ),
-                                  )
+                                    )
                                   : Container(
                                       height: 104,
                                       width: AppSize.getW(context) * 0.4,
                                       padding: const EdgeInsets.all(15),
                                       decoration: BoxDecoration(
-                                          border: Border.all(color: AppColors.textAppBarColor(context)),
+                                          border: Border.all(
+                                              color: AppColors.textAppBarColor(
+                                                  context)),
                                           borderRadius:
                                               BorderRadius.circular(10)),
                                       child: Center(
@@ -251,14 +257,13 @@ class _CarLicencePhotoPageState extends ConsumerState<CarLicencePhotoPage> {
                                 //         indexImage: 3,
                                 //       ),
                                 //     ));
-                                context.router.push(PhotoTexCar2Route(indexImage: 3));
+                                context.router
+                                    .push(PhotoTexCar2Route(indexImage: 3));
                               },
                               child: getDataFile(3, ref) == "1"
-                                  ?
-
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
-                                child: Image.file(
+                                  ? ClipRRect(
+                                      borderRadius: BorderRadius.circular(8),
+                                      child: Image.file(
                                         ref
                                             .watch(controllerTexCar.notifier)
                                             .file4,
@@ -266,13 +271,15 @@ class _CarLicencePhotoPageState extends ConsumerState<CarLicencePhotoPage> {
                                         width: AppSize.getW(context) * 0.4,
                                         fit: BoxFit.cover,
                                       ),
-                              )
+                                    )
                                   : Container(
                                       height: 104,
                                       width: AppSize.getW(context) * 0.4,
                                       padding: const EdgeInsets.all(15),
                                       decoration: BoxDecoration(
-                                          border: Border.all(color: AppColors.textAppBarColor(context)),
+                                          border: Border.all(
+                                              color: AppColors.textAppBarColor(
+                                                  context)),
                                           borderRadius:
                                               BorderRadius.circular(10)),
                                       child: Center(
@@ -304,40 +311,60 @@ class _CarLicencePhotoPageState extends ConsumerState<CarLicencePhotoPage> {
                           padding: const EdgeInsets.only(left: 20, right: 20),
                           child: PrimaryButton(
                               onPressed: () async {
-                                if (ref
+                                getDialog();
+                                 await ref
                                     .read(controllerTexCar.notifier)
                                     .setTexCarServer(
                                         country1: widget.countryCode,
                                         txt1: widget.carGosNum,
-                                        txt2: widget.trailerGosNum)) {
-                                  ref
-                                      .read(controllerBoolTexPassport.notifier)
-                                      .update((state) => true);
+                                        txt2: widget.trailerGosNum);
 
-                                  MyWidgets.nextStep(
-                                      onPressed: () {
-                                        // Navigator.push(
-                                        //     context,
-                                        //     CupertinoPageRoute(
-                                        //         builder: (context) =>
-                                        //             const CargoTransport()));
-                                      },
-                                      context: context,
-                                      text: "savedInfo".tr());
-                                } else {
-                                  MyWidgets.snackBarMyWidgets(
-                                      context: context, text: "fillRow".tr());
-                                }
+                                // if (a) {
+                                //   ref
+                                //       .read(controllerBoolTexPassport.notifier)
+                                //       .update((state) => true);
+                                //
+                                //   MyWidgets.nextStep(
+                                //       onPressed: () {
+                                //         // Navigator.push(
+                                //         //     context,
+                                //         //     CupertinoPageRoute(
+                                //         //         builder: (context) =>
+                                //         //             const CargoTransport()));
+                                //       },
+                                //       context: context,
+                                //       text: "savedInfo".tr());
+                                // } else {
+                                //   MyWidgets.snackBarMyWidgets(
+                                //       context: context, text: "fillRow".tr());
+                                // }
                               },
                               text: "continue".tr()),
                         ),
                         const SizedBox(height: 20),
                       ],
                     ))
-                  :  Center(child: appLoading1())),
+                  : Center(child: appLoading1())),
           ref: ref),
     );
   }
+
+
+  getDialog() async {
+    await showDialog(
+      context: context,
+      builder: (context) => SizedBox(
+        child: AlertDialog(
+          backgroundColor: Colors.transparent,
+          contentPadding: EdgeInsets.zero,
+          content: SizedBox(height: 140, child: LoadingLicenceDialog()),
+        ),
+      ),
+    );
+  }
+
+
+
   String getDataFile(int index, WidgetRef ref) {
     try {
       switch (index) {

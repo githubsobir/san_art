@@ -190,50 +190,6 @@ import 'package:san_art/core/service/injection/injection_container.dart';
 import 'package:san_art/featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/a1_passport_page/domain/entities/request/passport_entities.dart';
 import 'package:san_art/featurs/auth/registration/driver/car_information/car_main_reg/presentation/other_pages/a1_passport_page/domain/usecase/upload_data_passport.dart';
 
-// PassportEntities'ni kengaytirish
-// class PassportEntitiesExtended extends PassportStateEntities {
-//   final File? file1;
-//   final File? file2;
-//   final File? file3;
-//
-//   PassportEntitiesExtended({
-//     required String passportSerNum,
-//     required String additionalString,
-//     this.file1,
-//     this.file2,
-//     this.file3,
-//   }) : super(
-//             passportSerNum: passportSerNum,
-//             additionalString: additionalString,
-//             file1: file1,
-//             file2: file2,
-//             file3: file3);
-//
-//   PassportEntitiesExtended copyWith({
-//     String? passportSerNum,
-//     String? additionalString,
-//     File? file1,
-//     File? file2,
-//     File? file3,
-//   }) {
-//     return PassportEntitiesExtended(
-//       passportSerNum: passportSerNum ?? this.passportSerNum,
-//       additionalString: additionalString ?? this.additionalString,
-//       file1: file1 ?? this.file1,
-//       file2: file2 ?? this.file2,
-//       file3: file3 ?? this.file3,
-//     );
-//   }
-//
-//   @override
-//   // TODO: implement additionalString
-//   String get additionalString => throw UnimplementedError();
-//
-//   @override
-//   // TODO: implement passportSerNum
-//   String get passportSerNum => throw UnimplementedError();
-// }
-
 class UploadPassportState {
   final bool isUploading;
   final int uploadedCount;
