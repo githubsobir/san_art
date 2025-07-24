@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:san_art/core/back_image/back_image1.dart';
@@ -10,9 +11,11 @@ import 'package:san_art/core/theme/colors/colors_app.dart';
 import 'package:san_art/core/theme/theme_switcher.dart';
 import 'package:san_art/core/widgets/buttons/button_primary.dart';
 import 'package:san_art/featurs/auth/registration/driver/car_information/car_main_reg/presentation/provider/car_main_reg_provider.dart';
+import 'package:san_art/featurs/root_page/presentation/screens/add_product_page/screens/add_product_page.dart';
 import 'package:san_art/generated/assets.dart';
 
 import '../../../../../../../../core/theme/provider/theme_provider.dart';
+
 
 @RoutePage()
 class CarMainRegistrationPage extends ConsumerStatefulWidget {
@@ -58,7 +61,11 @@ class _CarMainRegistrationPageState
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    // IconButton(onPressed: (){}, icon:Icon(Platform.isIOS? Icons.arrow_back_ios:Icons.arrow_back)),
+                    IconButton(onPressed: (){
+                      Navigator.of(context).push(CupertinoPageRoute(
+                        builder: (context) => const AddProductPage(),
+                      ));
+                    }, icon:Icon(Icons.add)),
                     Container(
                       height: 100,
                       padding: const EdgeInsets.all(10),

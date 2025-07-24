@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:san_art/core/back_image/back_image1.dart';
@@ -10,6 +11,8 @@ import 'package:san_art/core/routes/routes.dart';
 import 'package:san_art/core/service/injection/injection_container.dart';
 import 'package:san_art/core/theme/theme_switcher.dart';
 import 'package:san_art/featurs/choose_language/presentation/providers/language_provider.dart';
+
+
 
 @RoutePage()
 class LanguagePage extends ConsumerStatefulWidget {
@@ -99,6 +102,8 @@ class _LanguagePageState extends ConsumerState<LanguagePage> {
                                   box.langUserLang =
                                       listLanguage[index].langId1;
                                   setState(() {});
+//:TODO: remove this when you add the add product page
+
                                 },
                               ),
                             )),

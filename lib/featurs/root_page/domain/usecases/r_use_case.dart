@@ -2,12 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:san_art/core/data/hive_san_art.dart';
-import 'package:san_art/featurs/root_page/presentation/screens/add_product_page/add_product_page.dart';
+
 import 'package:san_art/featurs/root_page/presentation/screens/chat_page/chat_page.dart';
 import 'package:san_art/featurs/root_page/presentation/screens/favorite_page/favorite_page.dart';
 import 'package:san_art/featurs/root_page/presentation/screens/main_page/main_page.dart';
 import 'package:san_art/featurs/root_page/presentation/screens/search_page/presentation/screen/search_page.dart';
 import 'package:san_art/featurs/root_page/presentation/screens/search_product_page/search_product_page.dart';
+
+import '../../presentation/screens/add_product_page/screens/add_product_page.dart';
 
 @singleton
 class RootUseCase {
